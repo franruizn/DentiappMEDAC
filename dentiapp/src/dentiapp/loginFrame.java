@@ -2,9 +2,6 @@ package dentiapp;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Image;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,10 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JPasswordField;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-import javax.swing.SwingConstants;
-import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +22,6 @@ public class loginFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Image imagenFondo;
 	private JTextField txtUsuario;
 	private JPasswordField txtPass;
 	private ConexionMySQL cn = new ConexionMySQL();
@@ -82,6 +75,10 @@ public class loginFrame extends JFrame {
 							dispose();
 							adminFrame aframe = new adminFrame();
 							aframe.setVisible(true);
+						} else {
+							dispose();
+							doctorFrame dframe = new doctorFrame();
+							dframe.setVisible(true);
 						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Error al iniciar sesión - Los credenciales no son correctos", "Error al iniciar sesión", JOptionPane.WARNING_MESSAGE);
