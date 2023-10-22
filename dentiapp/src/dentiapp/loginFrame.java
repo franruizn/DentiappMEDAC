@@ -27,7 +27,7 @@ public class loginFrame extends JFrame {
 	private ConexionMySQL cn = new ConexionMySQL();
 
 	/**
-	 * Launch the application.
+	 * Launch the application. 
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,7 +40,7 @@ public class loginFrame extends JFrame {
 				}
 			}
 		});
-	}
+	}  
 
 	/**
 	 * Create the frame.
