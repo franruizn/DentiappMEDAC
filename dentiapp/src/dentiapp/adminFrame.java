@@ -39,7 +39,6 @@ public class adminFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public adminFrame() {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 964, 629);
 		contentPane = new JPanel();
