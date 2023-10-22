@@ -5,19 +5,30 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class adminFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtListaPacientes;
-	private JTextField txtListaDoctores;
+	private JTable tblPacientes;
+	private JTable tblDoctores;
+	private ConexionMySQL cn = new ConexionMySQL();
+	private ArrayList<Doctor> listaDoctores = new ArrayList<>();
+	private ArrayList<Paciente> listaPacientes = new ArrayList<>();
+	private String[] columnasDoctores = {"ID","Nombre","Especialidad"};
+	private DefaultTableModel modeloDoctores = new DefaultTableModel();
 
 	/**
 	 * Launch the application.
@@ -37,8 +48,10 @@ public class adminFrame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public adminFrame() {
+	public adminFrame() throws SQLException {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 964, 629);
 		contentPane = new JPanel();
@@ -56,7 +69,7 @@ public class adminFrame extends JFrame {
 		JLabel lblListaPacientes = new JLabel("LISTA PACIENTES");
 		lblListaPacientes.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblListaPacientes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblListaPacientes.setBounds(175, 191, 195, 26);
+		lblListaPacientes.setBounds(186, 191, 195, 26);
 		contentPane.add(lblListaPacientes);
 		
 		JButton btnDoctores = new JButton("DOCTORES");
@@ -75,17 +88,24 @@ public class adminFrame extends JFrame {
 		btnStock.setBounds(652, 35, 99, 21);
 		contentPane.add(btnStock);
 		
-		txtListaDoctores = new JTextField();
-		txtListaDoctores.setColumns(10);
-		txtListaDoctores.setBounds(552, 234, 285, 248);
-		contentPane.add(txtListaDoctores);
-		
-		txtListaPacientes = new JTextField();
-		txtListaPacientes.setBounds(142, 234, 285, 248);
-		contentPane.add(txtListaPacientes);
-		txtListaPacientes.setColumns(10);
-		
 		JButton btnActListaDoctores = new JButton("ACTUALIZAR");
+		modeloDoctores.setColumnIdentifiers(columnasDoctores);
+		
+		btnActListaDoctores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					
+					rellenarListaDoctores();
+					rellenarTablaDoctores();
+					
+				} catch(SQLException r) {
+					System.out.println(r.getMessage());
+				}
+				
+			}
+		});
+		
 		btnActListaDoctores.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		btnActListaDoctores.setBounds(728, 505, 109, 21);
 		contentPane.add(btnActListaDoctores);
@@ -119,9 +139,62 @@ public class adminFrame extends JFrame {
 		btnConsultas.setBounds(341, 35, 112, 21);
 		contentPane.add(btnConsultas);
 		
+		JButton btnUsuarios = new JButton("Usuarios");
+		btnUsuarios.setBounds(503, 34, 89, 23);
+		contentPane.add(btnUsuarios);
+		
+		tblPacientes = new JTable();
+		tblPacientes.setBounds(124, 225, 324, 276);
+		contentPane.add(tblPacientes);
+		
+		
+		tblDoctores = new JTable();
+		tblDoctores.setBounds(531, 225, 324, 276);
+		contentPane.add(tblDoctores);
+		
+		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/dentiapp/ventana_administrador.PNG")));
 		lblFondo.setBounds(0, 0, 954, 594);
 		contentPane.add(lblFondo);
+		
+		rellenarListaDoctores();
+		rellenarTablaDoctores();
+	}
+
+
+	private void rellenarTablaDoctores() throws SQLException {
+		modeloDoctores.setRowCount(0);
+		rellenarListaDoctores();
+		Object[] fila = new Object[modeloDoctores.getColumnCount()];
+		for(int i = 0; i < listaDoctores.size(); i++) {
+			fila[0] = listaDoctores.get(i).getIddoctor();
+			fila[1] = listaDoctores.get(i).getNombre();
+			fila[2] = listaDoctores.get(i).getFk_idespecialidad();
+			modeloDoctores.addRow(fila);
+		}
+		
+		tblDoctores.setModel(modeloDoctores);
+	}
+	
+	private void rellenarListaDoctores() throws SQLException {
+		cn.conectar();
+		
+		//Consulta a ejecutar
+		String consulta = "SELECT * FROM doctor;";
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
+		listaDoctores = new ArrayList<Doctor>();
+		while(rset.next()) {
+			String nombre = rset.getString("nombre");
+			int idDoctor = rset.getInt("iddoctor");
+			int fk_idUsuario = rset.getInt("fk_idusuario");
+			int fk_idEspecialidad = rset.getInt("fk_idespecialidad");
+
+			@SuppressWarnings("unused")
+			Doctor doctor1;
+			listaDoctores.add(doctor1 = new Doctor(idDoctor, fk_idUsuario, fk_idEspecialidad, nombre));
+			
+		}
 	}
 }

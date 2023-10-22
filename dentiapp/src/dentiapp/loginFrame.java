@@ -46,6 +46,7 @@ public class loginFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public loginFrame() {
+		// Declaración del aspecto del panel
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 951, 624);
@@ -57,7 +58,7 @@ public class loginFrame extends JFrame {
 		JButton btnLogin = new JButton("LOGIN");
 		btnLogin.setBackground(new Color(255, 0, 0));
 		
-		
+		//Indicamos que busque en la base de datos si el usuario existe
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -65,9 +66,11 @@ public class loginFrame extends JFrame {
 					String user = txtUsuario.getText();
 					String pass = String.valueOf(txtPass.getPassword());
 					
+					//Consulta a ejecutar
 					String consulta = "SELECT rol FROM usuario WHERE nombre = '" + user + "' AND pass = '"+ pass + "';";
 					ResultSet rset = cn.ejecutarSelect(consulta);
 					
+					//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
 					if(rset.next()) {
 						int rol = rset.getInt("rol");
 						System.out.println(rol);
