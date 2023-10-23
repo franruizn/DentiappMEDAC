@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -27,7 +28,7 @@ public class CrearDoctorDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private ConexionMySQL cn = new ConexionMySQL();
 	private JTextField txtNombre;
-	private JTextField txtID;
+	private JTextField txtDNI;
 	private DefaultComboBoxModel modeloEspecialidades = new DefaultComboBoxModel();
 	private ArrayList<Especialidad> listaEspecialidades = new ArrayList<Especialidad>();
 
@@ -66,9 +67,9 @@ public class CrearDoctorDialog extends JDialog {
 			contentPanel.add(btnCancelar);
 		}
 		{
-			JLabel lblDoctorId = new JLabel("ID");
+			JLabel lblDoctorId = new JLabel("DNI");
 			lblDoctorId.setFont(new Font("SansSerif", Font.PLAIN, 18));
-			lblDoctorId.setBounds(323, 123, 46, 14);
+			lblDoctorId.setBounds(39, 253, 46, 14);
 			contentPanel.add(lblDoctorId);
 		}
 		{
@@ -86,27 +87,32 @@ public class CrearDoctorDialog extends JDialog {
 
 		txtNombre = new JTextField();
 		txtNombre.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		txtNombre.setBounds(55, 152, 206, 41);
+		txtNombre.setBounds(55, 152, 293, 41);
 		txtNombre.setBackground(new Color(246, 246, 246));
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 
-		txtID = new JTextField();
-		txtID.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		txtID.setBackground(new Color(246, 246, 246));
-		txtID.setBounds(356, 152, 63, 41);
-		contentPanel.add(txtID);
-		txtID.setColumns(10);
+		txtDNI = new JTextField();
+		txtDNI.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		txtDNI.setBackground(new Color(246, 246, 246));
+		txtDNI.setBounds(55, 280, 199, 41);
+		contentPanel.add(txtDNI);
+		txtDNI.setColumns(10);
 
 		JComboBox comboEspecialidades = new JComboBox();
-		comboEspecialidades.setBounds(513, 152, 206, 41);
+		comboEspecialidades.setBounds(426, 152, 279, 41);
 
 		contentPanel.add(comboEspecialidades);
 		{
 			JButton btnCrear = new JButton("Crear");
 			btnCrear.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					crearDoctor(comboEspecialidades);
+					try {
+						crearDoctor(comboEspecialidades);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					dispose();
 				}
 			});
@@ -129,14 +135,18 @@ public class CrearDoctorDialog extends JDialog {
 
 	}
 
+	@SuppressWarnings({"unused" })
 	private void crearDoctor(JComboBox comboEspecialidades) throws SQLException {
 		cn.conectar();
 
 		String nombre = txtNombre.getText();
-		int id = Integer.parseInt(txtID.getText());
+		String dni = txtDNI.getText();
 		String especialidad = comboEspecialidades.getSelectedItem().toString();
 		int idEspecialidad = obtenerIdEspecialidad(especialidad);
 		
+		String consulta = "INSERT INTO doctor VALUES (0,'"+dni+"',"+idEspecialidad+",'"+nombre+"');";
+		cn.ejecutarInsertDeleteUpdate(consulta);
+		JOptionPane.showMessageDialog(null, "Doctor agregado con éxito", "Doctor agregado", JOptionPane.OK_OPTION);
 	}
 
 	private void rellenarListaEspecialidades() throws SQLException {
@@ -170,7 +180,7 @@ public class CrearDoctorDialog extends JDialog {
 		int id = 0;
 
 		// Consulta a ejecutar
-		String consulta = "SELECT id FROM especialidad WHERE nombre = '"+especialidad+"';";
+		String consulta = "SELECT idespecialidad FROM especialidad WHERE nombre = '"+especialidad+"';";
 		ResultSet rset = cn.ejecutarSelect(consulta);
 		
 		if(rset.next()) {

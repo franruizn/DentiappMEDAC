@@ -137,6 +137,20 @@ public class adminFrame extends JFrame {
 		btnBorrarDoctor.setForeground(Color.WHITE);
 		
 		JButton btnCrearDoctor = new JButton("CREAR");
+		btnCrearDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearDoctorDialog dialDoctor;
+				try {
+					dialDoctor = new CrearDoctorDialog();
+					dialDoctor.setModal(true);
+					dialDoctor.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnCrearDoctor.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		btnCrearDoctor.setBounds(531, 457, 85, 21);
 		contentPane.add(btnCrearDoctor);

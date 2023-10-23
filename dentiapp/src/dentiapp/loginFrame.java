@@ -66,7 +66,7 @@ public class loginFrame extends JFrame {
 					String pass = String.valueOf(txtPass.getPassword());
 					
 					//Consulta a ejecutar
-					String consulta = "SELECT rol FROM usuario WHERE nombre = '" + user + "' AND pass = '"+ pass + "';";
+					String consulta = "SELECT rol FROM usuario WHERE idusuario = '" + user + "' AND pass = '"+ pass + "';";
 					ResultSet rset = cn.ejecutarSelect(consulta);
 					
 					//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
