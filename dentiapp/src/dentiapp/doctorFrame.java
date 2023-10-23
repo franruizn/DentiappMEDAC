@@ -56,9 +56,7 @@ public class doctorFrame extends JFrame {
 			}
 		});
 		
-		JButton btnEliminarTratamiento = new JButton("Eliminar");
-		btnEliminarTratamiento.setBounds(767, 456, 89, 23);
-		contentPane.add(btnEliminarTratamiento);
+		
 		
 		textField = new JTextField();
 		textField.setBounds(128, 170, 322, 275);
@@ -118,6 +116,12 @@ public class doctorFrame extends JFrame {
 		contentPane.add(btnModificarTratamiento);
 		btnModificarTratamiento.setBackground(new Color(55,4,102));
 		btnModificarTratamiento.setForeground(Color.WHITE);
+		
+		JButton btnEliminarTratamiento = new JButton("Eliminar");
+		btnEliminarTratamiento.setBounds(767, 456, 89, 23);
+		contentPane.add(btnEliminarTratamiento);
+		btnEliminarTratamiento.setBackground(new Color(55,4,102));
+		btnEliminarTratamiento.setForeground(Color.WHITE);
 		
 		JLabel lblImagenFondo = new JLabel("");
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/dentiapp/ventana_doctor.PNG")));
