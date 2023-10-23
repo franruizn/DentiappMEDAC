@@ -56,7 +56,6 @@ public class loginFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnLogin = new JButton("LOGIN");
-		btnLogin.setBackground(new Color(255, 0, 0));
 		
 		//Indicamos que busque en la base de datos si el usuario existe
 		btnLogin.addActionListener(new ActionListener() {
