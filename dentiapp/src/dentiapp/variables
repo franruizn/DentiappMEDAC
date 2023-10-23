@@ -1,3 +1,6 @@
 VARIABLES PROGRAMA
 
 ----- loginFrame -----
+btnLogin 	Boton del LogIn
+txtUsuario 	Donde se escribe el nombre de usuario
+txtPass 	Donde se escribe la contraseña
