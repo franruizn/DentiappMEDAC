@@ -65,41 +65,46 @@ public class adminFrame extends JFrame {
 		
 		JLabel lblListaDoctores = new JLabel("LISTA DOCTORES");
 		lblListaDoctores.setHorizontalAlignment(SwingConstants.CENTER);
-		lblListaDoctores.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblListaDoctores.setFont(new Font("SansSerif", Font.BOLD, 20));
 		lblListaDoctores.setBounds(600, 139, 195, 26);
 		contentPane.add(lblListaDoctores);
 		
 		JLabel lblListaPacientes = new JLabel("LISTA PACIENTES");
-		lblListaPacientes.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblListaPacientes.setFont(new Font("SansSerif", Font.BOLD, 20));
 		lblListaPacientes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblListaPacientes.setBounds(186, 139, 195, 26);
 		contentPane.add(lblListaPacientes);
 		
 		JButton btnDoctores = new JButton("DOCTORES");
+		btnDoctores.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnDoctores.setBounds(186, 30, 122, 34);
 		contentPane.add(btnDoctores);
 		btnDoctores.setBackground(new Color(55,4,102));
 		btnDoctores.setForeground(Color.WHITE);
 		
 		JButton btnPacientes = new JButton("PACIENTES");
+		btnPacientes.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnPacientes.setBounds(34, 30, 118, 34);
 		contentPane.add(btnPacientes);
 		btnPacientes.setBackground(new Color(55,4,102));
 		btnPacientes.setForeground(Color.WHITE);
 		
 		JButton btnFacturacion = new JButton("FACTURACION");
+		btnFacturacion.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnFacturacion.setBounds(793, 30, 122, 34);
 		contentPane.add(btnFacturacion);
 		btnFacturacion.setBackground(new Color(55,4,102));
 		btnFacturacion.setForeground(Color.WHITE);
 		
 		JButton btnStock = new JButton("STOCK");
+		btnStock.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnStock.setBounds(642, 30, 118, 34);
 		contentPane.add(btnStock);
 		btnStock.setBackground(new Color(55,4,102));
 		btnStock.setForeground(Color.WHITE);
 		
 		JButton btnActListaDoctores = new JButton("ACTUALIZAR");
+		btnActListaDoctores.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		modeloDoctores.setColumnIdentifiers(columnasDoctores);
 		
 		btnActListaDoctores.addActionListener(new ActionListener() {
@@ -136,9 +141,10 @@ public class adminFrame extends JFrame {
 		btnCrearDoctor.setBounds(531, 457, 85, 21);
 		contentPane.add(btnCrearDoctor);
 		btnCrearDoctor.setBackground(new Color(55,4,102));
-		btnCrearDoctor.setForeground(Color.WHITE);
+		btnCrearDoctor.setForeground(Color.WHITE); 
 		
 		JButton btnActListaPacientes = new JButton("ACTUALIZAR");
+		btnActListaPacientes.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		modeloPacientes.setColumnIdentifiers(columnasPacientes);
 		
 		btnActListaPacientes.addActionListener(new ActionListener() {
@@ -176,12 +182,14 @@ public class adminFrame extends JFrame {
 		btnCrearPaciente.setForeground(Color.WHITE);
 		
 		JButton btnConsultas = new JButton("CONSULTAS");
+		btnConsultas.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnConsultas.setBounds(336, 30, 124, 34);
 		contentPane.add(btnConsultas);
 		btnConsultas.setBackground(new Color(55,4,102));
 		btnConsultas.setForeground(Color.WHITE);
 		
 		JButton btnUsuarios = new JButton("USUARIOS");
+		btnUsuarios.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnUsuarios.setBounds(489, 30, 122, 34);
 		contentPane.add(btnUsuarios);
 		btnUsuarios.setBackground(new Color(55,4,102));

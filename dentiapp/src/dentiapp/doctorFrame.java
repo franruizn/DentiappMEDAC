@@ -51,34 +51,28 @@ public class doctorFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnPedido = new JButton("PEDIDO");
-		btnPedido.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
-		JButton btnEliminarTratamiento = new JButton("Eliminar");
-		btnEliminarTratamiento.setBounds(767, 456, 89, 23);
-		contentPane.add(btnEliminarTratamiento);
+		btnPedido.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnPedido.setBounds(341, 30, 118, 29);
+		contentPane.add(btnPedido);	
+		btnPedido.setBackground(new Color(55,4,102));
+		btnPedido.setForeground(Color.WHITE);
 		
 		textField = new JTextField();
 		textField.setBounds(128, 170, 322, 275);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		btnPedido.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		btnPedido.setBounds(341, 30, 118, 29);
-		contentPane.add(btnPedido);
-		btnPedido.setBackground(new Color(55,4,102));
-		btnPedido.setForeground(Color.WHITE);
+		
+		
 		
 		JButton btnPacientes = new JButton("PACIENTES");
-		btnPacientes.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		btnPacientes.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnPacientes.setBounds(189, 30, 118, 29);
 		contentPane.add(btnPacientes);
 		btnPacientes.setBackground(new Color(55,4,102));
 		btnPacientes.setForeground(Color.WHITE);
 		
 		JButton btnTratamiento = new JButton("TRATAMIENTO");
-		btnTratamiento.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		btnTratamiento.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnTratamiento.setBounds(37, 30, 118, 29);
 		contentPane.add(btnTratamiento);
 		btnTratamiento.setBackground(new Color(55,4,102));
@@ -91,33 +85,43 @@ public class doctorFrame extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("LISTA PACIENTES");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
 		lblNewLabel.setBounds(128, 137, 322, 29);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblListaTratamientos = new JLabel("LISTA TRATAMIENTOS");
 		lblListaTratamientos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblListaTratamientos.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblListaTratamientos.setFont(new Font("SansSerif", Font.BOLD, 20));
 		lblListaTratamientos.setBounds(534, 137, 322, 29);
 		contentPane.add(lblListaTratamientos);
 		
-		JButton btnActualizarPaciente = new JButton("Actualizar");
-		btnActualizarPaciente.setBounds(361, 456, 89, 23);
+		JButton btnActualizarPaciente = new JButton("ACTUALIZAR");
+		btnActualizarPaciente.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnActualizarPaciente.setBounds(341, 456, 109, 23);
 		contentPane.add(btnActualizarPaciente);
 		btnActualizarPaciente.setBackground(new Color(55,4,102));
 		btnActualizarPaciente.setForeground(Color.WHITE);
 		
-		JButton btnAñadirTratamiento = new JButton("Añadir");
-		btnAñadirTratamiento.setBounds(544, 456, 89, 23);
+		JButton btnAñadirTratamiento = new JButton("AÑADIR");		
+		btnAñadirTratamiento.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnAñadirTratamiento.setBounds(534, 456, 89, 23);
 		contentPane.add(btnAñadirTratamiento);
 		btnAñadirTratamiento.setBackground(new Color(55,4,102));
 		btnAñadirTratamiento.setForeground(Color.WHITE);
 		
-		JButton btnModificarTratamiento = new JButton("Modificar");
-		btnModificarTratamiento.setBounds(655, 456, 89, 23);
+		JButton btnModificarTratamiento = new JButton("MODIFICAR");
+		btnModificarTratamiento.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnModificarTratamiento.setBounds(633, 456, 104, 23);
 		contentPane.add(btnModificarTratamiento);
 		btnModificarTratamiento.setBackground(new Color(55,4,102));
 		btnModificarTratamiento.setForeground(Color.WHITE);
+		
+		JButton btnEliminarTratamiento = new JButton("ELIMINAR");
+		btnEliminarTratamiento.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnEliminarTratamiento.setBounds(747, 456, 109, 23);
+		contentPane.add(btnEliminarTratamiento);
+		btnEliminarTratamiento.setBackground(new Color(55,4,102));
+		btnEliminarTratamiento.setForeground(Color.WHITE);
 		
 		JLabel lblImagenFondo = new JLabel("");
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/dentiapp/ventana_doctor.PNG")));
