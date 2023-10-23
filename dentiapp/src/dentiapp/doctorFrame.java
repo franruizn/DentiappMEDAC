@@ -43,7 +43,7 @@ public class doctorFrame extends JFrame {
 	public doctorFrame() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 951, 624);
+		setBounds(100, 100, 967, 635);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,7 +89,7 @@ public class doctorFrame extends JFrame {
 		contentPane.add(textField_1);
 		
 		JLabel lblNewLabel = new JLabel("LISTA PACIENTES");
-		lblNewLabel.setBounds(128, 130, 322, 29);
+		lblNewLabel.setBounds(128, 137, 322, 29);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblListaTratamientos = new JLabel("LISTA TRATAMIENTOS");
@@ -110,7 +110,7 @@ public class doctorFrame extends JFrame {
 		
 		JLabel lblImagenFondo = new JLabel("");
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/dentiapp/ventana_doctor.PNG")));
-		lblImagenFondo.setBounds(0, 0, 935, 592);
+		lblImagenFondo.setBounds(0, 0, 956, 596);
 		contentPane.add(lblImagenFondo);
 	}
 }
