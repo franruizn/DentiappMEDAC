@@ -42,7 +42,7 @@ public class CrearDoctorDialog extends JDialog {
 		{
 			JButton btnCrear = new JButton("Crear");
 			btnCrear.setFont(new Font("SansSerif", Font.PLAIN, 11));
-			btnCrear.setBounds(512, 384, 82, 32);
+			btnCrear.setBounds(483, 384, 82, 32);
 			btnCrear.setBackground(new Color(55,4,102));
 			btnCrear.setForeground(Color.WHITE);
 			btnCrear.setActionCommand("OK");
@@ -61,14 +61,20 @@ public class CrearDoctorDialog extends JDialog {
 		{
 			JLabel lblDoctorId = new JLabel("ID");
 			lblDoctorId.setFont(new Font("SansSerif", Font.PLAIN, 18));
-			lblDoctorId.setBounds(304, 123, 46, 14);
+			lblDoctorId.setBounds(302, 123, 46, 14);
 			contentPanel.add(lblDoctorId);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("Nombre");
-			lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-			lblNewLabel.setBounds(39, 120, 63, 21);
-			contentPanel.add(lblNewLabel);
+			JLabel lblNombre = new JLabel("Nombre");
+			lblNombre.setFont(new Font("SansSerif", Font.PLAIN, 18));
+			lblNombre.setBounds(39, 120, 63, 21);
+			contentPanel.add(lblNombre);
+		}
+		{
+			JLabel lblEspecialidad = new JLabel("Especialidad");
+			lblEspecialidad.setFont(new Font("SansSerif", Font.PLAIN, 18));
+			lblEspecialidad.setBounds(465, 114, 102, 32);
+			contentPanel.add(lblEspecialidad);
 		}
 		
 		JLabel lblFondo = new JLabel("");
