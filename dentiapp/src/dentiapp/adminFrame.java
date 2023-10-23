@@ -56,7 +56,7 @@ public class adminFrame extends JFrame {
 	public adminFrame() throws SQLException {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 964, 629);
+		setBounds(100, 100, 963, 629);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -126,14 +126,14 @@ public class adminFrame extends JFrame {
 		
 		JButton btnBorrarDoctor = new JButton("BORRAR");
 		btnBorrarDoctor.setFont(new Font("SansSerif", Font.PLAIN, 10));
-		btnBorrarDoctor.setBounds(636, 457, 85, 21);
+		btnBorrarDoctor.setBounds(642, 457, 85, 21);
 		contentPane.add(btnBorrarDoctor);
 		btnBorrarDoctor.setBackground(new Color(55,4,102));
 		btnBorrarDoctor.setForeground(Color.WHITE);
 		
 		JButton btnCrearDoctor = new JButton("CREAR");
 		btnCrearDoctor.setFont(new Font("SansSerif", Font.PLAIN, 10));
-		btnCrearDoctor.setBounds(541, 457, 85, 21);
+		btnCrearDoctor.setBounds(531, 457, 85, 21);
 		contentPane.add(btnCrearDoctor);
 		btnCrearDoctor.setBackground(new Color(55,4,102));
 		btnCrearDoctor.setForeground(Color.WHITE);
@@ -170,7 +170,7 @@ public class adminFrame extends JFrame {
 		
 		JButton btnCrearPaciente = new JButton("CREAR");
 		btnCrearPaciente.setFont(new Font("SansSerif", Font.PLAIN, 10));
-		btnCrearPaciente.setBounds(133, 457, 85, 21);
+		btnCrearPaciente.setBounds(123, 457, 85, 21);
 		contentPane.add(btnCrearPaciente);
 		btnCrearPaciente.setBackground(new Color(55,4,102));
 		btnCrearPaciente.setForeground(Color.WHITE);
@@ -196,31 +196,16 @@ public class adminFrame extends JFrame {
 		tblDoctores.setBounds(531, 170, 324, 276);
 		contentPane.add(tblDoctores);
 		
+		rellenarListaDoctores();
+		rellenarTablaDoctores();
+		rellenarListaPacientes();
+		rellenarTablaPacientes();
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/dentiapp/ventana_admin.PNG")));
 		lblFondo.setBounds(0, 0, 954, 594);
 		contentPane.add(lblFondo);
 		
-		rellenarListaDoctores();
-		rellenarTablaDoctores();
-		rellenarListaPacientes();
-		rellenarTablaPacientes();
-	}
-
-
-	private void rellenarTablaDoctores() throws SQLException {
-		modeloDoctores.setRowCount(0);
-		rellenarListaDoctores();
-		Object[] fila = new Object[modeloDoctores.getColumnCount()];
-		for(int i = 0; i < listaDoctores.size(); i++) {
-			fila[0] = listaDoctores.get(i).getIddoctor();
-			fila[1] = listaDoctores.get(i).getNombre();
-			fila[2] = listaDoctores.get(i).getFk_idespecialidad();
-			modeloDoctores.addRow(fila);
-		}
-		
-		tblDoctores.setModel(modeloDoctores);
 	}
 	
 	private void rellenarListaDoctores() throws SQLException {
@@ -242,7 +227,24 @@ public class adminFrame extends JFrame {
 			listaDoctores.add(doctor1 = new Doctor(idDoctor, fk_idUsuario, fk_idEspecialidad, nombre));
 			
 		}
+		
+		cn.desconectar();
 	}
+
+	private void rellenarTablaDoctores() throws SQLException {
+		modeloDoctores.setRowCount(0);
+		rellenarListaDoctores();
+		Object[] fila = new Object[modeloDoctores.getColumnCount()];
+		for(int i = 0; i < listaDoctores.size(); i++) {
+			fila[0] = listaDoctores.get(i).getIddoctor();
+			fila[1] = listaDoctores.get(i).getNombre();
+			fila[2] = listaDoctores.get(i).getFk_idespecialidad();
+			modeloDoctores.addRow(fila);
+		}
+		
+		tblDoctores.setModel(modeloDoctores);
+	}
+	
 	
 	private void rellenarListaPacientes() throws SQLException {
 		cn.conectar();
@@ -262,6 +264,8 @@ public class adminFrame extends JFrame {
 			listaPacientes.add(paciente1 = new Paciente(idPaciente, dni, nombre));
 			
 		}
+		
+		cn.desconectar();
 	}
 	
 	private void rellenarTablaPacientes() throws SQLException {
