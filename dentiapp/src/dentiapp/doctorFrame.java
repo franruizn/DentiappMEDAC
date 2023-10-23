@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 public class doctorFrame extends JFrame {
 
@@ -41,10 +42,21 @@ public class doctorFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton btnNewButton_2 = new JButton("PEDIDO");
+		btnNewButton_2.setBounds(354, 33, 89, 23);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton = new JButton("INICIO");
+		btnNewButton.setBounds(49, 33, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("TRATAMIENTO");
+		btnNewButton_1.setBounds(206, 33, 89, 23);
+		contentPane.add(btnNewButton_1);
+		
 		JLabel lblImagenFondo = new JLabel("");
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/dentiapp/ventana_doctor.PNG")));
-		lblImagenFondo.setBounds(0, 0, 951, 592);
+		lblImagenFondo.setBounds(0, 0, 935, 592);
 		contentPane.add(lblImagenFondo);
 	}
-
 }
