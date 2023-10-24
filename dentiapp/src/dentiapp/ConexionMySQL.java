@@ -60,4 +60,6 @@ public class ConexionMySQL {
         int fila=stmt.executeUpdate(consulta);
         return fila;
     }
+     
+     
 }

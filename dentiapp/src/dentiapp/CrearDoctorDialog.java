@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -29,7 +28,7 @@ public class CrearDoctorDialog extends JDialog {
 	private ConexionMySQL cn = new ConexionMySQL();
 	private JTextField txtNombre;
 	private JTextField txtDNI;
-	private DefaultComboBoxModel modeloEspecialidades = new DefaultComboBoxModel();
+	private DefaultComboBoxModel<String> modeloEspecialidades = new DefaultComboBoxModel<String>();
 	private ArrayList<Especialidad> listaEspecialidades = new ArrayList<Especialidad>();
 
 	/**
@@ -99,7 +98,7 @@ public class CrearDoctorDialog extends JDialog {
 		contentPanel.add(txtDNI);
 		txtDNI.setColumns(10);
 
-		JComboBox comboEspecialidades = new JComboBox();
+		JComboBox<String> comboEspecialidades = new JComboBox<String>();
 		comboEspecialidades.setBounds(426, 152, 279, 41);
 
 		contentPanel.add(comboEspecialidades);
@@ -136,13 +135,14 @@ public class CrearDoctorDialog extends JDialog {
 	}
 
 	@SuppressWarnings({"unused" })
-	private void crearDoctor(JComboBox comboEspecialidades) throws SQLException {
+	private void crearDoctor(JComboBox<String> comboEspecialidades) throws SQLException {
 		cn.conectar();
 
 		String nombre = txtNombre.getText();
 		String dni = txtDNI.getText();
 		String especialidad = comboEspecialidades.getSelectedItem().toString();
 		int idEspecialidad = obtenerIdEspecialidad(especialidad);
+		
 		
 		String consulta = "INSERT INTO doctor VALUES (0,'"+dni+"',"+idEspecialidad+",'"+nombre+"');";
 		cn.ejecutarInsertDeleteUpdate(consulta);
@@ -167,7 +167,7 @@ public class CrearDoctorDialog extends JDialog {
 		}
 	}
 
-	private void rellenarComboEspecialidades(JComboBox comboEspecialidades) {
+	private void rellenarComboEspecialidades(JComboBox<String> comboEspecialidades) {
 		for (Especialidad especialidad1 : listaEspecialidades) {
 			modeloEspecialidades.addElement(especialidad1.getNombre());
 		}
@@ -189,4 +189,5 @@ public class CrearDoctorDialog extends JDialog {
 		
 		return id;
 	}
+	
 }
