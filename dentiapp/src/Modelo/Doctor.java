@@ -1,7 +1,9 @@
-package dentiapp;
+package Modelo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Controlador.ConexionMySQL;
 
 
 public class Doctor {

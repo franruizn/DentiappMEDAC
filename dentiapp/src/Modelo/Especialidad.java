@@ -1,4 +1,4 @@
-package dentiapp;
+package Modelo;
 
 public class Especialidad {
 	//Atributos

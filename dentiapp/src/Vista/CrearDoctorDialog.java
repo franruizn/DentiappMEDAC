@@ -1,4 +1,4 @@
-package dentiapp;
+package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,6 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+
+import Controlador.ConexionMySQL;
+import Modelo.Especialidad;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
@@ -50,6 +54,7 @@ public class CrearDoctorDialog extends JDialog {
 	 * @throws SQLException
 	 */
 	public CrearDoctorDialog() throws SQLException {
+		setResizable(false);
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,6 +63,11 @@ public class CrearDoctorDialog extends JDialog {
 
 		{
 			JButton btnCancelar = new JButton("Cancelar");
+			btnCancelar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+				}
+			});
 			btnCancelar.setFont(new Font("SansSerif", Font.PLAIN, 16));
 			btnCancelar.setBounds(619, 367, 97, 41);
 			btnCancelar.setActionCommand("Cancel");
