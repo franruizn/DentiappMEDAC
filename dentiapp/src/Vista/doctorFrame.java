@@ -121,7 +121,7 @@ public class doctorFrame extends JFrame {
 		btnEliminarTratamiento.setForeground(Color.WHITE);
 		
 		JLabel lblImagenFondo = new JLabel("");
-		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/dentiapp/ventana_doctor.PNG")));
+		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/fotos/ventana_doctor.PNG")));
 		lblImagenFondo.setBounds(0, 0, 956, 596);
 		contentPane.add(lblImagenFondo);
 	}

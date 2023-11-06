@@ -23,6 +23,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
 
 public class adminFrame extends JFrame {
 
@@ -62,6 +64,27 @@ public class adminFrame extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 629);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnPaciente = new JMenu("Pacientes");
+		menuBar.add(mnPaciente);
+		
+		JMenu mnNewMenu_1 = new JMenu("New menu");
+		menuBar.add(mnNewMenu_1);
+		
+		JMenu mnNewMenu_2 = new JMenu("New menu");
+		menuBar.add(mnNewMenu_2);
+		
+		JMenu mnNewMenu_3 = new JMenu("New menu");
+		menuBar.add(mnNewMenu_3);
+		
+		JMenu mnNewMenu_4 = new JMenu("New menu");
+		menuBar.add(mnNewMenu_4);
+		
+		JMenu mnNewMenu_5 = new JMenu("New menu");
+		menuBar.add(mnNewMenu_5);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -229,7 +252,7 @@ public class adminFrame extends JFrame {
 		rellenarTablaPacientes();
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/dentiapp/ventana_admin.PNG")));
+		lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
 		lblFondo.setBounds(0, 0, 954, 594);
 		contentPane.add(lblFondo);
 		

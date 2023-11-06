@@ -135,7 +135,7 @@ public class CrearDoctorDialog extends JDialog {
 		}
 
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(CrearDoctorDialog.class.getResource("/dentiapp/dialog_add_doctor.PNG")));
+		lblFondo.setIcon(new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/dialog_add_doctor.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
 

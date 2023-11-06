@@ -116,7 +116,7 @@ public class loginFrame extends JFrame {
 		contentPane.add(txtPass);
 		
 		JLabel lblImagenFondo = new JLabel("");
-		lblImagenFondo.setIcon(new ImageIcon(loginFrame.class.getResource("/dentiapp/login2.png")));
+		lblImagenFondo.setIcon(new ImageIcon(loginFrame.class.getResource("/fotos/login2.png")));
 		lblImagenFondo.setBounds(0, 0, 951, 592);
 		contentPane.add(lblImagenFondo);
 	}
