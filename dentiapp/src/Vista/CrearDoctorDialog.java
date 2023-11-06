@@ -8,8 +8,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Controlador.ConexionMySQL;
+import Controlador.ControladorSQL;
 import Modelo.Especialidad;
 
 import javax.swing.JLabel;
@@ -24,16 +26,20 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 public class CrearDoctorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private ConexionMySQL cn = new ConexionMySQL();
+	private ControladorSQL cn = new ControladorSQL();
 	private JTextField txtNombre;
 	private JTextField txtDNI;
 	private DefaultComboBoxModel<String> modeloEspecialidades = new DefaultComboBoxModel<String>();
 	private ArrayList<Especialidad> listaEspecialidades = new ArrayList<Especialidad>();
+	private JTable tblDatos;
+	private DefaultTableModel modeloDatos = new DefaultTableModel();
+	private String[] listaDatos = new String[4];
 
 	/**
 	 * Launch the application.
@@ -117,12 +123,28 @@ public class CrearDoctorDialog extends JDialog {
 			btnCrear.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						crearDoctor(comboEspecialidades);
+						obtenerDatos(comboEspecialidades);
+						cn.insertarDatos("doctor",modeloDatos);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					dispose();
+					//dispose();
+				}
+
+				private void obtenerDatos(JComboBox<String> comboEspecialidades) throws SQLException {
+					String id;
+					listaDatos[0]=(null);
+					listaDatos[1] = (txtDNI.getText());
+					listaDatos[3]=(txtNombre.getText());
+					listaDatos[2]=(id = cn.obtenerIdEspecialidad(comboEspecialidades.getSelectedItem().toString()));
+					
+					modeloDatos.setRowCount(1);
+					modeloDatos.setValueAt(listaDatos[0], 0, 0);
+					modeloDatos.setValueAt(listaDatos[1], 0, 1);
+					modeloDatos.setValueAt(listaDatos[2], 0, 2);
+					modeloDatos.setValueAt(listaDatos[3], 0, 3);
+					tblDatos.setModel(modeloDatos);
 				}
 			});
 			btnCrear.setFont(new Font("SansSerif", Font.PLAIN, 16));
@@ -134,17 +156,27 @@ public class CrearDoctorDialog extends JDialog {
 			getRootPane().setDefaultButton(btnCrear);
 		}
 
+		rellenarListaEspecialidades();
+		rellenarComboEspecialidades(comboEspecialidades);
+
+		tblDatos = new JTable();
+		tblDatos.setBounds(416, 204, 300, 139);
+		contentPanel.add(tblDatos);
+
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/dialog_add_doctor.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-
-		rellenarListaEspecialidades();
-		rellenarComboEspecialidades(comboEspecialidades);
+		
+		modeloDatos.addColumn("iddoctor");
+		modeloDatos.addColumn("fk_idusuario");
+		modeloDatos.addColumn("fk_idespecialidad");
+		modeloDatos.addColumn("nombre");
+		
 
 	}
 
-	@SuppressWarnings({"unused" })
+	/*@SuppressWarnings({ "unused" })
 	private void crearDoctor(JComboBox<String> comboEspecialidades) throws SQLException {
 		cn.conectar();
 
@@ -152,20 +184,20 @@ public class CrearDoctorDialog extends JDialog {
 		String dni = txtDNI.getText();
 		String especialidad = comboEspecialidades.getSelectedItem().toString();
 		int idEspecialidad = obtenerIdEspecialidad(especialidad);
-		
-		
-		String consulta = "INSERT INTO doctor VALUES (0,'"+dni+"',"+idEspecialidad+",'"+nombre+"');";
-		cn.ejecutarInsertDeleteUpdate(consulta);
+
+		String consulta = "INSERT INTO doctor VALUES (0,'" + dni + "'," + idEspecialidad + ",'" + nombre + "');";
+		// cn.ejecutarInsertDeleteUpdate(consulta);
 		JOptionPane.showMessageDialog(null, "Doctor agregado con éxito", "Doctor agregado", JOptionPane.OK_OPTION);
-	}
+	}*/
 
 	private void rellenarListaEspecialidades() throws SQLException {
-		cn.conectar();
+		ConexionMySQL cnn = new ConexionMySQL();
+		cnn .conectar();
 
 		// Consulta a ejecutar
 		String consulta = "SELECT * FROM especialidad;";
-		ResultSet rset = cn.ejecutarSelect(consulta);
-		
+		ResultSet rset = cnn.ejecutarSelect(consulta);
+
 		listaEspecialidades = new ArrayList<Especialidad>();
 		while (rset.next()) {
 			String nombre = rset.getString("nombre");
@@ -185,19 +217,18 @@ public class CrearDoctorDialog extends JDialog {
 		comboEspecialidades.setModel(modeloEspecialidades);
 	}
 
-	private int obtenerIdEspecialidad(String especialidad) throws SQLException {
-		cn.conectar();
-		int id = 0;
-
-		// Consulta a ejecutar
-		String consulta = "SELECT idespecialidad FROM especialidad WHERE nombre = '"+especialidad+"';";
-		ResultSet rset = cn.ejecutarSelect(consulta);
-		
-		if(rset.next()) {
-			id = rset.getInt("idespecialidad");
-		}
-		
-		return id;
-	}
-	
+//	private int obtenerIdEspecialidad(String especialidad) throws SQLException {
+//		cn.conectar();
+//		int id = 0;
+//
+//		// Consulta a ejecutar
+//		String consulta = "SELECT idespecialidad FROM especialidad WHERE nombre = '" + especialidad + "';";
+//		ResultSet rset = cn.ejecutarSelect(consulta);
+//
+//		if (rset.next()) {
+//			id = rset.getInt("idespecialidad");
+//		}
+//
+//		return id;
+//	}
 }
