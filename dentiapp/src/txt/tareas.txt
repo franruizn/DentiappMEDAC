@@ -1,0 +1,11 @@
+---- Fran
+ControladorSQL crear e implementar
+
+---- Derek
+ControladorSQL crear e implementar
+
+---- Ivan
+JBean y clases de las tablas
+
+---- Marcos
+JMenuBar
