@@ -158,14 +158,14 @@ public class CrearDoctorDialog extends JDialog {
 		rellenarListaEspecialidades();
 		rellenarComboEspecialidades(comboEspecialidades);
 
-		tblDatos = new JTable();
-		tblDatos.setBounds(416, 204, 300, 139);
-		contentPanel.add(tblDatos);
-
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/dialog_add_doctor.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
+		
+				tblDatos = new JTable();
+				tblDatos.setBounds(416, 204, 300, 139);
+				contentPanel.add(tblDatos);
 		
 		modeloDatos.addColumn("iddoctor");
 		modeloDatos.addColumn("fk_idusuario");

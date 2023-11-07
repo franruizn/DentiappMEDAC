@@ -3,7 +3,11 @@ package Controlador;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -160,6 +164,47 @@ public class ControladorSQL {
 
 		cn.desconectar();
 		return idNum;
+	}
+	
+	public DefaultComboBoxModel rellenarComboBox(String nombreTabla, DefaultComboBoxModel modeloDatos) throws SQLException {
+		cn.conectar();
+        metaDatos = cn.getConnection().getMetaData();
+
+        // Se ejecuta una consulta SQL para obtener los datos de la tabla.
+        ResultSet rset = cn.ejecutarSelect("SELECT * FROM " + nombreTabla);
+        
+        ResultSet rs = metaDatos.getPrimaryKeys(null, null, nombreTabla);
+        String primaryKey = "";
+        String datos = "";
+        
+        String nombreColumnas = obtenerColumnas(nombreTabla);
+        String[] listaColumnas = nombreColumnas.split(",");
+        
+        while (rs.next()) {
+            primaryKey = rs.getString("COLUMN_NAME");
+        }
+        
+        while (rset.next()) {
+            for(int i = 0; i < listaColumnas.length; i++) {
+            	datos += rs.getString(i)+ ",";
+            }
+        }
+        
+        datos = datos.substring(0, datos.length() - 1);
+        String[] listaDatos = datos.split(",");
+        
+        HashMap<String,String> valores = new HashMap<String,String>();
+        for(int i = 0; i < listaColumnas.length; i++) {
+        	valores.put(listaColumnas[i],listaDatos[i]);
+        }
+        
+        
+
+
+        // Se cierra la conexión a la base de datos.
+        cn.desconectar();
+		
+		return null;
 	}
 
 }
