@@ -239,11 +239,13 @@ public class adminFrame extends JFrame {
 		
 		tblPacientes = new JTable();
 		tblPacientes.setBounds(123, 170, 324, 276);
+		tblPacientes.setEnabled(false);
 		contentPane.add(tblPacientes);
 		
 		
 		tblDoctores = new JTable();
 		tblDoctores.setBounds(531, 170, 324, 276);
+		tblDoctores.setEnabled(false);
 		contentPane.add(tblDoctores);
 		
 		rellenarListaDoctores();

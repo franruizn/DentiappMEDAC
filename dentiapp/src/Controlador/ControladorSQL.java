@@ -3,9 +3,14 @@ package Controlador;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import Vista.adminFrame;
+import Vista.doctorFrame;
+import Vista.loginFrame;
 
 public class ControladorSQL {
 	
@@ -37,6 +42,34 @@ public class ControladorSQL {
             cn.ejecutarIDU(consulta);
         }
         cn.desconectar();
+    }
+    
+    public void tryLogin(JTextField txtUsuario, JPasswordField txtPass, loginFrame frame) throws SQLException{
+    	cn.conectar();
+		String user = txtUsuario.getText();
+		String pass = String.valueOf((txtPass).getPassword());
+		
+		//Consulta a ejecutar
+		String consulta = "SELECT rol FROM usuario WHERE idusuario = '" + user + "' AND pass = '"+ pass + "';";
+		System.out.println(consulta);
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		
+		//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
+		if(rset.next()) {
+			int rol = rset.getInt("rol");
+			System.out.println(rol);
+			if(rol == 1) {
+				frame.dispose();
+				adminFrame aframe = new adminFrame();
+				aframe.setVisible(true);
+			} else {
+				frame.dispose();
+				doctorFrame dframe = new doctorFrame();
+				dframe.setVisible(true);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Error al iniciar sesión - Los credenciales no son correctos", "Error al iniciar sesión", JOptionPane.WARNING_MESSAGE);
+		}
     }
     
     public String obtenerColumnas(String nombreTabla) throws SQLException {
@@ -102,5 +135,7 @@ public class ControladorSQL {
 		cn.desconectar();
 		return idNum;
 	}
+
+
 	
 }

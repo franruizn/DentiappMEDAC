@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class ConexionMySQL {
 
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/practicajdbc?useSSL=false";
+	private static final String URL = "jdbc:mysql://localhost:3306/dentiapp?useSSL=false";
 	private static final String USUARIO = "root";
 	private static final String CLAVE = "1234";
 	Statement stm = null;

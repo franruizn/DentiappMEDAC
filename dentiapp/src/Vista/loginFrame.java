@@ -8,16 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.border.MatteBorder;
-
-import Controlador.ConexionMySQL;
+import Controlador.ControladorSQL;
 
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -27,7 +24,7 @@ public class loginFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField txtPass;
-	private ConexionMySQL cn = new ConexionMySQL();
+	private ControladorSQL cn = new ControladorSQL();
 
 	/**
 	 * Launch the application. 
@@ -64,31 +61,8 @@ public class loginFrame extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					cn.conectar();
-					String user = txtUsuario.getText();
-					String pass = String.valueOf(txtPass.getPassword());
 					
-					//Consulta a ejecutar
-					String consulta = "SELECT rol FROM usuario WHERE idusuario = '" + user + "' AND pass = '"+ pass + "';";
-					ResultSet rset = cn.ejecutarSelect(consulta);
-					
-					//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
-					if(rset.next()) {
-						int rol = rset.getInt("rol");
-						System.out.println(rol);
-						if(rol == 1) {
-							dispose();
-							adminFrame aframe = new adminFrame();
-							aframe.setVisible(true);
-						} else {
-							dispose();
-							doctorFrame dframe = new doctorFrame();
-							dframe.setVisible(true);
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Error al iniciar sesión - Los credenciales no son correctos", "Error al iniciar sesión", JOptionPane.WARNING_MESSAGE);
-					}
-					
+					cn.tryLogin(txtUsuario, txtPass, loginFrame.this);
 					
 				} catch(SQLException r) {
 					System.out.println(r.getMessage());
