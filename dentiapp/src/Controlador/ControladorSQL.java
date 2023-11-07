@@ -3,7 +3,6 @@ package Controlador;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -22,7 +21,6 @@ public class ControladorSQL {
 	public void insertarDatos(String nombreTabla, DefaultTableModel modeloDatos) throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();
-		ResultSet rset = metaDatos.getColumns(null, null, nombreTabla, null);
 		String newValues = "";
 		String nombreColumnas = "(";
 

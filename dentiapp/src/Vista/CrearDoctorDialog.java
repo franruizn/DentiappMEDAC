@@ -133,11 +133,10 @@ public class CrearDoctorDialog extends JDialog {
 				}
 
 				private void obtenerDatos(JComboBox<String> comboEspecialidades) throws SQLException {
-					String id;
 					listaDatos[0]=(null);
 					listaDatos[1] = (txtDNI.getText());
 					listaDatos[3]=(txtNombre.getText());
-					listaDatos[2]=(id = cn.obtenerIdEspecialidad(comboEspecialidades.getSelectedItem().toString()));
+					listaDatos[2]=(cn.obtenerIdEspecialidad(comboEspecialidades.getSelectedItem().toString()));
 					
 					modeloDatos.setRowCount(1);
 					modeloDatos.setValueAt(listaDatos[0], 0, 0);

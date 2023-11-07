@@ -8,10 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import Controlador.ConexionMySQL;
 import Controlador.ControladorSQL;
-import Modelo.Doctor;
-import Modelo.Paciente;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -20,9 +17,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -35,8 +30,6 @@ public class adminFrame extends JFrame {
 	private JTable tblPacientes;
 	private JTable tblDoctores;
 	private ControladorSQL cn = new ControladorSQL();
-	private ArrayList<Doctor> listaDoctores = new ArrayList<>();
-	private ArrayList<Paciente> listaPacientes = new ArrayList<>();
 	private String[] columnasDoctores = {"ID","Nombre","Especialidad"};
 	private String[] columnasPacientes = {"ID","Nombre","DNI"};
 	private DefaultTableModel modeloDoctores = new DefaultTableModel();

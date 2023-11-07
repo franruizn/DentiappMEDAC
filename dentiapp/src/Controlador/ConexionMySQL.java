@@ -33,7 +33,7 @@ public class ConexionMySQL {
 			databaseMetaData = cn.getMetaData();
 			ResultSet tables = databaseMetaData.getTables(null, null, "%", null);
 			while (tables.next()) {
-				String tableName = tables.getString("TABLE_NAME");
+				tables.getString("TABLE_NAME");
 			}
 			System.out.println("Conexión OK");
 
