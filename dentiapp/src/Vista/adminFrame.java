@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class adminFrame extends JFrame {
 
@@ -72,20 +73,80 @@ public class adminFrame extends JFrame {
 		JMenu mnPaciente = new JMenu("Pacientes");
 		menuBar.add(mnPaciente);
 		
-		JMenu mnNewMenu_1 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_1);
+		JMenu mnGestionarPacientes = new JMenu("Gestionar Pacientes");
+		mnPaciente.add(mnGestionarPacientes);
 		
-		JMenu mnNewMenu_2 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_2);
+		JMenuItem mntmCrearPaciente = new JMenuItem("Crear Paciente");
+		mnGestionarPacientes.add(mntmCrearPaciente);
 		
-		JMenu mnNewMenu_3 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_3);
+		JMenuItem mntmBorrarPaciente = new JMenuItem("Borrar Paciente");
+		mnGestionarPacientes.add(mntmBorrarPaciente);
 		
-		JMenu mnNewMenu_4 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_4);
+		JMenuItem mntmModificarPaciente = new JMenuItem("Modificar Paciente");
+		mnGestionarPacientes.add(mntmModificarPaciente);
 		
-		JMenu mnNewMenu_5 = new JMenu("New menu");
-		menuBar.add(mnNewMenu_5);
+		JMenu mnDoctores = new JMenu("Doctores");
+		menuBar.add(mnDoctores);
+		
+		JMenu mnGestionarDoctores = new JMenu("Gestionar Doctores");
+		mnDoctores.add(mnGestionarDoctores);
+		
+		JMenuItem mntmCrearDoctor = new JMenuItem("Crear Doctor");
+		mnGestionarDoctores.add(mntmCrearDoctor);
+		
+		JMenuItem mntmBorrarDoctor = new JMenuItem("Borrar Doctor");
+		mnGestionarDoctores.add(mntmBorrarDoctor);
+		
+		JMenuItem mntmModificarDoctor = new JMenuItem("Modificar Doctor");
+		mnGestionarDoctores.add(mntmModificarDoctor);
+		
+		JMenu mnConsultas = new JMenu("Consultas");
+		menuBar.add(mnConsultas);
+		
+		JMenu mnGestionarConsultas = new JMenu("Gestionar Consultas");
+		mnConsultas.add(mnGestionarConsultas);
+		
+		JMenuItem mntmCrearConsulta = new JMenuItem("Crear Consulta");
+		mnGestionarConsultas.add(mntmCrearConsulta);
+		
+		JMenuItem mntmBorrarConsulta = new JMenuItem("Borrar Consulta");
+		mnGestionarConsultas.add(mntmBorrarConsulta);
+		
+		JMenuItem mntmModificarConsulta = new JMenuItem("Modificar Consulta");
+		mnGestionarConsultas.add(mntmModificarConsulta);
+		
+		JMenu mnUsuarios = new JMenu("Usuarios\r\n");
+		menuBar.add(mnUsuarios);
+		
+		JMenu mnGestionarUsuarios = new JMenu("Gestionar Usuarios");
+		mnUsuarios.add(mnGestionarUsuarios);
+		
+		JMenuItem mntmCrearUsuario = new JMenuItem("Crear Usuario");
+		mnGestionarUsuarios.add(mntmCrearUsuario);
+		
+		JMenuItem mntmBorrarUsuario = new JMenuItem("Borrar Usuario");
+		mnGestionarUsuarios.add(mntmBorrarUsuario);
+		
+		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar Usuario");
+		mnGestionarUsuarios.add(mntmModificarUsuario);
+		
+		JMenu mnStock = new JMenu("Stock");
+		menuBar.add(mnStock);
+		
+		JMenu mnGestionarStock = new JMenu("Gestionar Stock");
+		mnStock.add(mnGestionarStock);
+		
+		JMenuItem mntmCrearStock = new JMenuItem("Crear Stock");
+		mnGestionarStock.add(mntmCrearStock);
+		
+		JMenuItem mntmBorrarStock = new JMenuItem("Borrar Stock");
+		mnGestionarStock.add(mntmBorrarStock);
+		
+		JMenuItem mntmModificarStock = new JMenuItem("Modificar Stock");
+		mnGestionarStock.add(mntmModificarStock);
+		
+		JMenu mnFacturacion = new JMenu("Facturacion");
+		menuBar.add(mnFacturacion);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
