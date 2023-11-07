@@ -126,8 +126,8 @@ public class CrearDoctorDialog extends JDialog {
 						obtenerDatos(comboEspecialidades);
 						cn.insertarDatos("doctor",modeloDatos);
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Error al crear Doctor - Los datos introducidos no son correctos.\n Asegurese de que el DNI y Nombre son correctos",
+								"Error al crear doctor", JOptionPane.WARNING_MESSAGE);
 					}
 					//dispose();
 				}
@@ -172,7 +172,6 @@ public class CrearDoctorDialog extends JDialog {
 		modeloDatos.addColumn("fk_idusuario");
 		modeloDatos.addColumn("fk_idespecialidad");
 		modeloDatos.addColumn("nombre");
-		
 
 	}
 
@@ -192,7 +191,7 @@ public class CrearDoctorDialog extends JDialog {
 
 	private void rellenarListaEspecialidades() throws SQLException {
 		ConexionMySQL cnn = new ConexionMySQL();
-		cnn .conectar();
+		cnn.conectar();
 
 		// Consulta a ejecutar
 		String consulta = "SELECT * FROM especialidad;";

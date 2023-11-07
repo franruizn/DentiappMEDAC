@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ConexionMySQL;
+import Controlador.ControladorSQL;
 import Modelo.Doctor;
 import Modelo.Paciente;
 
@@ -32,7 +33,7 @@ public class adminFrame extends JFrame {
 	private JPanel contentPane;
 	private JTable tblPacientes;
 	private JTable tblDoctores;
-	private ConexionMySQL cn = new ConexionMySQL();
+	private ControladorSQL cn = new ControladorSQL();
 	private ArrayList<Doctor> listaDoctores = new ArrayList<>();
 	private ArrayList<Paciente> listaPacientes = new ArrayList<>();
 	private String[] columnasDoctores = {"ID","Nombre","Especialidad"};
@@ -140,8 +141,7 @@ public class adminFrame extends JFrame {
 				
 				try {
 					
-					rellenarListaDoctores();
-					rellenarTablaDoctores();
+					tblDoctores.setModel(cn.cargarDatos("doctor", modeloDoctores));
 					
 				} catch(SQLException r) {
 					System.out.println(r.getMessage());
@@ -193,8 +193,7 @@ public class adminFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					rellenarListaDoctores();
-					rellenarTablaDoctores();
+					tblPacientes.setModel(cn.cargarDatos("paciente", modeloPacientes));
 				} catch (SQLException e1) {
 					
 					e1.printStackTrace();
@@ -248,89 +247,13 @@ public class adminFrame extends JFrame {
 		tblDoctores.setEnabled(false);
 		contentPane.add(tblDoctores);
 		
-		rellenarListaDoctores();
-		rellenarTablaDoctores();
-		rellenarListaPacientes();
-		rellenarTablaPacientes();
+		tblDoctores.setModel(cn.cargarDatos("doctor", modeloDoctores));
+		tblPacientes.setModel(cn.cargarDatos("paciente", modeloPacientes));
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
 		lblFondo.setBounds(0, 0, 954, 594);
 		contentPane.add(lblFondo);
 		
-	}
-	
-	private void rellenarListaDoctores() throws SQLException {
-		cn.conectar();
-		
-		//Consulta a ejecutar
-		String consulta = "SELECT * FROM doctor;";
-		ResultSet rset = cn.ejecutarSelect(consulta);
-		//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
-		listaDoctores = new ArrayList<Doctor>();
-		while(rset.next()) {
-			String nombre = rset.getString("nombre");
-			int idDoctor = rset.getInt("iddoctor");
-			int fk_idUsuario = rset.getInt("fk_idusuario");
-			int fk_idEspecialidad = rset.getInt("fk_idespecialidad");
-
-			@SuppressWarnings("unused")
-			Doctor doctor1;
-			listaDoctores.add(doctor1 = new Doctor(idDoctor, fk_idUsuario, fk_idEspecialidad, nombre));
-			
-		}
-		
-		cn.desconectar();
-	}
-
-	private void rellenarTablaDoctores() throws SQLException {
-		modeloDoctores.setRowCount(0);
-		rellenarListaDoctores();
-		Object[] fila = new Object[modeloDoctores.getColumnCount()];
-		for(int i = 0; i < listaDoctores.size(); i++) {
-			fila[0] = listaDoctores.get(i).getIddoctor();
-			fila[1] = listaDoctores.get(i).getNombre();
-			fila[2] = listaDoctores.get(i).getFk_idespecialidad();
-			modeloDoctores.addRow(fila);
-		}
-		
-		tblDoctores.setModel(modeloDoctores);
-	}
-	
-	
-	private void rellenarListaPacientes() throws SQLException {
-		cn.conectar();
-		
-		//Consulta a ejecutar
-		String consulta = "SELECT * FROM paciente;";
-		ResultSet rset = cn.ejecutarSelect(consulta);
-		//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
-		listaPacientes = new ArrayList<Paciente>();
-		while(rset.next()) {
-			String nombre = rset.getString("nombre");
-			String dni = rset.getString("dni");
-			int idPaciente = rset.getInt("id");
-
-			@SuppressWarnings("unused")
-			Paciente paciente1;
-			listaPacientes.add(paciente1 = new Paciente(idPaciente, dni, nombre));
-			
-		}
-		
-		cn.desconectar();
-	}
-	
-	private void rellenarTablaPacientes() throws SQLException {
-		modeloDoctores.setRowCount(0);
-		rellenarListaPacientes();
-		Object[] fila = new Object[modeloDoctores.getColumnCount()];
-		for(int i = 0; i < listaPacientes.size(); i++) {
-			fila[0] = listaPacientes.get(i).getIdPaciente();
-			fila[1] = listaPacientes.get(i).getNombre();
-			fila[2] = listaPacientes.get(i).getDni();
-			modeloPacientes.addRow(fila);
-		}
-		
-		tblPacientes.setModel(modeloPacientes);
 	}
 }

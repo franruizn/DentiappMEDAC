@@ -3,6 +3,8 @@ package Controlador;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -13,52 +15,54 @@ import Vista.doctorFrame;
 import Vista.loginFrame;
 
 public class ControladorSQL {
-	
+
 	private ConexionMySQL cn = new ConexionMySQL();
-    private DatabaseMetaData metaDatos;
-    
-    public void insertarDatos(String nombreTabla, DefaultTableModel modeloDatos) throws SQLException {
-    	cn.conectar();
-        metaDatos = cn.getConnection().getMetaData();
-        ResultSet rset = metaDatos.getColumns(null, null, nombreTabla, null);
-        String newValues = "";
-        String nombreColumnas = "(";
+	private DatabaseMetaData metaDatos;
 
-        for (int i = 0; i < modeloDatos.getRowCount(); i++) {
-            newValues = "";
-            for (int j = 0; j < modeloDatos.getColumnCount(); j++) {
-            	
-            	if(modeloDatos.getValueAt(i, j) != null) {
-            	nombreColumnas += "`"+modeloDatos.getColumnName(j) + "`,";
-                newValues += "'" + modeloDatos.getValueAt(i, j).toString() + "',";
-            	}
+	public void insertarDatos(String nombreTabla, DefaultTableModel modeloDatos) throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+		ResultSet rset = metaDatos.getColumns(null, null, nombreTabla, null);
+		String newValues = "";
+		String nombreColumnas = "(";
 
-            }
-            newValues = newValues.substring(0, newValues.length() - 1);
-            nombreColumnas = nombreColumnas.substring(0,nombreColumnas.length()-1) + ")";
-            //Insertamos los valores en la tabla
-            String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla+ "`" + nombreColumnas + " VALUES (" + newValues + ");";
-            System.out.println(consulta);
-            cn.ejecutarIDU(consulta);
-        }
-        cn.desconectar();
-    }
-    
-    public void tryLogin(JTextField txtUsuario, JPasswordField txtPass, loginFrame frame) throws SQLException{
-    	cn.conectar();
+		for (int i = 0; i < modeloDatos.getRowCount(); i++) {
+			newValues = "";
+			for (int j = 0; j < modeloDatos.getColumnCount(); j++) {
+
+				if (modeloDatos.getValueAt(i, j) != null) {
+					nombreColumnas += "`" + modeloDatos.getColumnName(j) + "`,";
+					newValues += "'" + modeloDatos.getValueAt(i, j).toString() + "',";
+				}
+
+			}
+			newValues = newValues.substring(0, newValues.length() - 1);
+			nombreColumnas = nombreColumnas.substring(0, nombreColumnas.length() - 1) + ")";
+			// Insertamos los valores en la tabla
+			String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "`" + nombreColumnas + " VALUES (" + newValues + ");";
+			System.out.println(consulta);
+			cn.ejecutarIDU(consulta);
+		}
+		cn.desconectar();
+	}
+
+
+	public void tryLogin(JTextField txtUsuario, JPasswordField txtPass, loginFrame frame) throws SQLException {
+		cn.conectar();
 		String user = txtUsuario.getText();
 		String pass = String.valueOf((txtPass).getPassword());
-		
-		//Consulta a ejecutar
-		String consulta = "SELECT rol FROM usuario WHERE idusuario = '" + user + "' AND pass = '"+ pass + "';";
+
+		// Consulta a ejecutar
+		String consulta = "SELECT rol FROM usuario WHERE idusuario = '" + user + "' AND pass = '" + pass + "';";
 		System.out.println(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
-		
-		//Comprobamos si existen resultados, si no hay error y el tipo de rol de usuario
-		if(rset.next()) {
+
+		// Comprobamos si existen resultados, si no hay error y el tipo de rol de
+		// usuario
+		if (rset.next()) {
 			int rol = rset.getInt("rol");
 			System.out.println(rol);
-			if(rol == 1) {
+			if (rol == 1) {
 				frame.dispose();
 				adminFrame aframe = new adminFrame();
 				aframe.setVisible(true);
@@ -68,56 +72,80 @@ public class ControladorSQL {
 				dframe.setVisible(true);
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Error al iniciar sesión - Los credenciales no son correctos", "Error al iniciar sesión", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error al iniciar sesión - Los credenciales no son correctos",
+					"Error al iniciar sesión", JOptionPane.WARNING_MESSAGE);
 		}
-    }
-    
-    public String obtenerColumnas(String nombreTabla) throws SQLException {
-        //Método para obtener las columnas de una tabla y guardarlas en un String que pasaremos a array
-        String nombreColumnas = "";
-        cn.conectar();
-        metaDatos = cn.getConnection().getMetaData();
-        ResultSet rset = metaDatos.getColumns(null, null, nombreTabla, null);
-        while (rset.next()) {
-            String nombreColumnaActual = rset.getString("COLUMN_NAME");
-            nombreColumnas += nombreColumnaActual + ",";
-        }
-        nombreColumnas = nombreColumnas.substring(0, nombreColumnas.length() - 1); // Elimina la última coma
-        return nombreColumnas;
-    }
-	
+	}
+
+	public DefaultTableModel cargarDatos(String nombreTabla, DefaultTableModel modeloDatos) throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+
+		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
+		ResultSet rset = cn.ejecutarSelect("SELECT * FROM " + nombreTabla);
+		modeloDatos.setRowCount(0);
+		while (rset.next()) {
+			modeloDatos.setRowCount(modeloDatos.getRowCount() + 1);
+			for (int i = 0; i < modeloDatos.getColumnCount(); i++) {
+				modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
+			}
+		}
+
+		// Se cierra la conexión a la base de datos.
+		cn.desconectar();
+		return modeloDatos;
+	}
+
+	public String obtenerColumnas(String nombreTabla) throws SQLException {
+		// Método para obtener las columnas de una tabla y guardarlas en un String que
+		// pasaremos a array
+		String nombreColumnas = "";
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+		ResultSet rset = metaDatos.getColumns(null, null, nombreTabla, null);
+		while (rset.next()) {
+			String nombreColumnaActual = rset.getString("COLUMN_NAME");
+			nombreColumnas += nombreColumnaActual + ",";
+		}
+		nombreColumnas = nombreColumnas.substring(0, nombreColumnas.length() - 1); // Elimina la última coma
+		return nombreColumnas;
+	}
+
 	public void eliminarDatos(String nombreTabla) throws SQLException {
-        //Método para eliminar datos de una tabla
-        cn.conectar();
-        metaDatos = cn.getConnection().getMetaData();
+		// Método para eliminar datos de una tabla
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
 
-        ResultSet rset = metaDatos.getPrimaryKeys(null, null, nombreTabla);
-        String campoPrimario = "";
-        boolean valido = false;
+		ResultSet rset = metaDatos.getPrimaryKeys(null, null, nombreTabla);
+		String campoPrimario = "";
+		boolean valido = false;
 
-        while (rset.next()) {
-            campoPrimario = rset.getString("COLUMN_NAME");
-            //Obtenemos la columna del campo primario
-        }
+		while (rset.next()) {
+			campoPrimario = rset.getString("COLUMN_NAME");
+			// Obtenemos la columna del campo primario
+		}
 
-        while (!valido) {
-            String valorCampo = JOptionPane.showInputDialog("Ingrese el id de " + nombreTabla + " que deseas eliminar:");
-            //Le solicitamos el id del dato que quiere eliminar
-            if (valorCampo.isEmpty() || valorCampo.equals(null)) {
-                JOptionPane.showMessageDialog(null, "El dato introducido no es correcto, por favor, introduce un dato válido");
-            } else {
-                valido = true;
-                String consulta = "DELETE FROM " + nombreTabla + " WHERE " + campoPrimario + " = " + valorCampo;
-                cn.ejecutarIDU(consulta);
-                //Eliminamos el dato de la tabla
+		while (!valido) {
+			String valorCampo = JOptionPane
+					.showInputDialog("Ingrese el id de " + nombreTabla + " que deseas eliminar:");
+			// Le solicitamos el id del dato que quiere eliminar
+			if (valorCampo.isEmpty() || valorCampo.equals(null)) {
+				JOptionPane.showMessageDialog(null,
+						"El dato introducido no es correcto, por favor, introduce un dato válido");
+			} else {
+				valido = true;
+				String consulta = "DELETE FROM " + nombreTabla + " WHERE " + campoPrimario + " = " + valorCampo;
+				cn.ejecutarIDU(consulta);
+				// Eliminamos el dato de la tabla
 
-                JOptionPane.showMessageDialog(null, "Registro eliminado con éxito en " + nombreTabla + "s", "Registro eleminado", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
+				JOptionPane.showMessageDialog(null, "Registro eliminado con éxito en " + nombreTabla + "s",
+						"Registro eleminado", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
 
-        cn.desconectar();
-    }
-	
+		cn.desconectar();
+	}
+
 	public String obtenerIdEspecialidad(String especialidad) throws SQLException {
 		cn.conectar();
 		int id = 0;
@@ -131,11 +159,9 @@ public class ControladorSQL {
 			id = rset.getInt("idespecialidad");
 			idNum = Integer.toString(id);
 		}
-		
+
 		cn.desconectar();
 		return idNum;
 	}
 
-
-	
 }
