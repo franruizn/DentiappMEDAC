@@ -212,6 +212,21 @@ public class adminFrame extends JFrame {
 		
 		
 		JButton btnBorrarDoctor = new JButton("BORRAR");
+		
+		btnBorrarDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarDoctorDialog dialDoctor;
+				try {
+					dialDoctor = new BorrarDoctorDialog();
+					dialDoctor.setModal(true);
+					dialDoctor.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		btnBorrarDoctor.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		btnBorrarDoctor.setBounds(642, 457, 85, 21);
 		contentPane.add(btnBorrarDoctor);
