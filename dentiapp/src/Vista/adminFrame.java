@@ -58,7 +58,7 @@ public class adminFrame extends JFrame {
 	public adminFrame() throws SQLException {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 963, 629);
+		setBounds(100, 100, 963, 651);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -216,14 +216,9 @@ public class adminFrame extends JFrame {
 		btnBorrarDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BorrarDoctorDialog dialDoctor;
-				try {
-					dialDoctor = new BorrarDoctorDialog();
-					dialDoctor.setModal(true);
-					dialDoctor.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				dialDoctor = new BorrarDoctorDialog();
+				dialDoctor.setModal(true);
+				dialDoctor.setVisible(true);
 			}
 		});
 		

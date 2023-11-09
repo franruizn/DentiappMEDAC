@@ -3,11 +3,9 @@ package Controlador;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -166,7 +164,7 @@ public class ControladorSQL {
 		return idNum;
 	}
 	
-	public DefaultComboBoxModel rellenarComboBox(String nombreTabla, DefaultComboBoxModel modeloDatos) throws SQLException {
+	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, DefaultComboBoxModel<?> modeloDatos) throws SQLException {
 		cn.conectar();
         metaDatos = cn.getConnection().getMetaData();
 
@@ -174,7 +172,8 @@ public class ControladorSQL {
         ResultSet rset = cn.ejecutarSelect("SELECT * FROM " + nombreTabla);
         
         ResultSet rs = metaDatos.getPrimaryKeys(null, null, nombreTabla);
-        String primaryKey = "";
+        @SuppressWarnings("unused")
+		String primaryKey = "";
         String datos = "";
         
         String nombreColumnas = obtenerColumnas(nombreTabla);

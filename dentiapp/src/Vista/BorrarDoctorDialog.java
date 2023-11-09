@@ -1,9 +1,6 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -39,7 +36,7 @@ public class BorrarDoctorDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JComboBox cmbDoctores = new JComboBox();
+		JComboBox<?> cmbDoctores = new JComboBox<Object>();
 		cmbDoctores.setBounds(108, 110, 399, 37);
 		contentPanel.add(cmbDoctores);
 		{
