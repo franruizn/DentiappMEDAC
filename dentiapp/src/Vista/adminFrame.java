@@ -70,12 +70,36 @@ public class adminFrame extends JFrame {
 		mnPaciente.add(mnGestionarPacientes);
 		
 		JMenuItem mntmCrearPaciente = new JMenuItem("Crear Paciente");
+		mntmCrearPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPacienteDialog dialPaciente1;
+				dialPaciente1 = new CrearPacienteDialog();
+				dialPaciente1.setModal(true);
+				dialPaciente1.setVisible(true);
+			}
+		});
 		mnGestionarPacientes.add(mntmCrearPaciente);
 		
 		JMenuItem mntmBorrarPaciente = new JMenuItem("Borrar Paciente");
+		mntmBorrarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarPacienteDialog dialPaciente2;
+				dialPaciente2 = new BorrarPacienteDialog();
+				dialPaciente2.setModal(true);
+				dialPaciente2.setVisible(true);
+			}
+		});
 		mnGestionarPacientes.add(mntmBorrarPaciente);
 		
 		JMenuItem mntmModificarPaciente = new JMenuItem("Modificar Paciente");
+		mntmModificarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarPacienteDialog dialPaciente3;
+				dialPaciente3 = new ModificarPacienteDialog();
+				dialPaciente3.setModal(true);
+				dialPaciente3.setVisible(true);
+			}
+		});
 		mnGestionarPacientes.add(mntmModificarPaciente);
 		
 		JMenu mnDoctores = new JMenu("Doctores");
@@ -85,12 +109,42 @@ public class adminFrame extends JFrame {
 		mnDoctores.add(mnGestionarDoctores);
 		
 		JMenuItem mntmCrearDoctor = new JMenuItem("Crear Doctor");
+		mntmCrearDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearDoctorDialog dialDoctor1;
+				try {
+					dialDoctor1 = new CrearDoctorDialog();
+					dialDoctor1.setModal(true);
+					dialDoctor1.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnGestionarDoctores.add(mntmCrearDoctor);
 		
 		JMenuItem mntmBorrarDoctor = new JMenuItem("Borrar Doctor");
+		mntmBorrarDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarDoctorDialog dialDoctor2;
+				dialDoctor2 = new BorrarDoctorDialog();
+				dialDoctor2.setModal(true);
+				dialDoctor2.setVisible(true);
+			}
+		});
 		mnGestionarDoctores.add(mntmBorrarDoctor);
 		
 		JMenuItem mntmModificarDoctor = new JMenuItem("Modificar Doctor");
+		mntmModificarDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarDoctorDialog dialDoctor3;
+				dialDoctor3 = new ModificarDoctorDialog();
+				dialDoctor3.setModal(true);
+				dialDoctor3.setVisible(true);
+			}
+		});
 		mnGestionarDoctores.add(mntmModificarDoctor);
 		
 		JMenu mnConsultas = new JMenu("Consultas");
@@ -231,7 +285,7 @@ public class adminFrame extends JFrame {
 		JButton btnCrearDoctor = new JButton("CREAR");
 		btnCrearDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearDoctorDialog dialDoctor;
+				/*CrearDoctorDialog dialDoctor;
 				try {
 					dialDoctor = new CrearDoctorDialog();
 					dialDoctor.setModal(true);
@@ -239,8 +293,8 @@ public class adminFrame extends JFrame {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-				
+				}*/
+				System.out.println("fdlksjfslkdfjsdlkñ");
 			}
 		});
 		btnCrearDoctor.setFont(new Font("SansSerif", Font.PLAIN, 10));
