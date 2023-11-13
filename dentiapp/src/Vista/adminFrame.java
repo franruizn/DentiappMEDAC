@@ -72,6 +72,8 @@ public class adminFrame extends JFrame {
 		JMenuItem mntmCrearPaciente = new JMenuItem("Crear Paciente");
 		mntmCrearPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				CrearPacienteDialog dialPaciente1;
 				dialPaciente1 = new CrearPacienteDialog();
 				dialPaciente1.setModal(true);
@@ -154,12 +156,36 @@ public class adminFrame extends JFrame {
 		mnConsultas.add(mnGestionarConsultas);
 		
 		JMenuItem mntmCrearConsulta = new JMenuItem("Crear Consulta");
+		mntmCrearConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearConsultaDialog dialConsulta1;
+				dialConsulta1 = new CrearConsultaDialog();
+				dialConsulta1.setModal(true);
+				dialConsulta1.setVisible(true);
+			}
+		});
 		mnGestionarConsultas.add(mntmCrearConsulta);
 		
 		JMenuItem mntmBorrarConsulta = new JMenuItem("Borrar Consulta");
+		mntmBorrarConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarConsultaDialog dialConsulta2;
+				dialConsulta2 = new BorrarConsultaDialog();
+				dialConsulta2.setModal(true);
+				dialConsulta2.setVisible(true);
+			}
+		});
 		mnGestionarConsultas.add(mntmBorrarConsulta);
 		
 		JMenuItem mntmModificarConsulta = new JMenuItem("Modificar Consulta");
+		mntmModificarConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarConsultaDialog dialConsulta3;
+				dialConsulta3 = new ModificarConsultaDialog();
+				dialConsulta3.setModal(true);
+				dialConsulta3.setVisible(true);
+			}
+		});
 		mnGestionarConsultas.add(mntmModificarConsulta);
 		
 		JMenu mnUsuarios = new JMenu("Usuarios\r\n");
@@ -169,12 +195,36 @@ public class adminFrame extends JFrame {
 		mnUsuarios.add(mnGestionarUsuarios);
 		
 		JMenuItem mntmCrearUsuario = new JMenuItem("Crear Usuario");
+		mntmCrearUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearUsuarioDialog dialUsuario1;
+				dialUsuario1 = new CrearUsuarioDialog();
+				dialUsuario1.setModal(true);
+				dialUsuario1.setVisible(true);
+			}
+		});
 		mnGestionarUsuarios.add(mntmCrearUsuario);
 		
 		JMenuItem mntmBorrarUsuario = new JMenuItem("Borrar Usuario");
+		mntmBorrarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarUsuarioDialog dialUsuario2;
+				dialUsuario2 = new BorrarUsuarioDialog();
+				dialUsuario2.setModal(true);
+				dialUsuario2.setVisible(true);
+			}
+		});
 		mnGestionarUsuarios.add(mntmBorrarUsuario);
 		
 		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar Usuario");
+		mntmModificarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarUsuarioDialog dialUsuario3;
+				dialUsuario3 = new ModificarUsuarioDialog();
+				dialUsuario3.setModal(true);
+				dialUsuario3.setVisible(true);
+			}
+		});
 		mnGestionarUsuarios.add(mntmModificarUsuario);
 		
 		JMenu mnStock = new JMenu("Stock");
@@ -184,12 +234,36 @@ public class adminFrame extends JFrame {
 		mnStock.add(mnGestionarStock);
 		
 		JMenuItem mntmCrearStock = new JMenuItem("Crear Stock");
+		mntmCrearStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearStockDialog dialStock1;
+				dialStock1 = new CrearStockDialog();
+				dialStock1.setModal(true);
+				dialStock1.setVisible(true);
+			}
+		});
 		mnGestionarStock.add(mntmCrearStock);
 		
 		JMenuItem mntmBorrarStock = new JMenuItem("Borrar Stock");
+		mntmBorrarStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarStockDialog dialStock2;
+				dialStock2 = new BorrarStockDialog();
+				dialStock2.setModal(true);
+				dialStock2.setVisible(true);
+			}
+		});
 		mnGestionarStock.add(mntmBorrarStock);
 		
 		JMenuItem mntmModificarStock = new JMenuItem("Modificar Stock");
+		mntmModificarStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarStockDialog dialStock3;
+				dialStock3 = new ModificarStockDialog();
+				dialStock3.setModal(true);
+				dialStock3.setVisible(true);
+			}
+		});
 		mnGestionarStock.add(mntmModificarStock);
 		
 		JMenu mnFacturacion = new JMenu("Facturacion");
