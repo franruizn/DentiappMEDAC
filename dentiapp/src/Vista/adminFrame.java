@@ -266,7 +266,7 @@ public class adminFrame extends JFrame {
 		
 		
 		JButton btnBorrarDoctor = new JButton("BORRAR");
-		
+		    
 		btnBorrarDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BorrarDoctorDialog dialDoctor;
