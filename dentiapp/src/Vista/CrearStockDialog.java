@@ -31,7 +31,7 @@ public class CrearStockDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearStockDialog() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,9 +51,7 @@ public class CrearStockDialog extends JDialog {
 				//getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				
 			}
 		}
 	}

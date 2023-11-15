@@ -268,6 +268,43 @@ public class adminFrame extends JFrame {
 		
 		JMenu mnFacturacion = new JMenu("Facturacion");
 		menuBar.add(mnFacturacion);
+		
+		JMenu mnGestionarFacturacion = new JMenu("Gestionar Facturación");
+		mnFacturacion.add(mnGestionarFacturacion);
+		
+		JMenuItem mntmCrearFacturacion = new JMenuItem("Crear Facturación");
+		mntmCrearFacturacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				CrearFacturacionDialog dialFactura1;
+				dialFactura1 = new CrearFacturacionDialog();
+				dialFactura1.setModal(true);
+				dialFactura1.setVisible(true);
+			}
+		});
+		mnGestionarFacturacion.add(mntmCrearFacturacion);
+		
+		JMenuItem mntmBorrarFacturacion = new JMenuItem("Borrar Facturación");
+		mntmBorrarFacturacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarFacturacionDialog dialFactura2;
+				dialFactura2 = new BorrarFacturacionDialog();
+				dialFactura2.setModal(true);
+				dialFactura2.setVisible(true);
+			}
+		});
+		mnGestionarFacturacion.add(mntmBorrarFacturacion);
+		
+		JMenuItem mntmModificarFacturacion = new JMenuItem("Modificar Facturacion");
+		mntmModificarFacturacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarFacturacionDialog dialFactura3;
+				dialFactura3 = new ModificarFacturacionDialog();
+				dialFactura3.setModal(true);
+				dialFactura3.setVisible(true);
+			}
+		});
+		mnGestionarFacturacion.add(mntmModificarFacturacion);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

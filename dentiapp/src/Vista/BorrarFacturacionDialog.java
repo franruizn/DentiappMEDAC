@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
-public class CrearConsultaDialog extends JDialog {
+public class BorrarFacturacionDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -19,7 +19,7 @@ public class CrearConsultaDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			CrearConsultaDialog dialog = new CrearConsultaDialog();
+			BorrarFacturacionDialog dialog = new BorrarFacturacionDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -30,14 +30,14 @@ public class CrearConsultaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CrearConsultaDialog() {
+	public BorrarFacturacionDialog() {
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			JLabel lblNewLabel = new JLabel("crear consulta dialog");
+			JLabel lblNewLabel = new JLabel("borrar facturacion dialog");
 			contentPanel.add(lblNewLabel);
 		}
 		{
