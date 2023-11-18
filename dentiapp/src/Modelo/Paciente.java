@@ -1,11 +1,31 @@
 package Modelo;
 
-public class Paciente {
-	//Atributos
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "paciente")
+
+public class Paciente implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idpaciente")
 	private int idPaciente;
-	private String nombre, dni;
-	
-	//Constructores
+
+	@Column(name = "nombre")
+	private String nombre;
+
+	@Column(name = "dni")
+	private String dni;
+
+
+	// Constructores
 	public Paciente() {
 	}
 
@@ -16,7 +36,7 @@ public class Paciente {
 		this.dni = dni;
 	}
 
-	//Métodos
+	// Métodos
 	public int getIdPaciente() {
 		return idPaciente;
 	}
@@ -40,5 +60,5 @@ public class Paciente {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	
+
 }
