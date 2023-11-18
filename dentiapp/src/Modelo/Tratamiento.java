@@ -24,22 +24,24 @@ public class Tratamiento implements Serializable {
 
 	@Column(name = "precio")
 	private int precio;
-	
-	
+
+	@Column(name = "fk_idstock")
+	private int fk_idStock;
+
 	// Constructores
 
 	public Tratamiento() {
 
 	}
 
-	public Tratamiento(int idTratamiento, String nombre, int precio) {
+	public Tratamiento(int idTratamiento, String nombre, int precio, int fk_idStock) {
 		super();
 		this.idTratamiento = idTratamiento;
 		this.nombre = nombre;
 		this.precio = precio;
+		this.fk_idStock = fk_idStock;
 	}
 
-	
 	// Métodos
 	public int getIdTratamiento() {
 		return idTratamiento;
@@ -63,6 +65,14 @@ public class Tratamiento implements Serializable {
 
 	public void setPrecio(int precio) {
 		this.precio = precio;
+	}
+
+	public int getFk_idStock() {
+		return fk_idStock;
+	}
+
+	public void setFk_idStock(int fk_idStock) {
+		this.fk_idStock = fk_idStock;
 	}
 
 }
