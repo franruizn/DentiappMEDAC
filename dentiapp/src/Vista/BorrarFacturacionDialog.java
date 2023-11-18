@@ -37,7 +37,7 @@ public class BorrarFacturacionDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			JLabel lblNewLabel = new JLabel("borrar facturacion dialog");
+			JLabel lblNewLabel = new JLabel("borrar facturaciiion dialogl");
 			contentPanel.add(lblNewLabel);
 		}
 		{
