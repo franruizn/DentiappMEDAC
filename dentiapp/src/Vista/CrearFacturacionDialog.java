@@ -3,6 +3,7 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -36,10 +37,13 @@ public class CrearFacturacionDialog extends JDialog {
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		{
-			JLabel lblNewLabel = new JLabel("crear facturacion dialogç");
-			contentPanel.add(lblNewLabel);
-		}
+		
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(CrearFacturacionDialog.class.getResource("/fotos/crear_factura.PNG")));
+		lblFondo.setBounds(0, 0, 763, 449);
+		contentPanel.add(lblFondo);
+		
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

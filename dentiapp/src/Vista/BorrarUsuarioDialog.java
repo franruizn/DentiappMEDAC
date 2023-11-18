@@ -3,6 +3,7 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -36,6 +37,11 @@ public class BorrarUsuarioDialog extends JDialog {
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(BorrarUsuarioDialog.class.getResource("/fotos/borrar_usuario.PNG")));
+		lblFondo.setBounds(0, 0, 763, 449);
+		contentPanel.add(lblFondo);
 		{
 			JLabel lblNewLabel = new JLabel("borrar usuario dialog");
 			contentPanel.add(lblNewLabel);

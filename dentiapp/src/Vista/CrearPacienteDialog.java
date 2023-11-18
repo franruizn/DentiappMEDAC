@@ -40,7 +40,7 @@ public class CrearPacienteDialog extends JDialog {
 	
 	
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(CrearPacienteDialog.class.getResource("/fotos/add_paciente.PNG")));
+		lblFondo.setIcon(new ImageIcon(CrearPacienteDialog.class.getResource("/fotos/crear_paciente.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
 		{

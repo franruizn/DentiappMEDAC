@@ -39,7 +39,7 @@ public class CrearConsultaDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/add_consulta.PNG")));
+		lblNewLabel.setIcon(new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/crear_consulta.PNG")));
 		contentPanel.add(lblNewLabel);
 		{
 			JPanel buttonPane = new JPanel();
