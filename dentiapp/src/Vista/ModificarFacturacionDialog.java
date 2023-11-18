@@ -40,7 +40,7 @@ public class ModificarFacturacionDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(ModificarFacturacionDialog.class.getResource("/fotos/mod_factura.PNG")));
+		lblFondo.setIcon(new ImageIcon(ModificarFacturacionDialog.class.getResource("/fotos/mod_factura1.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
 		

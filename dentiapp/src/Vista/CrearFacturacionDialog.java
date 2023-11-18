@@ -39,7 +39,7 @@ public class CrearFacturacionDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(CrearFacturacionDialog.class.getResource("/fotos/crear_factura.PNG")));
+		lblFondo.setIcon(new ImageIcon(CrearFacturacionDialog.class.getResource("/fotos/crear_factura1.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
 		
