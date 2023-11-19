@@ -1,12 +1,18 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +34,36 @@ public class Tratamiento implements Serializable {
 	@Column(name = "fk_idstock")
 	private int fk_idStock;
 
+	
+	//Relacion con consulta
+    @OneToMany(mappedBy = "consulta_tratamiento", cascade = CascadeType.ALL)
+    
+    private List<Consulta> consulta;
+    
+    public List<Consulta> getConsulta(){
+        return consulta;
+    }
+    
+    public void addTratamiento(Consulta p){
+        if (consulta == null) consulta=new ArrayList<>();
+        consulta.add(p);
+        p.setTratamiento(this);
+    }
+    
+  //relacion con stock
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "idstock",referencedColumnName="idstock",insertable=false,updatable=false)
+    private Stock tratamiento_stock; 
+
+    public Stock getStock() {
+        return tratamiento_stock;
+    }
+	public void setStock(Stock stock) {
+		this.tratamiento_stock=stock;
+		
+	}
+	
+	
 	// Constructores
 
 	public Tratamiento() {

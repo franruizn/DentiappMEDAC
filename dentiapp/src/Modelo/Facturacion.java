@@ -2,11 +2,14 @@ package Modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +31,21 @@ public class Facturacion implements Serializable {
 	@Column(name = "pagar")
 	private int pagar;
 
+	
+	//relacion con paciente
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "idpaciente",referencedColumnName="idpaciente",insertable=false,updatable=false)
+    private Paciente facturacion_paciente; 
+
+    public Paciente getPaciente() {
+        return facturacion_paciente;
+    }
+	public void setPaciente(Paciente paciente) {
+		this.facturacion_paciente=paciente;
+		
+	}
+	
+	
 	//Constructores
 	public Facturacion() {
 	}

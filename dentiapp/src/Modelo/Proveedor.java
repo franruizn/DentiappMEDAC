@@ -1,12 +1,16 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +29,23 @@ public class Proveedor implements Serializable {
 	@Column(name = "telefono")
 	private int telefono;
 	
+	
+	
+	//Relacion con stock
+    @OneToMany(mappedBy = "stock_proveedor", cascade = CascadeType.ALL)
+    
+    private List<Stock> stock;
+    
+    public List<Stock> getStock(){
+        return stock;
+    }
+    
+    public void addProveedor(Stock p){
+        if (stock == null) stock=new ArrayList<>();
+        stock.add(p);
+        p.setProveedor(this);
+    }
+    
 	
 	// Constructores
 	public Proveedor() {

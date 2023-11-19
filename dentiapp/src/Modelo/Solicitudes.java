@@ -2,11 +2,14 @@ package Modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,19 @@ public class Solicitudes implements Serializable {
 
 	@Column(name = "fk_idconsulta")
 	private int fk_idConsulta;
+	
+	//relacion con consulta
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "idconsulta",referencedColumnName="idconsulta",insertable=false,updatable=false)
+    private Consulta solicitud_consulta; 
+
+    public Consulta getSolicitudes() {
+        return solicitud_consulta;
+    }
+	public void setConsulta(Consulta consulta) {
+		this.solicitud_consulta=consulta;
+		
+	}
 	
 	
 	// Constructores
@@ -49,5 +65,7 @@ public class Solicitudes implements Serializable {
 	public void setFk_idConsulta(int fk_idConsulta) {
 		this.fk_idConsulta = fk_idConsulta;
 	}
+
+	
 
 }

@@ -2,12 +2,18 @@ package Modelo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +41,59 @@ public class Consulta implements Serializable {
 	@Column(name = "fecha")
 	private Date fecha;
 	
+	//Relacion con solicitud
+    @OneToMany(mappedBy = "solicitud_consulta", cascade = CascadeType.ALL)
+    
+    private List<Solicitudes> solicitudes;
+    
+    public List<Solicitudes> getSolicitudes(){
+        return solicitudes;
+    }
+    
+    public void addConsulta(Solicitudes p){
+        if (solicitudes == null) solicitudes=new ArrayList<>();
+        solicitudes.add(p);
+        p.setConsulta(this);
+    }
+    
+  //relacion con paciente
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "idpaciente",referencedColumnName="idpaciente",insertable=false,updatable=false)
+    private Paciente consulta_paciente; 
+
+    public Paciente getPaciente() {
+        return consulta_paciente;
+    }
+	public void setPaciente(Paciente paciente) {
+		this.consulta_paciente=paciente;
+		
+	}
+	
+	//relacion con tratamiento
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "idtratamiento",referencedColumnName="idtratamiento",insertable=false,updatable=false)
+    private Tratamiento consulta_tratamiento; 
+
+    public Tratamiento getTratamiento() {
+        return consulta_tratamiento;
+    }
+	public void setTratamiento(Tratamiento tratamiento) {
+		this.consulta_tratamiento=tratamiento;
+		
+	}
+	
+	//relacion con doctor
+    @ManyToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name = "iddoctor",referencedColumnName="iddoctor",insertable=false,updatable=false)
+    private Doctor consulta_doctor; 
+
+    public Doctor getDoctor() {
+        return consulta_doctor;
+    }
+	public void setDoctor(Doctor doctor) {
+		this.consulta_doctor=doctor;
+		
+	}
 	
 	// Constructores
 	public Consulta() {		
