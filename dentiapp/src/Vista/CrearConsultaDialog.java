@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class CrearConsultaDialog extends JDialog {
 
@@ -111,11 +113,41 @@ public class CrearConsultaDialog extends JDialog {
 		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
 		cmbDoctor.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
 		cmbTratamiento.setModel(rellenarDatos("tratamiento", "nombre", modeloDatos));
-
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(0, 0, 959, 449);
-		lblNewLabel.setIcon(new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/crear_consulta.PNG")));
-		contentPanel.add(lblNewLabel);
+		
+		JLabel lblPaciente = new JLabel("PACIENTE");
+		lblPaciente.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaciente.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblPaciente.setBounds(92, 117, 228, 22);
+		contentPanel.add(lblPaciente);
+		
+		JLabel lblDoctor = new JLabel("DOCTOR");
+		lblDoctor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDoctor.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblDoctor.setBounds(451, 117, 228, 22);
+		contentPanel.add(lblDoctor);
+		
+		JLabel lblTratamiento = new JLabel("TRATAMIENTO");
+		lblTratamiento.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTratamiento.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblTratamiento.setBounds(33, 246, 228, 22);
+		contentPanel.add(lblTratamiento);
+		
+		JLabel lblObservaciones = new JLabel("OBSERVACIONES");
+		lblObservaciones.setHorizontalAlignment(SwingConstants.CENTER);
+		lblObservaciones.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblObservaciones.setBounds(512, 210, 228, 22);
+		contentPanel.add(lblObservaciones);
+		
+		JLabel lblFecha = new JLabel("FECHA");
+		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFecha.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblFecha.setBounds(283, 246, 228, 22);
+		contentPanel.add(lblFecha);
+		
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setBounds(0, 0, 959, 449);
+				lblNewLabel.setIcon(new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/crear_consulta.PNG")));
+				contentPanel.add(lblNewLabel);
 
 	}
 

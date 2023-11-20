@@ -22,6 +22,8 @@ import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class BorrarConsultaDialog extends JDialog {
 
@@ -88,13 +90,25 @@ public class BorrarConsultaDialog extends JDialog {
 		});
 		btnAceptar.setBounds(628, 418, 85, 21);
 		contentPanel.add(btnAceptar);
+		
+		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+		
+		JLabel lblConsultas = new JLabel("CONSULTAS");
+		lblConsultas.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblConsultas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsultas.setBounds(92, 112, 228, 22);
+		contentPanel.add(lblConsultas);
+		
+		JLabel lblFecha = new JLabel("FECHA");
+		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFecha.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblFecha.setBounds(445, 112, 228, 22);
+		contentPanel.add(lblFecha);
 		JLabel lblFondo = new JLabel("");
 		
 		lblFondo.setIcon(new ImageIcon(BorrarConsultaDialog.class.getResource("/fotos/borrar_consulta.PNG")));
 		lblFondo.setBounds(0, 0, 765, 447);
 		contentPanel.add(lblFondo);
-		
-		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
 		
 	}
 	

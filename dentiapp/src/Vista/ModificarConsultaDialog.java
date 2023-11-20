@@ -27,6 +27,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.event.ItemEvent;
 import javax.swing.JTextArea;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class ModificarConsultaDialog extends JDialog {
 
@@ -108,11 +110,41 @@ public class ModificarConsultaDialog extends JDialog {
 		JTextArea txtaObservaciones = new JTextArea();
 		txtaObservaciones.setBounds(522, 229, 196, 175);
 		contentPanel.add(txtaObservaciones);
-
-		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(ModificarConsultaDialog.class.getResource("/fotos/mod_consulta.PNG")));
-		lblFondo.setBounds(0, 0, 763, 449);
-		contentPanel.add(lblFondo);
+		
+		JLabel lblFecha = new JLabel("FECHA");
+		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFecha.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblFecha.setBounds(31, 110, 228, 22);
+		contentPanel.add(lblFecha);
+		
+		JLabel lblPaciente = new JLabel("PACIENTE");
+		lblPaciente.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaciente.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblPaciente.setBounds(442, 110, 228, 22);
+		contentPanel.add(lblPaciente);
+		
+		JLabel lblDoctor = new JLabel("DOCTOR");
+		lblDoctor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDoctor.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblDoctor.setBounds(43, 235, 228, 22);
+		contentPanel.add(lblDoctor);
+		
+		JLabel lblTratamiento = new JLabel("TRATAMIENTO");
+		lblTratamiento.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTratamiento.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblTratamiento.setBounds(284, 235, 228, 22);
+		contentPanel.add(lblTratamiento);
+		
+		JLabel lblObservaciones = new JLabel("OBSERVACIONES");
+		lblObservaciones.setHorizontalAlignment(SwingConstants.CENTER);
+		lblObservaciones.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblObservaciones.setBounds(513, 203, 228, 22);
+		contentPanel.add(lblObservaciones);
+		
+				JLabel lblFondo = new JLabel("");
+				lblFondo.setIcon(new ImageIcon(ModificarConsultaDialog.class.getResource("/fotos/mod_consulta.PNG")));
+				lblFondo.setBounds(0, 0, 763, 449);
+				contentPanel.add(lblFondo);
 
 		cmbPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

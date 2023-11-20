@@ -96,7 +96,7 @@ public class CrearDoctorDialog extends JDialog {
 		{
 			JLabel lblNombre = new JLabel("Nombre");
 			lblNombre.setFont(new Font("SansSerif", Font.PLAIN, 18));
-			lblNombre.setBounds(39, 120, 63, 21);
+			lblNombre.setBounds(39, 120, 89, 21);
 			contentPanel.add(lblNombre);
 		}
 		{
