@@ -60,54 +60,12 @@ public class ModificarConsultaDialog extends JDialog {
 		contentPanel.setLayout(null);
 
 		JButton btnModificarConsulta = new JButton("Actualizar");
-<<<<<<< Updated upstream
-		btnModificarConsulta.setBounds(606, 370, 106, 33);
-=======
-		
 		btnModificarConsulta.setBounds(652, 415, 89, 23);
->>>>>>> Stashed changes
 		contentPanel.add(btnModificarConsulta);
 
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("derek bobo");
-
-			}
-		});
 		dateChooser.setBounds(60, 149, 185, 42);
 		contentPanel.add(dateChooser);
-
-
-		txtDoctor = new JTextField();
-		txtDoctor.setBounds(299, 280, 198, 42);
-		contentPanel.add(txtDoctor);
-		txtDoctor.setColumns(10);
-
-		txtTratamiento = new JTextField();
-		txtTratamiento.setBounds(60, 280, 198, 42);
-		contentPanel.add(txtTratamiento);
-		txtTratamiento.setColumns(10);
-
-		JComboBox comboBox = new JComboBox();
-		comboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				for (int i = 0; i < consultas.size(); i++) {
-					if (comboBox.getSelectedItem().equals(consultas.get(i)[0])) {
-						try {
-							txtDoctor.setText(con.selectWhere("doctor", "nombre", "iddoctor", consultas.get(i)[1]));
-							txtTratamiento.setText(con.selectWhere("tratamiento", "nombre", "idtratamiento", consultas.get(i)[2]));
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				}
-			}
-		});
-
-		comboBox.setBounds(417, 158, 295, 22);
-		contentPanel.add(comboBox);
 
 		JComboBox cmbPaciente = new JComboBox();
 		cmbPaciente.setBounds(446, 158, 169, 22);
