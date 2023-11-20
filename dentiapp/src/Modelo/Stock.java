@@ -1,83 +1,11 @@
 package Modelo;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "stock")
-
-public class Stock implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idstock")
+public class Stock{
+	
 	private int idStock;
-
-	@Column(name = "fk_idproveedor")
 	private int fk_idProveedor;
-
-	@Column(name = "nombre")
 	private String nombre;
-
-	@Column(name = "cantidad")
 	private int cantidad;
-	
-	
-	//Relacion con tratamiento
-    @OneToMany(mappedBy = "tratamiento_stock", cascade = CascadeType.ALL)
-    
-    private List<Tratamiento> tratamiento;
-    
-    public List<Tratamiento> getTratamiento(){
-        return tratamiento;
-    }
-    
-    public void addStock(Tratamiento p){
-        if (tratamiento == null) tratamiento=new ArrayList<>();
-        tratamiento.add(p);
-        p.setStock(this);
-    }
-    
-  //Relacion con pedido
-    @OneToMany(mappedBy = "pedido_stock", cascade = CascadeType.ALL)
-    
-    private List<Pedido> pedido;
-    
-    public List<Pedido> getPedido(){
-        return pedido;
-    }
-    
-    public void addStock(Pedido p){
-        if (pedido == null) pedido=new ArrayList<>();
-        pedido.add(p);
-        p.setStock(this);
-    }
-    
-    
-  //relacion con proveedor
-    @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "idproveedor",referencedColumnName="idproveedor",insertable=false,updatable=false)
-    private Proveedor stock_proveedor; 
-
-    public Proveedor getProveedor() {
-        return stock_proveedor;
-    }
-	public void setProveedor(Proveedor proveedor) {
-		this.stock_proveedor=proveedor;
-		
-	}
 	
 	// Constructores
 
