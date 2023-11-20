@@ -197,9 +197,6 @@ public class ControladorSQL {
         	valores.put(listaColumnas[i],listaDatos[i]);
         }
         
-        
-
-
         // Se cierra la conexión a la base de datos.
         cn.desconectar();
 		

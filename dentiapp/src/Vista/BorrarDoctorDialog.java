@@ -1,10 +1,17 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.ControladorHibernate;
+import Modelo.Doctor;
+
 import javax.swing.JLabel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 
@@ -12,6 +19,9 @@ public class BorrarDoctorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	private DefaultComboBoxModel<String> modeloDocs = new DefaultComboBoxModel<String>();
+	private ArrayList<Object> listaDocs = new ArrayList<Object>();
+	private ControladorHibernate con = new ControladorHibernate();
 
 	/**
 	 * Launch the application.
@@ -30,7 +40,7 @@ public class BorrarDoctorDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public BorrarDoctorDialog() {
-		setBounds(100, 100, 781, 486);
+		setBounds(100, 100, 575, 457);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -45,5 +55,10 @@ public class BorrarDoctorDialog extends JDialog {
 			lblFondo.setBounds(0, 0, 564, 421);
 			contentPanel.add(lblFondo);
 		}
+	}
+	
+	public void rellenarCombo() {
+		listaDocs =con.getDatos(Doctor.class);
+		listaDocs.get(0).toString();
 	}
 }

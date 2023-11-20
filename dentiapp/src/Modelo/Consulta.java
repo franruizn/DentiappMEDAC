@@ -58,7 +58,7 @@ public class Consulta implements Serializable {
     
   //relacion con paciente
     @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "idpaciente",referencedColumnName="idpaciente",insertable=false,updatable=false)
+    @JoinColumn(name = "fk_idpaciente",referencedColumnName="idpaciente",insertable=false,updatable=false)
     private Paciente consulta_paciente; 
 
     public Paciente getPaciente() {
@@ -71,7 +71,7 @@ public class Consulta implements Serializable {
 	
 	//relacion con tratamiento
     @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "idtratamiento",referencedColumnName="idtratamiento",insertable=false,updatable=false)
+    @JoinColumn(name = "fk_idtratamiento",referencedColumnName="idtratamiento",insertable=false,updatable=false)
     private Tratamiento consulta_tratamiento; 
 
     public Tratamiento getTratamiento() {
@@ -84,7 +84,7 @@ public class Consulta implements Serializable {
 	
 	//relacion con doctor
     @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "iddoctor",referencedColumnName="iddoctor",insertable=false,updatable=false)
+    @JoinColumn(name = "fk_iddoctor",referencedColumnName="iddoctor",insertable=false,updatable=false)
     private Doctor consulta_doctor; 
 
     public Doctor getDoctor() {

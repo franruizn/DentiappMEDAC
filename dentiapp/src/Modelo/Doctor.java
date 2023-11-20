@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import Controlador.ConexionMySQL;
 
+
 @Entity
 @Table(name = "doctor")
 public class Doctor implements Serializable {
