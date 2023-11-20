@@ -40,7 +40,7 @@ public class ModificarDoctorDialog extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(ModificarDoctorDialog.class.getResource("/fotos/mod_doctor.PNG")));
+		lblFondo.setIcon(new ImageIcon(ModificarDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
 		
