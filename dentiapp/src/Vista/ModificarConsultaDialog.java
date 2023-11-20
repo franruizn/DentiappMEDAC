@@ -34,6 +34,7 @@ public class ModificarConsultaDialog extends JDialog {
 	private ControladorSQL con = new ControladorSQL();
 	private ArrayList<String[]> consultas = new ArrayList<>();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
+	private String fecha="";
 
 	/**
 	 * Launch the application.
@@ -59,7 +60,12 @@ public class ModificarConsultaDialog extends JDialog {
 		contentPanel.setLayout(null);
 
 		JButton btnModificarConsulta = new JButton("Actualizar");
+<<<<<<< Updated upstream
 		btnModificarConsulta.setBounds(606, 370, 106, 33);
+=======
+		
+		btnModificarConsulta.setBounds(652, 415, 89, 23);
+>>>>>>> Stashed changes
 		contentPanel.add(btnModificarConsulta);
 
 		JDateChooser dateChooser = new JDateChooser();
@@ -163,6 +169,24 @@ public class ModificarConsultaDialog extends JDialog {
 						}
 						System.out.println(consultas.get(i)[2]);
 					}
+				}
+				
+			}
+		});
+		btnModificarConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nombreColumnas;
+				try {
+					String id = con.selectWhere("consulta", "id", "fecha", fecha);
+					nombreColumnas = con.obtenerColumnas("consulta");
+					System.out.println(nombreColumnas);
+					String newValues=id+" , "+cmbPaciente.getSelectedItem().toString()+" , "+cmbDoctor.getSelectedItem().toString()+" , "+cmbTratamiento.getSelectedItem().toString()+"null,"+"2022-04-04";
+					
+					System.out.println(newValues);
+					con.updateSQL("consulta",nombreColumnas,newValues);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
 			}

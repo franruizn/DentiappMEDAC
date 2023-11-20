@@ -241,5 +241,24 @@ public class ControladorSQL {
 		
 		return resultado;
 	}
+	public String selectWhereDoble(String nombreTabla, String campoBuscar, String campo, String valor, String valor2) throws SQLException {
+		cn.conectar();
+		
+		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor;
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		String resultado = null;
+		if(rset.next()) {
+			resultado = rset.getString(campoBuscar);
+		}
+		
+		return resultado;
+	}
+	
+	public void updateSQL(String nombreTabla, String nombreColumnas, String newValues ) throws SQLException{
+		String consulta = "INSERT INTO `dentiapp`." + nombreTabla + " (" + nombreColumnas + ") VALUES (" + newValues + ");";
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+		
+	}
 
 }
