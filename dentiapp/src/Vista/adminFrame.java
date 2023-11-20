@@ -30,6 +30,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+import paqGUI.BotonPersonalizadoBean;
 
 public class adminFrame extends JFrame {
 
@@ -354,6 +355,18 @@ public class adminFrame extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginFrame login = new loginFrame();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
+		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
+		contentPane.add(btnprsnlzdbnCerrar);
 		
 		JLabel lblListaDoctores = new JLabel("LISTA DOCTORES");
 		lblListaDoctores.setHorizontalAlignment(SwingConstants.CENTER);
