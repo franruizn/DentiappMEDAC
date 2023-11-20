@@ -32,7 +32,7 @@ public class BorrarFacturacionDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public BorrarFacturacionDialog() {
-		setBounds(100, 100, 781, 486);
+		setBounds(100, 100, 575, 457);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
