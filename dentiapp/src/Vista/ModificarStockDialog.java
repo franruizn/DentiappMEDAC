@@ -32,6 +32,7 @@ public class ModificarStockDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModificarStockDialog() {
+		setResizable(false);
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -52,6 +52,7 @@ public class adminFrame extends JFrame {
 				try {
 					adminFrame frame = new adminFrame();
 					frame.setUndecorated(true);
+					frame.setLocationRelativeTo(null);					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,6 +87,7 @@ public class adminFrame extends JFrame {
 				CrearPacienteDialog dialPaciente1;
 				dialPaciente1 = new CrearPacienteDialog();
 				dialPaciente1.setModal(true);
+				dialPaciente1.setLocationRelativeTo(null);
 				dialPaciente1.setVisible(true);
 			}
 		});
@@ -97,6 +99,7 @@ public class adminFrame extends JFrame {
 				BorrarPacienteDialog dialPaciente2;
 				dialPaciente2 = new BorrarPacienteDialog();
 				dialPaciente2.setModal(true);
+				dialPaciente2.setLocationRelativeTo(null);
 				dialPaciente2.setVisible(true);
 			}
 		});
@@ -108,6 +111,7 @@ public class adminFrame extends JFrame {
 				ModificarPacienteDialog dialPaciente3;
 				dialPaciente3 = new ModificarPacienteDialog();
 				dialPaciente3.setModal(true);
+				dialPaciente3.setLocationRelativeTo(null);
 				dialPaciente3.setVisible(true);
 			}
 		});
@@ -127,6 +131,7 @@ public class adminFrame extends JFrame {
 				try {
 					dialDoctor1 = new CrearDoctorDialog();
 					dialDoctor1.setModal(true);
+					dialDoctor1.setLocationRelativeTo(null);
 					dialDoctor1.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -145,6 +150,7 @@ public class adminFrame extends JFrame {
 				try {
 					dialDoctor2 = new BorrarDoctorDialog();
 					dialDoctor2.setModal(true);
+					dialDoctor2.setLocationRelativeTo(null);
 					dialDoctor2.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -161,6 +167,7 @@ public class adminFrame extends JFrame {
 				ModificarDoctorDialog dialDoctor3;
 				dialDoctor3 = new ModificarDoctorDialog();
 				dialDoctor3.setModal(true);
+				dialDoctor3.setLocationRelativeTo(null);
 				dialDoctor3.setVisible(true);
 			}
 		});
@@ -179,6 +186,7 @@ public class adminFrame extends JFrame {
 				CrearConsultaDialog dialConsulta1;
 				dialConsulta1 = new CrearConsultaDialog();
 				dialConsulta1.setModal(true);
+				dialConsulta1.setLocationRelativeTo(null);
 				dialConsulta1.setVisible(true);
 			}
 		});
@@ -192,6 +200,7 @@ public class adminFrame extends JFrame {
 				try {
 					dialConsulta2 = new BorrarConsultaDialog();
 					dialConsulta2.setModal(true);
+					dialConsulta2.setLocationRelativeTo(null);
 					dialConsulta2.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -208,6 +217,7 @@ public class adminFrame extends JFrame {
 				ModificarConsultaDialog dialConsulta3;
 				dialConsulta3 = new ModificarConsultaDialog();
 				dialConsulta3.setModal(true);
+				dialConsulta3.setLocationRelativeTo(null);
 				dialConsulta3.setVisible(true);
 			}
 		});
@@ -225,6 +235,7 @@ public class adminFrame extends JFrame {
 				CrearUsuarioDialog dialUsuario1;
 				dialUsuario1 = new CrearUsuarioDialog();
 				dialUsuario1.setModal(true);
+				dialUsuario1.setLocationRelativeTo(null);
 				dialUsuario1.setVisible(true);
 			}
 		});
@@ -236,6 +247,7 @@ public class adminFrame extends JFrame {
 				BorrarUsuarioDialog dialUsuario2;
 				dialUsuario2 = new BorrarUsuarioDialog();
 				dialUsuario2.setModal(true);
+				dialUsuario2.setLocationRelativeTo(null);
 				dialUsuario2.setVisible(true);
 			}
 		});
@@ -247,6 +259,7 @@ public class adminFrame extends JFrame {
 				ModificarUsuarioDialog dialUsuario3;
 				dialUsuario3 = new ModificarUsuarioDialog();
 				dialUsuario3.setModal(true);
+				dialUsuario3.setLocationRelativeTo(null);
 				dialUsuario3.setVisible(true);
 			}
 		});
@@ -264,6 +277,7 @@ public class adminFrame extends JFrame {
 				CrearStockDialog dialStock1;
 				dialStock1 = new CrearStockDialog();
 				dialStock1.setModal(true);
+				dialStock1.setLocationRelativeTo(null);
 				dialStock1.setVisible(true);
 			}
 		});
@@ -275,6 +289,7 @@ public class adminFrame extends JFrame {
 				BorrarStockDialog dialStock2;
 				dialStock2 = new BorrarStockDialog();
 				dialStock2.setModal(true);
+				dialStock2.setLocationRelativeTo(null);
 				dialStock2.setVisible(true);
 			}
 		});
@@ -286,6 +301,7 @@ public class adminFrame extends JFrame {
 				ModificarStockDialog dialStock3;
 				dialStock3 = new ModificarStockDialog();
 				dialStock3.setModal(true);
+				dialStock3.setLocationRelativeTo(null);
 				dialStock3.setVisible(true);
 			}
 		});
@@ -304,6 +320,7 @@ public class adminFrame extends JFrame {
 				CrearFacturacionDialog dialFactura1;
 				dialFactura1 = new CrearFacturacionDialog();
 				dialFactura1.setModal(true);
+				dialFactura1.setLocationRelativeTo(null);
 				dialFactura1.setVisible(true);
 			}
 		});
@@ -315,6 +332,7 @@ public class adminFrame extends JFrame {
 				BorrarFacturacionDialog dialFactura2;
 				dialFactura2 = new BorrarFacturacionDialog();
 				dialFactura2.setModal(true);
+				dialFactura2.setLocationRelativeTo(null);
 				dialFactura2.setVisible(true);
 			}
 		});
@@ -326,6 +344,7 @@ public class adminFrame extends JFrame {
 				ModificarFacturacionDialog dialFactura3;
 				dialFactura3 = new ModificarFacturacionDialog();
 				dialFactura3.setModal(true);
+				dialFactura3.setLocationRelativeTo(null);
 				dialFactura3.setVisible(true);
 			}
 		});

@@ -49,6 +49,7 @@ public class BorrarConsultaDialog extends JDialog {
 	 * @throws SQLException 
 	 */
 	public BorrarConsultaDialog() throws SQLException {
+		setResizable(false);
 	
 		//setBounds(100, 100, 575, 457);
 		setBounds(100, 100, 781, 486);
