@@ -62,7 +62,9 @@ public class CrearDoctorDialog extends JDialog {
 	 * @throws SQLException
 	 */
 	public CrearDoctorDialog() throws SQLException {
+		setLocationRelativeTo(null);	
 		setResizable(false);
+		setUndecorated(true);
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

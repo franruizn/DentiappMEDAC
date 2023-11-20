@@ -51,7 +51,9 @@ public class CrearConsultaDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearConsultaDialog() {
+		setLocationRelativeTo(null);	
 		setResizable(false);
+		setUndecorated(true);
 		// setBounds(100, 100, 959, 578);
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(null);

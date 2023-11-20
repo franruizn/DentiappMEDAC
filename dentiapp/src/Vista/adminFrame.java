@@ -66,6 +66,7 @@ public class adminFrame extends JFrame {
 	public adminFrame() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 651);
 		

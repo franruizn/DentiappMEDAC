@@ -33,7 +33,9 @@ public class BorrarUsuarioDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public BorrarUsuarioDialog() {
+		setLocationRelativeTo(null);	
 		setResizable(false);
+		setUndecorated(true);
 		setBounds(100, 100, 575, 457);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

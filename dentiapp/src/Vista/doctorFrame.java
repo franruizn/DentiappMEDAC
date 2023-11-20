@@ -47,7 +47,9 @@ public class doctorFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public doctorFrame() {
+		setLocationRelativeTo(null);	
 		setResizable(false);
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 967, 635);
 		contentPane = new JPanel();
