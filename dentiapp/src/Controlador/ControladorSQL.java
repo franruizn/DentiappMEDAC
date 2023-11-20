@@ -233,6 +233,7 @@ public class ControladorSQL {
 		cn.conectar();
 		
 		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor;
+		System.out.println(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 		String resultado = null;
 		if(rset.next()) {
@@ -241,10 +242,11 @@ public class ControladorSQL {
 		
 		return resultado;
 	}
-	public String selectWhereDoble(String nombreTabla, String campoBuscar, String campo, String valor, String valor2) throws SQLException {
+	public String selectWhereDoble(String nombreTabla, String campoBuscar, String campo, String valor, String campo2, String valor2) throws SQLException {
 		cn.conectar();
 		
-		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor;
+		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor+ "and "+ campo2 + " = " + valor2;
+		System.out.println(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 		String resultado = null;
 		if(rset.next()) {

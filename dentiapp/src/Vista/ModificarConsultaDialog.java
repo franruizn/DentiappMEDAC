@@ -77,7 +77,7 @@ public class ModificarConsultaDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				cmbPaciente.removeAll();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				String fecha = "'" + sdf.format(dateChooser.getDate()) + "'";
+				fecha = "'" + sdf.format(dateChooser.getDate()) + "'";
 				try {
 
 					consultas = con.obtenerConsulta(fecha);
@@ -118,7 +118,7 @@ public class ModificarConsultaDialog extends JDialog {
 						cmbDoctor.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
 						cmbTratamiento.setModel(rellenarDatos("tratamiento", "nombre", modeloDatos));
 						try {
-							System.out.println(con.selectWhere("doctor", "nombre", "iddoctor", consultas.get(i)[1]));
+							cmbDoctor.setSelectedItem(con.selectWhere("paciente", "nombre", "idpaciente", consultas.get(i)[0]));
 							cmbDoctor.setSelectedItem(con.selectWhere("doctor", "nombre", "iddoctor", consultas.get(i)[1]));
 							cmbDoctor.setSelectedItem(con.selectWhere("tratamiento", "nombre", "idtratamiento", consultas.get(i)[2]));
 						} catch (SQLException e1) {
@@ -135,11 +135,11 @@ public class ModificarConsultaDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String nombreColumnas;
 				try {
-					String id = con.selectWhere("consulta", "id", "fecha", fecha);
+					String id = con.selectWhereDoble("consulta", "idconsulta", "fecha", fecha,"fk_idpaciente",cmbPaciente.getSelectedItem().toString());
+					System.out.println(id);
 					nombreColumnas = con.obtenerColumnas("consulta");
 					System.out.println(nombreColumnas);
-					String newValues=id+" , "+cmbPaciente.getSelectedItem().toString()+" , "+cmbDoctor.getSelectedItem().toString()+" , "+cmbTratamiento.getSelectedItem().toString()+"null,"+"2022-04-04";
-					
+					String newValues=id+" , "+cmbPaciente.getSelectedItem().toString()+" , "+cmbDoctor.getSelectedItem().toString()+" , "+cmbTratamiento.getSelectedItem().toString()+" null,"+fecha;
 					System.out.println(newValues);
 					con.updateSQL("consulta",nombreColumnas,newValues);
 				} catch (SQLException e1) {
