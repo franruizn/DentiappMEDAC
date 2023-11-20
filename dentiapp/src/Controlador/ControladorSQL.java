@@ -288,6 +288,7 @@ public class ControladorSQL {
 	public void insertarConsulta(String nombreTabla, String nombreColumnas, String newValues) throws SQLException {
 		cn.conectar();
 		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "` (" + nombreColumnas + ") VALUES (" + newValues + ");";
+		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}

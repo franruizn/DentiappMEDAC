@@ -94,14 +94,15 @@ public class CrearConsultaDialog extends JDialog {
 					String doctor=con.selectWhere("doctor", "iddoctor", "nombre",cmbDoctor.getSelectedItem().toString());
 					String observaciones=txtObservaciones.getText();
 					String nombreColumnas=con.obtenerColumnas("consulta");
-					String newValues=""+paciente+","+doctor+","+tratamiento+","+observaciones+","+fecha;
+					nombreColumnas=nombreColumnas.substring(11,nombreColumnas.length());
+					String newValues=""+paciente+","+doctor+","+tratamiento+",'"+observaciones+"',"+fecha;
 					con.insertarConsulta("consulta",nombreColumnas, newValues);
 					JOptionPane.showMessageDialog(null, "Consulta Creada con Exito",
-							"Consulta Creada", JOptionPane.WARNING_MESSAGE,new ImageIcon("/fotos/iconoOk.png"));
+							"Consulta Creada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
 
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "Error al crear Consulta",
-							"Error al crear consulta", JOptionPane.WARNING_MESSAGE,new ImageIcon("/fotos/iconoNo.png"));
+							"Error al crear consulta", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
 					e1.printStackTrace();
 				}
 

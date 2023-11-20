@@ -163,11 +163,11 @@ public class ModificarConsultaDialog extends JDialog {
 					String[] valores = newValues.split(",");
 					con.updateSQL("consulta", columnas, valores);
 					JOptionPane.showMessageDialog(null, "Consulta Actualizada con Exito",
-							"Consulta Actualizada", JOptionPane.WARNING_MESSAGE,new ImageIcon("/fotos/iconoOk.png"));
+							"Consulta Actualizada", JOptionPane.WARNING_MESSAGE,new ImageIcon(ModificarConsultaDialog.class.getResource("/fotos/iconoOk.png")));
 
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "Error al modificar Consulta",
-							"Error al modificar consulta", JOptionPane.WARNING_MESSAGE,new ImageIcon("/fotos/iconoNo.png"));
+							"Error al modificar consulta", JOptionPane.WARNING_MESSAGE,new ImageIcon(ModificarConsultaDialog.class.getResource("/fotos/iconoNo.png")));
 					e1.printStackTrace();
 				}
 
