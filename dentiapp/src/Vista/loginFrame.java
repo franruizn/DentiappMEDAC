@@ -17,6 +17,7 @@ import Controlador.ControladorSQL;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import paqGUI.BotonPersonalizadoBean;
 
 public class loginFrame extends JFrame {
 
@@ -49,6 +50,8 @@ public class loginFrame extends JFrame {
 	 */
 	public loginFrame() {
 		// Declaración del aspecto del panel
+		setLocationRelativeTo(null);
+		setUndecorated(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 951, 624);
@@ -71,6 +74,15 @@ public class loginFrame extends JFrame {
 				}
 			}
 		});
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setBounds(428, 494, 114, 50);
+		contentPane.add(btnprsnlzdbnCerrar);
 		
 		
 		btnLogin.setFont(new Font("SansSerif", Font.PLAIN, 32));

@@ -7,8 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import paqGUI.BotonPersonalizadoBean;
+
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -121,6 +127,18 @@ public class doctorFrame extends JFrame {
 		contentPane.add(btnEliminarTratamiento);
 		btnEliminarTratamiento.setBackground(new Color(55,4,102));
 		btnEliminarTratamiento.setForeground(Color.WHITE);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginFrame login = new loginFrame();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
+		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
+		contentPane.add(btnprsnlzdbnCerrar);
 		
 		JLabel lblImagenFondo = new JLabel("");
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/fotos/ventana_doctor.PNG")));
