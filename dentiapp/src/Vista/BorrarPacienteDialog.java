@@ -32,6 +32,7 @@ public class BorrarPacienteDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public BorrarPacienteDialog() {
+	
 		setBounds(100, 100, 575, 457);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
