@@ -90,7 +90,9 @@ public class CrearConsultaDialog extends JDialog {
 					String doctor=con.selectWhere("doctor", "iddoctor", "nombre",cmbDoctor.getSelectedItem().toString());
 					String observaciones=txtObservaciones.getText();
 					String nombreColumnas=con.obtenerColumnas("consulta");
-					String newValues=""+paciente+","+doctor+","+tratamiento+","+observaciones+","+fecha;
+					
+					nombreColumnas=nombreColumnas.substring(11, nombreColumnas.length());
+					String newValues=paciente+","+doctor+","+tratamiento+",'"+observaciones+"',"+fecha;
 					con.insertarConsulta(nombreColumnas, newValues);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

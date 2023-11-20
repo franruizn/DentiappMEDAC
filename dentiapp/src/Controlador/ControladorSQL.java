@@ -239,8 +239,9 @@ public class ControladorSQL {
 		if (rset.next()) {
 			resultado = rset.getString(campoBuscar);
 		}
-
+		cn.desconectar();
 		return resultado;
+		
 	}
 
 	public String selectWhereDoble(String nombreTabla, String campoBuscar, String campo, String valor, String campo2,
@@ -255,7 +256,7 @@ public class ControladorSQL {
 		if (rset.next()) {
 			resultado = rset.getString(campoBuscar);
 		}
-
+		cn.desconectar();
 		return resultado;
 	}
 
@@ -281,10 +282,15 @@ public class ControladorSQL {
 		consulta = consulta.substring(0,consulta.length()-1) + " WHERE " + campoPrimario + " = " + valorId;
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
+		cn.desconectar();
 	}
-	public void insertarConsulta(String nombreColumnas, String newValues) {
+	public void insertarConsulta(String nombreColumnas, String newValues) throws SQLException {
+		cn.conectar();
 		String nombreTabla="consulta";
-		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "`" + nombreColumnas + " VALUES (" + newValues + ");";
+		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "` (" + nombreColumnas + ") VALUES (" + newValues + ");";
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
 	}
 
 }
