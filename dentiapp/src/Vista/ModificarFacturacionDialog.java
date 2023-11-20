@@ -32,6 +32,7 @@ public class ModificarFacturacionDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModificarFacturacionDialog() {
+		setResizable(false);
 		//setBounds(100, 100, 450, 300);
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
