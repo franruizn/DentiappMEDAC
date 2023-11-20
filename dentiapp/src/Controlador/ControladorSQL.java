@@ -198,7 +198,7 @@ public class ControladorSQL {
         }
         
         for(int i = 0; i < datos.size(); i++) {
-        	modeloDatos.addAll(datos);
+        	modeloDatos.addElement(datos.get(i));
         }
         
         cn.desconectar();
@@ -216,7 +216,7 @@ public class ControladorSQL {
 		System.out.print(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 
-		if (rset.next()) {
+		while (rset.next()) {
 			String[] consultaNueva = new String[3];
 			consultaNueva[0] = rset.getString("fk_idpaciente");
 			consultaNueva[1] = rset.getString("fk_iddoctor");
