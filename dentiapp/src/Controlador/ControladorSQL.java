@@ -292,5 +292,12 @@ public class ControladorSQL {
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}
+	public void borrarConsulta(String id,String fecha) throws SQLException {
+		cn.conectar();
+		String nombreTabla="consulta";
+		String consulta = "DELETE FROM " + nombreTabla + " WHERE fk_idpaciente = " + id+" and fecha = "+fecha;
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
+	}
 
 }
