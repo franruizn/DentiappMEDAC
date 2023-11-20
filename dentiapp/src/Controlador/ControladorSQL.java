@@ -41,13 +41,13 @@ public class ControladorSQL {
 			newValues = newValues.substring(0, newValues.length() - 1);
 			nombreColumnas = nombreColumnas.substring(0, nombreColumnas.length() - 1) + ")";
 			// Insertamos los valores en la tabla
-			String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "`" + nombreColumnas + " VALUES (" + newValues + ");";
+			String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "`" + nombreColumnas + " VALUES (" + newValues
+					+ ");";
 			System.out.println(consulta);
 			cn.ejecutarIDU(consulta);
 		}
 		cn.desconectar();
 	}
-
 
 	public void tryLogin(JTextField txtUsuario, JPasswordField txtPass, loginFrame frame) throws SQLException {
 		cn.conectar();
@@ -151,7 +151,7 @@ public class ControladorSQL {
 
 		cn.desconectar();
 	}
-	
+
 	public void eliminarFila(String nombreTabla, String key) throws SQLException {
 		cn.conectar();
 		ResultSet rset = metaDatos.getPrimaryKeys(null, null, nombreTabla);
@@ -162,8 +162,8 @@ public class ControladorSQL {
 		}
 		String consulta = "DELETE FROM " + nombreTabla + " WHERE " + campoPrimario + " = " + key;
 		cn.ejecutarIDU(consulta);
-		JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito",
-				nombreTabla + " eliminado", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito", nombreTabla + " eliminado",
+				JOptionPane.INFORMATION_MESSAGE);
 		cn.desconectar();
 	}
 
@@ -184,83 +184,103 @@ public class ControladorSQL {
 		cn.desconectar();
 		return idNum;
 	}
-	
+
 	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, String campo) throws SQLException {
 		cn.conectar();
-        metaDatos = cn.getConnection().getMetaData();
-        DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
-        
-        String consulta = "SELECT " + campo + " FROM " + nombreTabla;
-        ResultSet rset = cn.ejecutarSelect(consulta);
-        ArrayList<String> datos = new ArrayList<>();
-        while(rset.next()) {
-        	datos.add(rset.getString(campo));
-        }
-        
-        for(int i = 0; i < datos.size(); i++) {
-        	modeloDatos.addElement(datos.get(i));
-        }
-        
-        cn.desconectar();
-		
+		metaDatos = cn.getConnection().getMetaData();
+		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
+
+		String consulta = "SELECT " + campo + " FROM " + nombreTabla;
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		ArrayList<String> datos = new ArrayList<>();
+		while (rset.next()) {
+			datos.add(rset.getString(campo));
+		}
+
+		for (int i = 0; i < datos.size(); i++) {
+			modeloDatos.addElement(datos.get(i));
+		}
+
+		cn.desconectar();
+
 		return modeloDatos;
 	}
-	
-	public  ArrayList <String[]> obtenerConsulta(String fecha) throws SQLException{
+
+	public ArrayList<String[]> obtenerConsulta(String fecha) throws SQLException {
 		cn.conectar();
-		
-		
-		ArrayList <String[]> consultas = new ArrayList();
+
+		ArrayList<String[]> consultas = new ArrayList();
 		// Consulta a ejecutar
-		String consulta = "Select fk_idpaciente, fk_iddoctor, fk_idtratamiento from consulta where fecha="+fecha+";";
+		String consulta = "SELECT fk_idpaciente, fk_iddoctor, fk_idtratamiento, observaciones FROM consulta WHERE fecha=" + fecha
+				+ ";";
 		System.out.print(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 
 		while (rset.next()) {
-			String[] consultaNueva = new String[3];
+			String[] consultaNueva = new String[4];
 			consultaNueva[0] = rset.getString("fk_idpaciente");
 			consultaNueva[1] = rset.getString("fk_iddoctor");
 			consultaNueva[2] = rset.getString("fk_idtratamiento");
+			consultaNueva[3] = rset.getString("observaciones");
 			consultas.add(consultaNueva);
 		}
-		
 
 		cn.desconectar();
 		return consultas;
 	}
-	
+
 	public String selectWhere(String nombreTabla, String campoBuscar, String campo, String valor) throws SQLException {
 		cn.conectar();
-		
-		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor;
+
+		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = '" + valor + "'";
 		System.out.println(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 		String resultado = null;
-		if(rset.next()) {
+		if (rset.next()) {
 			resultado = rset.getString(campoBuscar);
 		}
-		
+
 		return resultado;
 	}
-	public String selectWhereDoble(String nombreTabla, String campoBuscar, String campo, String valor, String campo2, String valor2) throws SQLException {
+
+	public String selectWhereDoble(String nombreTabla, String campoBuscar, String campo, String valor, String campo2,
+			String valor2) throws SQLException {
 		cn.conectar();
-		
-		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor+ "and "+ campo2 + " = " + valor2;
+
+		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor + "and "
+				+ campo2 + " = " + valor2;
 		System.out.println(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 		String resultado = null;
-		if(rset.next()) {
+		if (rset.next()) {
 			resultado = rset.getString(campoBuscar);
 		}
-		
+
 		return resultado;
 	}
-	
-	public void updateSQL(String nombreTabla, String nombreColumnas, String newValues ) throws SQLException{
-		String consulta = "INSERT INTO `dentiapp`." + nombreTabla + " (" + nombreColumnas + ") VALUES (" + newValues + ");";
+
+	public void updateSQL(String nombreTabla, String[] nombreColumnas, String[] newValues) throws SQLException {
+		cn.conectar();
+		ResultSet rset = metaDatos.getPrimaryKeys(null, null, nombreTabla);
+		String campoPrimario = "";
+		String valorId = "";
+		while (rset.next()) {
+			campoPrimario = rset.getString("COLUMN_NAME");
+			// Obtenemos la columna del campo primario
+		}
+		String consulta = "UPDATE " + nombreTabla + " SET ";
+		for (int i = 0; i < nombreColumnas.length; i++) {
+			if(!nombreColumnas[i].equals(campoPrimario)) {
+				consulta += nombreColumnas[i] + "=";
+				consulta += newValues[i]+",";
+			} else {
+				valorId = newValues[i];
+			}
+		}
+		
+		consulta = consulta.substring(0,consulta.length()-1) + " WHERE " + campoPrimario + " = " + valorId;
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
-		
 	}
 
 }
