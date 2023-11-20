@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,8 +19,6 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
@@ -79,6 +76,8 @@ public class adminFrame extends JFrame {
 		
 		JMenu mnGestionarPacientes = new JMenu("Gestionar Pacientes");
 		mnPaciente.add(mnGestionarPacientes);
+		
+		
 		
 		JMenuItem mntmCrearPaciente = new JMenuItem("Crear Paciente");
 		mntmCrearPaciente.addActionListener(new ActionListener() {
@@ -566,4 +565,5 @@ public class adminFrame extends JFrame {
 		contentPane.add(lblFondo);
 		
 	}
+
 }
