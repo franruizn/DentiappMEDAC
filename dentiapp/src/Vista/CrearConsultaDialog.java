@@ -91,7 +91,7 @@ public class CrearConsultaDialog extends JDialog {
 					String observaciones=txtObservaciones.getText();
 					String nombreColumnas=con.obtenerColumnas("consulta");
 					String newValues=""+paciente+","+doctor+","+tratamiento+","+observaciones+","+fecha;
-					con.insertarConsulta(nombreColumnas, newValues);
+					con.insertarConsulta("consulta",nombreColumnas, newValues);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -282,9 +282,9 @@ public class ControladorSQL {
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}
-	public void insertarConsulta(String nombreColumnas, String newValues) {
-		String nombreTabla="consulta";
-		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "`" + nombreColumnas + " VALUES (" + newValues + ");";
+	public void insertarConsulta(String nombreTabla, String nombreColumnas, String newValues) throws SQLException {
+		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "` (" + nombreColumnas + ") VALUES (" + newValues + ");";
+		cn.ejecutarIDU(consulta);
 	}
 
 }

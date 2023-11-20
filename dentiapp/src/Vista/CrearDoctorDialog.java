@@ -40,6 +40,7 @@ public class CrearDoctorDialog extends JDialog {
 	private JTable tblDatos;
 	private DefaultTableModel modeloDatos = new DefaultTableModel();
 	private String[] listaDatos = new String[4];
+	private JTextField txtPass;
 
 	/**
 	 * Launch the application.
@@ -74,6 +75,11 @@ public class CrearDoctorDialog extends JDialog {
 					dispose();
 				}
 			});
+			
+			JLabel lblPass = new JLabel("Contraseña");
+			lblPass.setFont(new Font("SansSerif", Font.PLAIN, 18));
+			lblPass.setBounds(493, 235, 102, 32);
+			contentPanel.add(lblPass);
 			btnCancelar.setFont(new Font("SansSerif", Font.PLAIN, 16));
 			btnCancelar.setBounds(619, 367, 97, 41);
 			btnCancelar.setActionCommand("Cancel");
@@ -123,11 +129,18 @@ public class CrearDoctorDialog extends JDialog {
 			btnCrear.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
-						obtenerDatos(comboEspecialidades);
-						cn.insertarDatos("doctor",modeloDatos);
+						String columnasDoctor = "nombre,fk_idusuario,fk_idespecialidad";
+						String valoresDoctor = "'"+ txtNombre.getText() + "','" +txtDNI.getText() + "','" + cn.obtenerIdEspecialidad(comboEspecialidades.getSelectedItem().toString()) + "'";
+						String columnasUser = "idusuario,pass,rol";
+						String valoresUser = "'"+txtDNI.getText() + "','" + txtPass.getText() + "'," + "2";
+						cn.insertarConsulta("usuario",columnasUser, valoresUser);
+						cn.insertarConsulta("doctor",columnasDoctor,valoresDoctor);
+						JOptionPane.showMessageDialog(null, "Doctor Creado con Exito",
+								"Doctor Creado", JOptionPane.WARNING_MESSAGE);
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, "Error al crear Doctor - Los datos introducidos no son correctos.\n Asegurese de que el DNI y Nombre son correctos",
 								"Error al crear doctor", JOptionPane.WARNING_MESSAGE);
+						e1.printStackTrace();
 					}
 					//dispose();
 				}
@@ -157,15 +170,22 @@ public class CrearDoctorDialog extends JDialog {
 
 		rellenarListaEspecialidades();
 		rellenarComboEspecialidades(comboEspecialidades);
-
-		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/dialog_add_doctor.PNG")));
-		lblFondo.setBounds(0, 0, 763, 449);
-		contentPanel.add(lblFondo);
-		
-				tblDatos = new JTable();
-				tblDatos.setBounds(416, 204, 300, 139);
-				contentPanel.add(tblDatos);
+				
+				txtPass = new JTextField();
+				txtPass.setColumns(10);
+				txtPass.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+				txtPass.setBackground(new Color(246, 246, 246));
+				txtPass.setBounds(423, 280, 293, 41);
+				contentPanel.add(txtPass);
+				
+						JLabel lblFondo = new JLabel("");
+						lblFondo.setIcon(new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/dialog_add_doctor.PNG")));
+						lblFondo.setBounds(0, 0, 763, 449);
+						contentPanel.add(lblFondo);
+						
+								tblDatos = new JTable();
+								tblDatos.setBounds(416, 204, 300, 139);
+								contentPanel.add(tblDatos);
 		
 		modeloDatos.addColumn("iddoctor");
 		modeloDatos.addColumn("fk_idusuario");

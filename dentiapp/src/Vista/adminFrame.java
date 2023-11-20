@@ -17,6 +17,9 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
@@ -414,15 +417,26 @@ public class adminFrame extends JFrame {
 		JButton btnCrearDoctor = new JButton("CREAR");
 		btnCrearDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*CrearDoctorDialog dialDoctor;
+				CrearDoctorDialog dialDoctor;
 				try {
 					dialDoctor = new CrearDoctorDialog();
 					dialDoctor.setModal(true);
 					dialDoctor.setVisible(true);
+					
+					dialDoctor.addWindowListener(new WindowAdapter() {
+						public void windowClosed(WindowEvent e) {
+							try {
+								tblPacientes.setModel(cn.cargarDatos("paciente", modeloPacientes));
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					});
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}*/
+				}
 				System.out.println("fdlksjfslkdfjsdlkñ");
 			}
 		});
