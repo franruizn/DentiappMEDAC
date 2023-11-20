@@ -28,6 +28,7 @@ public class doctorFrame extends JFrame {
 				try {
 					doctorFrame frame = new doctorFrame();
 					frame.setLocationRelativeTo(null);
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -22,6 +22,7 @@ public class ModificarStockDialog extends JDialog {
 		try {
 			ModificarStockDialog dialog = new ModificarStockDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

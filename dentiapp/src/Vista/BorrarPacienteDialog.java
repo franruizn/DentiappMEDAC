@@ -22,6 +22,7 @@ public class BorrarPacienteDialog extends JDialog {
 		try {
 			BorrarPacienteDialog dialog = new BorrarPacienteDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

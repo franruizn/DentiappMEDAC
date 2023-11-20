@@ -22,6 +22,7 @@ public class CrearUsuarioDialog extends JDialog {
 		try {
 			CrearUsuarioDialog dialog = new CrearUsuarioDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

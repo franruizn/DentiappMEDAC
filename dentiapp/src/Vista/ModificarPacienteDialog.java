@@ -22,6 +22,7 @@ public class ModificarPacienteDialog extends JDialog {
 		try {
 			ModificarPacienteDialog dialog = new ModificarPacienteDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

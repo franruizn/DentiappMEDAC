@@ -22,6 +22,7 @@ public class CrearStockDialog extends JDialog {
 		try {
 			CrearStockDialog dialog = new CrearStockDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

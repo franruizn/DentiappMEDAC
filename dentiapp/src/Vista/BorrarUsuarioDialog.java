@@ -22,6 +22,7 @@ public class BorrarUsuarioDialog extends JDialog {
 		try {
 			BorrarUsuarioDialog dialog = new BorrarUsuarioDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
