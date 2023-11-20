@@ -6,7 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+
+import org.hibernate.internal.build.AllowSysOut;
 
 import Controlador.ControladorSQL;
 
@@ -424,15 +427,12 @@ public class adminFrame extends JFrame {
 					dialDoctor.setVisible(true);
 					
 					dialDoctor.addWindowListener(new WindowAdapter() {
-						public void windowClosed(WindowEvent e) {
-							try {
-								tblPacientes.setModel(cn.cargarDatos("paciente", modeloPacientes));
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						}
-					});
+			            @Override
+			            public void windowClosed(WindowEvent e) {
+			            	System.out.println("cerrada");
+			                tblDoctores.setModel(((AbstractTableModel) tblDoctores.getModel()).fireTableDataChanged());
+			            } 
+			        });
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

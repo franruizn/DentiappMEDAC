@@ -234,4 +234,6 @@ public class CrearDoctorDialog extends JDialog {
 
 		comboEspecialidades.setModel(modeloEspecialidades);
 	}
+	
+	
 }
