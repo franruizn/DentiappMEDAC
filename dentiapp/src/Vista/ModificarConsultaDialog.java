@@ -79,6 +79,7 @@ public class ModificarConsultaDialog extends JDialog {
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cmbPaciente.removeAll();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String fecha = "'" + sdf.format(dateChooser.getDate()) + "'";
 				try {
@@ -114,6 +115,8 @@ public class ModificarConsultaDialog extends JDialog {
 
 		cmbPaciente.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				cmbDoctor.removeAll();
+				cmbTratamiento.removeAll();
 				for (int i = 0; i < consultas.size(); i++) {
 					if (cmbPaciente.getSelectedItem().equals(consultas.get(i)[0])) {
 						cmbDoctor.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
