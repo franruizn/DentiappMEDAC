@@ -34,9 +34,9 @@ public class CrearPacienteDialog extends JDialog {
 	public CrearPacienteDialog() {
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 	
 	
 		JLabel lblFondo = new JLabel("");
@@ -44,9 +44,6 @@ public class CrearPacienteDialog extends JDialog {
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				
 			}

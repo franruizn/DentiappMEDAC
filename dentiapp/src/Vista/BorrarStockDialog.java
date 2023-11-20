@@ -34,25 +34,15 @@ public class BorrarStockDialog extends JDialog {
 	public BorrarStockDialog() {
 		setBounds(100, 100, 575, 457);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(BorrarStockDialog.class.getResource("/fotos/borrar_stock.PNG")));
-		lblFondo.setBounds(0, 0, 763, 449);
+		lblFondo.setBounds(0, 0, 564, 421);
 		contentPanel.add(lblFondo);
-		
-		
-		
 		{
-			JLabel lblNewLabel = new JLabel("borrar stock dialog");
-			contentPanel.add(lblNewLabel);
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				
 			}

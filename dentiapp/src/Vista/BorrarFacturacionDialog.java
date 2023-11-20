@@ -34,20 +34,18 @@ public class BorrarFacturacionDialog extends JDialog {
 	public BorrarFacturacionDialog() {
 		setBounds(100, 100, 575, 457);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0, 0, 564, 421);
 		lblNewLabel.setIcon(new ImageIcon(BorrarFacturacionDialog.class.getResource("/fotos/borrar_facturacion.PNG")));
 		contentPanel.add(lblNewLabel);
 		{
 			
 		}
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				
 			}

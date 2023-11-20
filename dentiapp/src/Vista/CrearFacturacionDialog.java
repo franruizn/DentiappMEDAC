@@ -34,20 +34,17 @@ public class CrearFacturacionDialog extends JDialog {
 	public CrearFacturacionDialog() {
 		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(CrearFacturacionDialog.class.getResource("/fotos/crear_factura1.PNG")));
-		lblFondo.setBounds(0, 0, 763, 449);
+		lblFondo.setBounds(0, 0, 763, 457);
 		contentPanel.add(lblFondo);
 		
 		
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				
 			}
