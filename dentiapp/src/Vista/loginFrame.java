@@ -34,6 +34,7 @@ public class loginFrame extends JFrame {
 			public void run() {
 				try {
 					loginFrame frame = new loginFrame();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
