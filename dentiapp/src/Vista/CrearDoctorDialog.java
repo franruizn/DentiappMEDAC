@@ -110,7 +110,7 @@ public class CrearDoctorDialog extends JDialog {
 		txtDNI = new JTextField();
 		txtDNI.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		txtDNI.setBackground(new Color(246, 246, 246));
-		txtDNI.setBounds(55, 280, 199, 41);
+		txtDNI.setBounds(55, 280, 293, 41);
 		contentPanel.add(txtDNI);
 		txtDNI.setColumns(10);
 
@@ -214,19 +214,4 @@ public class CrearDoctorDialog extends JDialog {
 
 		comboEspecialidades.setModel(modeloEspecialidades);
 	}
-
-//	private int obtenerIdEspecialidad(String especialidad) throws SQLException {
-//		cn.conectar();
-//		int id = 0;
-//
-//		// Consulta a ejecutar
-//		String consulta = "SELECT idespecialidad FROM especialidad WHERE nombre = '" + especialidad + "';";
-//		ResultSet rset = cn.ejecutarSelect(consulta);
-//
-//		if (rset.next()) {
-//			id = rset.getInt("idespecialidad");
-//		}
-//
-//		return id;
-//	}
 }
