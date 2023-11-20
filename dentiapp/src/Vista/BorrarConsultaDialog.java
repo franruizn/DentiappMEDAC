@@ -40,19 +40,20 @@ public class BorrarConsultaDialog extends JDialog {
 	 */
 	public BorrarConsultaDialog() {
 	
-		setBounds(100, 100, 575, 457);
+		//setBounds(100, 100, 575, 457);
+		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(131, 124, 358, 22);
+		comboBox.setBounds(52, 161, 301, 22);
 		contentPanel.add(comboBox);
 		JLabel lblFondo = new JLabel("");
 		
 		lblFondo.setIcon(new ImageIcon(BorrarConsultaDialog.class.getResource("/fotos/borrar_consulta.PNG")));
-		lblFondo.setBounds(0, 0, 564, 421);
+		lblFondo.setBounds(0, 0, 765, 447);
 		contentPanel.add(lblFondo);
 		
 		

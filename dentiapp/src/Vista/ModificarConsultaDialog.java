@@ -59,7 +59,7 @@ public class ModificarConsultaDialog extends JDialog {
 		contentPanel.setLayout(null);
 
 		JButton btnModificarConsulta = new JButton("Actualizar");
-		btnModificarConsulta.setBounds(652, 415, 89, 23);
+		btnModificarConsulta.setBounds(606, 370, 106, 33);
 		contentPanel.add(btnModificarConsulta);
 
 		JDateChooser dateChooser = new JDateChooser();
@@ -69,16 +69,16 @@ public class ModificarConsultaDialog extends JDialog {
 
 			}
 		});
-		dateChooser.setBounds(60, 158, 185, 31);
+		dateChooser.setBounds(60, 149, 185, 42);
 		contentPanel.add(dateChooser);
 
 		txtDoctor = new JTextField();
-		txtDoctor.setBounds(364, 286, 86, 20);
+		txtDoctor.setBounds(299, 280, 198, 42);
 		contentPanel.add(txtDoctor);
 		txtDoctor.setColumns(10);
 
 		txtTratamiento = new JTextField();
-		txtTratamiento.setBounds(113, 286, 86, 20);
+		txtTratamiento.setBounds(60, 280, 198, 42);
 		contentPanel.add(txtTratamiento);
 		txtTratamiento.setColumns(10);
 
@@ -99,7 +99,7 @@ public class ModificarConsultaDialog extends JDialog {
 			}
 		});
 
-		comboBox.setBounds(446, 158, 169, 22);
+		comboBox.setBounds(417, 158, 295, 22);
 		contentPanel.add(comboBox);
 
 		JButton btnNewButton = new JButton("Buscar");
@@ -122,7 +122,7 @@ public class ModificarConsultaDialog extends JDialog {
 
 			}
 		});
-		btnNewButton.setBounds(255, 158, 89, 23);
+		btnNewButton.setBounds(256, 158, 100, 23);
 		contentPanel.add(btnNewButton);
 
 		JLabel lblFondo = new JLabel("");

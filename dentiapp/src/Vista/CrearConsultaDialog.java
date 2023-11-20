@@ -45,7 +45,8 @@ public class CrearConsultaDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearConsultaDialog() {
-		setBounds(100, 100, 959, 578);
+		//setBounds(100, 100, 959, 578);
+		setBounds(100, 100, 781, 486);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 959, 556);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -53,7 +54,7 @@ public class CrearConsultaDialog extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(385, 359, 231, 30);
+		dateChooser.setBounds(295, 288, 211, 29);
 		contentPanel.add(dateChooser);
 		
 		JButton btnAceptar = new JButton("Aceptar");
@@ -62,15 +63,15 @@ public class CrearConsultaDialog extends JDialog {
 		contentPanel.add(btnAceptar);
 		
 		JComboBox cmbPaciente = new JComboBox();
-		cmbPaciente.setBounds(85, 201, 341, 22);
+		cmbPaciente.setBounds(48, 161, 307, 22);
 		contentPanel.add(cmbPaciente);
 		
 		JComboBox cmbDoctor = new JComboBox();
-		cmbDoctor.setBounds(535, 201, 341, 22);
+		cmbDoctor.setBounds(412, 161, 293, 22);
 		contentPanel.add(cmbDoctor);
 		
 		JComboBox cmbTratamiento = new JComboBox();
-		cmbTratamiento.setBounds(76, 363, 245, 22);
+		cmbTratamiento.setBounds(48, 288, 211, 22);
 		contentPanel.add(cmbTratamiento);
 		
 		btnAceptar.addActionListener(new ActionListener() {
@@ -83,7 +84,7 @@ public class CrearConsultaDialog extends JDialog {
 		});
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(0, 0, 959, 556);
+		lblNewLabel.setBounds(0, 0, 959, 449);
 		lblNewLabel.setIcon(new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/crear_consulta.PNG")));
 		contentPanel.add(lblNewLabel);
 		cmbPaciente.setModel(rellenarDatos("paciente","nombre",modeloDatos));
