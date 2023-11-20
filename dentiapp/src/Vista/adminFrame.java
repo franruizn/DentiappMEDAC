@@ -27,6 +27,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 public class adminFrame extends JFrame {
 
@@ -117,6 +120,7 @@ public class adminFrame extends JFrame {
 		mnDoctores.add(mnGestionarDoctores);
 		
 		JMenuItem mntmCrearDoctor = new JMenuItem("Crear Doctor");
+		mntmCrearDoctor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK));
 		mntmCrearDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearDoctorDialog dialDoctor1;
@@ -134,6 +138,7 @@ public class adminFrame extends JFrame {
 		mnGestionarDoctores.add(mntmCrearDoctor);
 		
 		JMenuItem mntmBorrarDoctor = new JMenuItem("Borrar Doctor");
+		mntmBorrarDoctor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK | InputEvent.ALT_DOWN_MASK));
 		mntmBorrarDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BorrarDoctorDialog dialDoctor2;
@@ -168,6 +173,7 @@ public class adminFrame extends JFrame {
 		mnConsultas.add(mnGestionarConsultas);
 		
 		JMenuItem mntmCrearConsulta = new JMenuItem("Crear Consulta");
+		mntmCrearConsulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
 		mntmCrearConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearConsultaDialog dialConsulta1;
@@ -179,6 +185,7 @@ public class adminFrame extends JFrame {
 		mnGestionarConsultas.add(mntmCrearConsulta);
 		
 		JMenuItem mntmBorrarConsulta = new JMenuItem("Borrar Consulta");
+		mntmBorrarConsulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK | InputEvent.ALT_DOWN_MASK));
 		mntmBorrarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BorrarConsultaDialog dialConsulta2;
