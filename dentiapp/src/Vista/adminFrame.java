@@ -426,6 +426,7 @@ public class adminFrame extends JFrame {
 				try {
 					dialDoctor = new CrearDoctorDialog();
 					dialDoctor.setModal(true);
+					dialDoctor.setUndecorated(true);
 					dialDoctor.setVisible(true);
 					
 					dialDoctor.addWindowListener(new WindowAdapter() {
@@ -482,6 +483,10 @@ public class adminFrame extends JFrame {
 		btnBorrarPaciente.setForeground(Color.WHITE);
 		
 		JButton btnCrearPaciente = new JButton("CREAR");
+		btnCrearPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCrearPaciente.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		btnCrearPaciente.setBounds(123, 457, 85, 21);
 		contentPane.add(btnCrearPaciente);
