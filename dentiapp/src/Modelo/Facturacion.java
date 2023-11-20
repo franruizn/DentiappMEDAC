@@ -1,50 +1,11 @@
 package Modelo;
 
-import java.io.Serializable;
+public class Facturacion {
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "facturacion")
-
-public class Facturacion implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idfacturacion")
 	private int idFacturacion;
-
-	@Column(name = "fk_idpaciente")
 	private int fk_idPaciente;
-
-	@Column(name = "pagado")
 	private int pagado;
-
-	@Column(name = "pagar")
-	private int pagar;
-
-	
-	//relacion con paciente
-    @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "idpaciente",referencedColumnName="idpaciente",insertable=false,updatable=false)
-    private Paciente facturacion_paciente; 
-
-    public Paciente getPaciente() {
-        return facturacion_paciente;
-    }
-	public void setPaciente(Paciente paciente) {
-		this.facturacion_paciente=paciente;
-		
-	}
-	
+	private int pagar;	
 	
 	//Constructores
 	public Facturacion() {

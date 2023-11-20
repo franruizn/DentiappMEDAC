@@ -1,49 +1,12 @@
 package Modelo;
 
-import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+public class Pedido {
 
-@Entity
-@Table(name = "pedido")
-
-public class Pedido implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idpedido")
 	private int idPedido;
-
-	@Column(name = "cantidad")
 	private int cantidad;
-
-	@Column(name = "fk_idstock")
 	private int fk_idStock;
-	
-	
-	
-	//relacion con stock
-    @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name = "idstock",referencedColumnName="idstock",insertable=false,updatable=false)
-    private Stock pedido_stock; 
-
-    public Stock getStock() {
-        return pedido_stock;
-    }
-	public void setStock(Stock stock) {
-		this.pedido_stock=stock;
 		
-	}
-	
-	
 	//Constructores
 	public Pedido() {		
 	}
