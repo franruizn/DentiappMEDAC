@@ -3,6 +3,8 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.AbstractButton;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -10,7 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import com.toedter.calendar.JDateChooser;
+
+import Controlador.ControladorSQL;
+
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -19,6 +25,8 @@ public class CrearConsultaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	private ControladorSQL con =new ControladorSQL();
+	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 
 	/**
 	 * Launch the application.
@@ -49,39 +57,50 @@ public class CrearConsultaDialog extends JDialog {
 		contentPanel.add(dateChooser);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		
+		btnAceptar.setBounds(787, 495, 89, 23);
+		contentPanel.add(btnAceptar);
+		
+		JComboBox cmbPaciente = new JComboBox();
+		cmbPaciente.setBounds(85, 201, 341, 22);
+		contentPanel.add(cmbPaciente);
+		
+		JComboBox cmbDoctor = new JComboBox();
+		cmbDoctor.setBounds(535, 201, 341, 22);
+		contentPanel.add(cmbDoctor);
+		
+		JComboBox cmbTratamiento = new JComboBox();
+		cmbTratamiento.setBounds(76, 363, 245, 22);
+		contentPanel.add(cmbTratamiento);
+		
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String fecha= "'"+sdf.format(dateChooser.getDate())+"'";
 				
+				
 			}
 		});
-		btnAceptar.setBounds(787, 495, 89, 23);
-		contentPanel.add(btnAceptar);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(85, 201, 341, 22);
-		contentPanel.add(comboBox);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(535, 201, 341, 22);
-		contentPanel.add(comboBox_1);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(76, 363, 245, 22);
-		contentPanel.add(comboBox_2);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 959, 556);
 		lblNewLabel.setIcon(new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/crear_consulta.PNG")));
 		contentPanel.add(lblNewLabel);
-		{
-			{
-				
-			}
-			{
-				
-			}
+		cmbPaciente.setModel(rellenarDatos("paciente","nombre",modeloDatos));
+		cmbDoctor.setModel(rellenarDatos("doctor","nombre",modeloDatos));
+		cmbTratamiento.setModel(rellenarDatos("tratamiento","nombre",modeloDatos));
+		
+	}
+	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo, DefaultComboBoxModel<String> comboDatos) {
+		try {
+			
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		
+		return comboDatos;
 	}
 }

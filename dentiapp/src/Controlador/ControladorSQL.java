@@ -185,16 +185,16 @@ public class ControladorSQL {
 		return idNum;
 	}
 	
-	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, String campo, String valor, String establecer) throws SQLException {
+	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, String campo) throws SQLException {
 		cn.conectar();
         metaDatos = cn.getConnection().getMetaData();
-        DefaultComboBoxModel<String> modeloDatos = null;
+        DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
         
-        String consulta = "SELECT * FROM " + nombreTabla + " WHERE " + campo + " = " + valor;
+        String consulta = "SELECT " + campo + " FROM " + nombreTabla;
         ResultSet rset = cn.ejecutarSelect(consulta);
         ArrayList<String> datos = new ArrayList<>();
         while(rset.next()) {
-        	datos.add(rset.getString(establecer));
+        	datos.add(rset.getString(campo));
         }
         
         for(int i = 0; i < datos.size(); i++) {
