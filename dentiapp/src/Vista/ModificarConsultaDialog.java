@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import com.toedter.calendar.JCalendar;
 import javax.swing.JTextField;
@@ -25,15 +26,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.event.ItemEvent;
 
-
 public class ModificarConsultaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtDoctor;
 	private JTextField txtTratamiento;
-	private ControladorSQL con= new ControladorSQL();
-	private ArrayList<String[]> consultas=new ArrayList<>();
+	private ControladorSQL con = new ControladorSQL();
+	private ArrayList<String[]> consultas = new ArrayList<>();
+
 	/**
 	 * Launch the application.
 	 */
@@ -56,82 +57,78 @@ public class ModificarConsultaDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
 
-
-		
-		
 		JButton btnModificarConsulta = new JButton("Actualizar");
 		btnModificarConsulta.setBounds(652, 415, 89, 23);
 		contentPanel.add(btnModificarConsulta);
-		
+
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("derek bobo");
-				
+
 			}
 		});
 		dateChooser.setBounds(60, 158, 185, 31);
 		contentPanel.add(dateChooser);
-		
+
 		txtDoctor = new JTextField();
 		txtDoctor.setBounds(364, 286, 86, 20);
 		contentPanel.add(txtDoctor);
 		txtDoctor.setColumns(10);
-		
+
 		txtTratamiento = new JTextField();
 		txtTratamiento.setBounds(113, 286, 86, 20);
 		contentPanel.add(txtTratamiento);
 		txtTratamiento.setColumns(10);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				for(int i =0; i<consultas.size();i++) {
-					if(comboBox.getSelectedItem().equals(consultas.get(i)[0])) {
-						txtDoctor.setText(consultas.get(i)[1]);
-						txtTratamiento.setText(consultas.get(i)[2]);
+				for (int i = 0; i < consultas.size(); i++) {
+					if (comboBox.getSelectedItem().equals(consultas.get(i)[0])) {
+						try {
+							txtDoctor.setText(con.selectWhere("doctor", "nombre", "iddoctor", consultas.get(i)[1]));
+							txtTratamiento.setText(con.selectWhere("tratamiento", "nombre", "idtratamiento", consultas.get(i)[2]));
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				}
 			}
 		});
-		
+
 		comboBox.setBounds(446, 158, 169, 22);
 		contentPanel.add(comboBox);
-		
-		
-		
-		JButton btnNewButton = new JButton("Comprobar");
+
+		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				String fecha= "'"+sdf.format(dateChooser.getDate())+"'";
+				String fecha = "'" + sdf.format(dateChooser.getDate()) + "'";
 				try {
-					
-					consultas= con.obtenerConsulta(fecha);
-					for (int i=0;i<consultas.size();i++) {
+
+					consultas = con.obtenerConsulta(fecha);
+					for (int i = 0; i < consultas.size(); i++) {
 						comboBox.addItem(consultas.get(i)[0]);
 					}
-						
-					
+
 				} catch (SQLException e1) {
 					// Error en la fecha
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "No se han encontrado consultas.\nSelecciona una fecha válida",
+							"Fecha no válida", JOptionPane.WARNING_MESSAGE);
 				}
-				
+
 			}
 		});
 		btnNewButton.setBounds(255, 158, 89, 23);
 		contentPanel.add(btnNewButton);
-		
-		
-		
 
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(ModificarConsultaDialog.class.getResource("/fotos/mod_consulta.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-		}
+	}
 
 }

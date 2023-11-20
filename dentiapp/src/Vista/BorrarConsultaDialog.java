@@ -44,14 +44,6 @@ public class BorrarConsultaDialog extends JDialog {
 		lblFondo.setBounds(0, 0, 564, 421);
 		contentPanel.add(lblFondo);
 		
-		{
-			{
-				
-			}
-			{
-				
-			}
-		}
 	}
 
 }

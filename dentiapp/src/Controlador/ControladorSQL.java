@@ -4,6 +4,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
@@ -184,42 +185,22 @@ public class ControladorSQL {
 		return idNum;
 	}
 	
-	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, DefaultComboBoxModel<?> modeloDatos, String campo) throws SQLException {
+	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, String campo, String valor, String establecer) throws SQLException {
 		cn.conectar();
         metaDatos = cn.getConnection().getMetaData();
-
-        // Se ejecuta una consulta SQL para obtener los datos de la tabla.
-        ResultSet rset = cn.ejecutarSelect("SELECT * FROM " + nombreTabla);
+        DefaultComboBoxModel<String> modeloDatos = null;
         
-        ResultSet rs = metaDatos.getPrimaryKeys(null, null, nombreTabla);
-        @SuppressWarnings("unused")
-		String primaryKey = "";
-        String datos = "";
-        
-        String nombreColumnas = obtenerColumnas(nombreTabla);
-        String[] listaColumnas = nombreColumnas.split(",");
-        
-        while (rs.next()) {
-            primaryKey = rs.getString("COLUMN_NAME");
+        String consulta = "SELECT * FROM " + nombreTabla + " WHERE " + campo + " = " + valor;
+        ResultSet rset = cn.ejecutarSelect(consulta);
+        ArrayList<String> datos = new ArrayList<>();
+        while(rset.next()) {
+        	datos.add(rset.getString(establecer));
         }
         
-        while (rset.next()) {
-            for(int i = 0; i < listaColumnas.length; i++) {
-            	datos += rset.getString(i)+ ",";
-            }
+        for(int i = 0; i < datos.size(); i++) {
+        	modeloDatos.addAll(datos);
         }
         
-        datos = datos.substring(0, datos.length() - 1);
-        String[] listaDatos = datos.split(",");
-        
-        HashMap<String,String> valores = new HashMap<String,String>();
-        for(int i = 0; i < listaColumnas.length; i++) {
-        	valores.put(listaColumnas[i],listaDatos[i]);
-        }
-        
-        
-        
-        // Se cierra la conexión a la base de datos.
         cn.desconectar();
 		
 		return modeloDatos;
@@ -246,6 +227,19 @@ public class ControladorSQL {
 
 		cn.desconectar();
 		return consultas;
+	}
+	
+	public String selectWhere(String nombreTabla, String campoBuscar, String campo, String valor) throws SQLException {
+		cn.conectar();
+		
+		String consulta = "SELECT " + campoBuscar + " FROM " + nombreTabla + " WHERE " + campo + " = " + valor;
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		String resultado = null;
+		if(rset.next()) {
+			resultado = rset.getString(campoBuscar);
+		}
+		
+		return resultado;
 	}
 
 }
