@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
@@ -49,6 +51,7 @@ public class adminFrame extends JFrame {
 			public void run() {
 				try {
 					adminFrame frame = new adminFrame();
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -400,8 +403,10 @@ public class adminFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BorrarDoctorDialog dialDoctor;
 				try {
+					
 					dialDoctor = new BorrarDoctorDialog();
 					dialDoctor.setModal(true);
+					dialDoctor.setUndecorated(true);
 					dialDoctor.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
