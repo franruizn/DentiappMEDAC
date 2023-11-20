@@ -131,9 +131,15 @@ public class adminFrame extends JFrame {
 		mntmBorrarDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BorrarDoctorDialog dialDoctor2;
-				dialDoctor2 = new BorrarDoctorDialog();
-				dialDoctor2.setModal(true);
-				dialDoctor2.setVisible(true);
+				try {
+					dialDoctor2 = new BorrarDoctorDialog();
+					dialDoctor2.setModal(true);
+					dialDoctor2.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		mnGestionarDoctores.add(mntmBorrarDoctor);
@@ -381,9 +387,15 @@ public class adminFrame extends JFrame {
 		btnBorrarDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BorrarDoctorDialog dialDoctor;
-				dialDoctor = new BorrarDoctorDialog();
-				dialDoctor.setModal(true);
-				dialDoctor.setVisible(true);
+				try {
+					dialDoctor = new BorrarDoctorDialog();
+					dialDoctor.setModal(true);
+					dialDoctor.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		
