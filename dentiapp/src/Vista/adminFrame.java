@@ -64,6 +64,7 @@ public class adminFrame extends JFrame {
 	 * @throws SQLException 
 	 */
 	public adminFrame() throws SQLException {
+		setLocationRelativeTo(null);	
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 651);
@@ -363,6 +364,16 @@ public class adminFrame extends JFrame {
 				dispose();
 			}
 		});
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar_1.setTexto("Salir");
+		btnprsnlzdbnCerrar_1.setBounds(129, 75, 85, 34);
+		contentPane.add(btnprsnlzdbnCerrar_1);
 		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
 		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
 		contentPane.add(btnprsnlzdbnCerrar);
@@ -532,6 +543,15 @@ public class adminFrame extends JFrame {
 		btnCrearPaciente.setForeground(Color.WHITE);
 		
 		JButton btnConsultas = new JButton("CONSULTAS");
+		btnConsultas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearConsultaDialog dialConsulta1;
+				dialConsulta1 = new CrearConsultaDialog();
+				dialConsulta1.setModal(true);
+				dialConsulta1.setLocationRelativeTo(null);
+				dialConsulta1.setVisible(true);
+			}
+		});
 		btnConsultas.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnConsultas.setBounds(336, 30, 124, 34);
 		contentPane.add(btnConsultas);
@@ -565,5 +585,4 @@ public class adminFrame extends JFrame {
 		contentPane.add(lblFondo);
 		
 	}
-
 }

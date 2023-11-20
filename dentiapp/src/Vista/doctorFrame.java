@@ -136,6 +136,15 @@ public class doctorFrame extends JFrame {
 				dispose();
 			}
 		});
+		BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar_1.setTexto("Salir");
+		btnprsnlzdbnCerrar_1.setBounds(129, 75, 85, 34);
+		contentPane.add(btnprsnlzdbnCerrar_1);
 		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
 		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
 		contentPane.add(btnprsnlzdbnCerrar);
