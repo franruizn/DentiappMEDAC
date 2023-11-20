@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import Controlador.ControladorSQL;
+import paqGUI.BotonPersonalizadoBean;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
@@ -60,11 +61,20 @@ public class ModificarConsultaDialog extends JDialog {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
-		setBounds(100, 100, 781, 486);
+		setBounds(100, 100, 764, 447);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
+		contentPanel.add(btnprsnlzdbnCerrar);
 
 		JButton btnModificarConsulta = new JButton("Actualizar");
 		btnModificarConsulta.setBounds(641, 415, 100, 23);

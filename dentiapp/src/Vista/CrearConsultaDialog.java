@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import com.toedter.calendar.JDateChooser;
 
 import Controlador.ControladorSQL;
+import paqGUI.BotonPersonalizadoBean;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -55,12 +56,21 @@ public class CrearConsultaDialog extends JDialog {
 		setResizable(false);
 		setUndecorated(true);
 		// setBounds(100, 100, 959, 578);
-		setBounds(100, 100, 781, 486);
+		setBounds(100, 100, 763, 449);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 959, 556);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
 		contentPanel.setLayout(null);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
+		contentPanel.add(btnprsnlzdbnCerrar);
 
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(295, 288, 211, 29);

@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import Controlador.ConexionMySQL;
 import Controlador.ControladorSQL;
 import Modelo.Especialidad;
+import paqGUI.BotonPersonalizadoBean;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -65,11 +66,20 @@ public class CrearDoctorDialog extends JDialog {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
-		setBounds(100, 100, 781, 486);
+		setBounds(100, 100, 765, 448);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
+		contentPanel.add(btnprsnlzdbnCerrar);
 
 		{
 			JButton btnCancelar = new JButton("Cancelar");

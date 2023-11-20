@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import paqGUI.BotonPersonalizadoBean;
 
 public class BorrarConsultaDialog extends JDialog {
 
@@ -56,11 +57,20 @@ public class BorrarConsultaDialog extends JDialog {
 		setResizable(false);
 		setUndecorated(true);
 		//setBounds(100, 100, 575, 457);
-		setBounds(100, 100, 781, 486);
+		setBounds(100, 100, 764, 447);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
+		contentPanel.add(btnprsnlzdbnCerrar);
 		
 		JComboBox cmbPaciente = new JComboBox();
 		cmbPaciente.setBounds(52, 161, 301, 22);

@@ -36,7 +36,7 @@ public class BorrarStockDialog extends JDialog {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
-		setBounds(100, 100, 575, 457);
+		setBounds(100, 100, 565, 421);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

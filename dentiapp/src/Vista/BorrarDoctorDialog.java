@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import Controlador.ControladorSQL;
+import paqGUI.BotonPersonalizadoBean;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -50,12 +51,23 @@ public class BorrarDoctorDialog extends JDialog {
 	 * @throws SQLException
 	 */
 	public BorrarDoctorDialog() throws SQLException {
+		setLocationRelativeTo(null);	
 		setResizable(false);
-		setBounds(100, 100, 575, 457);
+		setUndecorated(true);
+		setBounds(100, 100, 565, 419);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
+		contentPanel.add(btnprsnlzdbnCerrar);
 
 		JComboBox<?> cmbDoctores = new JComboBox<Object>();
 		cmbDoctores.setBounds(108, 110, 399, 37);
