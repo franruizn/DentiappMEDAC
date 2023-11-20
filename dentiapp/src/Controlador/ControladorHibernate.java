@@ -1,5 +1,9 @@
 package Controlador;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,6 +20,7 @@ import Modelo.Solicitudes;
 import Modelo.Proveedor;
 import Modelo.Pedido;
 
+@SuppressWarnings("deprecation")
 public class ControladorHibernate {
 	private SessionFactory instancia;
 	private Session sesion;
@@ -36,5 +41,57 @@ public class ControladorHibernate {
                 .buildSessionFactory();
 	}
 	
+	public void insertar(Object objeto) {
+		sesion = instancia.openSession();
+		sesion.beginTransaction();
+		sesion.save(objeto);
+		sesion.getTransaction().commit();
+		sesion.close();
+	}
+	
+	public void delete(Object objeto) {
+		sesion = instancia.openSession();
+		sesion.beginTransaction();
+		sesion.delete(objeto);
+		sesion.getTransaction().commit();
+        sesion.close();
+	}
+	
+	public void update(Object objeto) {
+        sesion = instancia.openSession();
+        sesion.beginTransaction();
+        sesion.update(objeto);
+        sesion.getTransaction().commit();
+        sesion.close();
+    }	
+	
+	@SuppressWarnings({ "unchecked" })
+	public ArrayList<Object> getDatos(Class<?> clase) {
+        sesion = instancia.openSession();
+        sesion.beginTransaction();
+
+        String hql = "FROM " + clase.getSimpleName().toLowerCase();
+
+		Query<Object> consulta = (Query<Object>) sesion.createQuery(hql, clase);
+        List<Object> result = consulta.getResultList();
+        sesion.close();
+
+        return (ArrayList<Object>) result;
+    }
+	
+	@SuppressWarnings({ "unchecked" })
+	public ArrayList<Object> getDatosWhere(Class<?> clase, String condicion, String valor) {
+        sesion = instancia.openSession();
+        sesion.beginTransaction();
+
+        String hql = "FROM " + clase.getSimpleName().toLowerCase() + " WHERE " + condicion + " =: " + valor;
+
+        Query<Object> consulta = (Query<Object>) sesion.createQuery(hql, clase);
+        consulta.setParameter(condicion, valor);
+        List<Object> result = consulta.getResultList();
+        sesion.close();
+
+        return (ArrayList<Object>) result;
+    }
 	
 }
