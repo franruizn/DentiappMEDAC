@@ -136,10 +136,10 @@ public class CrearDoctorDialog extends JDialog {
 						cn.insertarConsulta("usuario",columnasUser, valoresUser);
 						cn.insertarConsulta("doctor",columnasDoctor,valoresDoctor);
 						JOptionPane.showMessageDialog(null, "Doctor Creado con Exito",
-								"Doctor Creado", JOptionPane.WARNING_MESSAGE);
+								"Doctor Creado", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, "Error al crear Doctor - Los datos introducidos no son correctos.\n Asegurese de que el DNI y Nombre son correctos",
-								"Error al crear doctor", JOptionPane.WARNING_MESSAGE);
+								"Error al crear doctor", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 						e1.printStackTrace();
 					}
 					//dispose();

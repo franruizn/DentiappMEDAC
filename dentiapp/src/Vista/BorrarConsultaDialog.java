@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import Controlador.ControladorSQL;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
@@ -73,7 +74,12 @@ public class BorrarConsultaDialog extends JDialog {
 				try {
 					String idPaciente=con.selectWhere("paciente", "idpaciente", "nombre",
 							cmbPaciente.getSelectedItem().toString());
-					con.borrarConsulta(idPaciente, fecha);
+					int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere borrar la consulta del paciente " + cmbPaciente.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if(op == 0) {
+						con.borrarConsulta(idPaciente, fecha);
+						}
+					
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
