@@ -130,7 +130,7 @@ public class ModificarConsultaDialog extends JDialog {
 							cmbTratamiento.setSelectedItem(
 									con.selectWhere("tratamiento", "nombre", "idtratamiento", consultas.get(i)[2]));
 							txtaObservaciones.setText(consultas.get(i)[3]);
-							System.out.println(consultas.get(i)[2]);
+							
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -153,17 +153,20 @@ public class ModificarConsultaDialog extends JDialog {
 							cmbDoctor.getSelectedItem().toString());
 					String idTratamiento = con.selectWhere("tratamiento", "idtratamiento", "nombre",
 							cmbTratamiento.getSelectedItem().toString());
-					System.out.println(idConsulta);
+					
 					String newValues = idConsulta + " , " + idPaciente + " , " + idDoctor + " , " + idTratamiento
 							+ " , '" + txtaObservaciones.getText() + "' , " + fecha;
-					System.out.println(newValues);
+					
 					nombreColumnas = con.obtenerColumnas("consulta");
 					String[] columnas = nombreColumnas.split(",");
 					String[] valores = newValues.split(",");
 					con.updateSQL("consulta", columnas, valores);
+					JOptionPane.showMessageDialog(null, "Consulta Actualizada con Exito",
+							"Consulta Actualizada", JOptionPane.WARNING_MESSAGE,new ImageIcon("/fotos/iconoOk.png"));
 
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Error al modificar Consulta",
+							"Error al modificar consulta", JOptionPane.WARNING_MESSAGE,new ImageIcon("/fotos/iconoNo.png"));
 					e1.printStackTrace();
 				}
 
