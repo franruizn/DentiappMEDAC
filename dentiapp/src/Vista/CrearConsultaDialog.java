@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
 public class CrearConsultaDialog extends JDialog {
 
@@ -59,7 +60,7 @@ public class CrearConsultaDialog extends JDialog {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		
-		btnAceptar.setBounds(787, 495, 89, 23);
+		btnAceptar.setBounds(637, 420, 89, 23);
 		contentPanel.add(btnAceptar);
 		
 		JComboBox cmbPaciente = new JComboBox();
@@ -74,22 +75,40 @@ public class CrearConsultaDialog extends JDialog {
 		cmbTratamiento.setBounds(48, 288, 211, 22);
 		contentPanel.add(cmbTratamiento);
 		
+		JTextArea txtObservaciones = new JTextArea();
+		txtObservaciones.setBounds(551, 240, 154, 170);
+		contentPanel.add(txtObservaciones);
+		
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String fecha= "'"+sdf.format(dateChooser.getDate())+"'";
 				
+				try {
+					String tratamiento=con.selectWhere("tratamiento", "idtratamiento", "nombre",cmbTratamiento.getSelectedItem().toString());
+					String paciente=con.selectWhere("paciente", "idpaciente", "nombre",cmbPaciente.getSelectedItem().toString());
+					String doctor=con.selectWhere("doctor", "iddoctor", "nombre",cmbDoctor.getSelectedItem().toString());
+					String observaciones=txtObservaciones.getText();
+					String nombreColumnas=con.obtenerColumnas("consulta");
+					String newValues=""+paciente+","+doctor+","+tratamiento+","+observaciones+","+fecha;
+					con.insertarConsulta(nombreColumnas, newValues);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
+		cmbPaciente.setModel(rellenarDatos("paciente","nombre",modeloDatos));
+		cmbDoctor.setModel(rellenarDatos("doctor","nombre",modeloDatos));
+		cmbTratamiento.setModel(rellenarDatos("tratamiento","nombre",modeloDatos));
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 959, 449);
 		lblNewLabel.setIcon(new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/crear_consulta.PNG")));
 		contentPanel.add(lblNewLabel);
-		cmbPaciente.setModel(rellenarDatos("paciente","nombre",modeloDatos));
-		cmbDoctor.setModel(rellenarDatos("doctor","nombre",modeloDatos));
-		cmbTratamiento.setModel(rellenarDatos("tratamiento","nombre",modeloDatos));
 		
 	}
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo, DefaultComboBoxModel<String> comboDatos) {

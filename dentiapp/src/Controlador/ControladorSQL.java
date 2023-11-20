@@ -282,5 +282,9 @@ public class ControladorSQL {
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}
+	public void insertarConsulta(String nombreColumnas, String newValues) {
+		String nombreTabla="consulta";
+		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "`" + nombreColumnas + " VALUES (" + newValues + ");";
+	}
 
 }
