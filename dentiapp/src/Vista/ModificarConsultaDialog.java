@@ -9,20 +9,31 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-<<<<<<< Updated upstream
-=======
+
 import com.toedter.calendar.JCalendar;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import Controlador.ControladorSQL;
+
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
->>>>>>> Stashed changes
+import javax.swing.JComboBox;
+import java.awt.event.ItemEvent;
+
 
 public class ModificarConsultaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-
+	private JTextField txtDoctor;
+	private JTextField txtTratamiento;
+	private ControladorSQL con= new ControladorSQL();
+	private ArrayList<String[]> consultas=new ArrayList<>();
 	/**
 	 * Launch the application.
 	 */
@@ -46,22 +57,9 @@ public class ModificarConsultaDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-<<<<<<< Updated upstream
-=======
-		textField = new JTextField();
-		textField.setBounds(64, 163, 282, 20);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+
+
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(424, 163, 282, 20);
-		contentPanel.add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(60, 292, 205, 20);
-		contentPanel.add(textField_2);
-		textField_2.setColumns(10);
 		
 		JButton btnModificarConsulta = new JButton("Actualizar");
 		btnModificarConsulta.setBounds(652, 415, 89, 23);
@@ -71,24 +69,69 @@ public class ModificarConsultaDialog extends JDialog {
 		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("derek bobo");
+				
 			}
 		});
-		dateChooser.setBounds(309, 286, 185, 31);
+		dateChooser.setBounds(60, 158, 185, 31);
 		contentPanel.add(dateChooser);
 		
->>>>>>> Stashed changes
+		txtDoctor = new JTextField();
+		txtDoctor.setBounds(364, 286, 86, 20);
+		contentPanel.add(txtDoctor);
+		txtDoctor.setColumns(10);
+		
+		txtTratamiento = new JTextField();
+		txtTratamiento.setBounds(113, 286, 86, 20);
+		contentPanel.add(txtTratamiento);
+		txtTratamiento.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				for(int i =0; i<consultas.size();i++) {
+					if(comboBox.getSelectedItem().equals(consultas.get(i)[0])) {
+						txtDoctor.setText(consultas.get(i)[1]);
+						txtTratamiento.setText(consultas.get(i)[2]);
+					}
+				}
+			}
+		});
+		
+		comboBox.setBounds(446, 158, 169, 22);
+		contentPanel.add(comboBox);
+		
+		
+		
+		JButton btnNewButton = new JButton("Comprobar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String fecha= "'"+sdf.format(dateChooser.getDate())+"'";
+				try {
+					
+					consultas= con.obtenerConsulta(fecha);
+					for (int i=0;i<consultas.size();i++) {
+						comboBox.addItem(consultas.get(i)[0]);
+					}
+						
+					
+				} catch (SQLException e1) {
+					// Error en la fecha
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewButton.setBounds(255, 158, 89, 23);
+		contentPanel.add(btnNewButton);
+		
+		
+		
+
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(ModificarConsultaDialog.class.getResource("/fotos/mod_consulta.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-		{
-			{
-				
-			}
-			{
-				
-			}
 		}
-	}
 
 }

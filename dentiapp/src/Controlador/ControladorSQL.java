@@ -3,6 +3,7 @@ package Controlador;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
@@ -222,6 +223,29 @@ public class ControladorSQL {
         cn.desconectar();
 		
 		return modeloDatos;
+	}
+	
+	public  ArrayList <String[]> obtenerConsulta(String fecha) throws SQLException{
+		cn.conectar();
+		
+		
+		ArrayList <String[]> consultas = new ArrayList();
+		// Consulta a ejecutar
+		String consulta = "Select fk_idpaciente, fk_iddoctor, fk_idtratamiento from consulta where fecha="+fecha+";";
+		System.out.print(consulta);
+		ResultSet rset = cn.ejecutarSelect(consulta);
+
+		if (rset.next()) {
+			String[] consultaNueva = new String[3];
+			consultaNueva[0] = rset.getString("fk_idpaciente");
+			consultaNueva[1] = rset.getString("fk_iddoctor");
+			consultaNueva[2] = rset.getString("fk_idtratamiento");
+			consultas.add(consultaNueva);
+		}
+		
+
+		cn.desconectar();
+		return consultas;
 	}
 
 }
