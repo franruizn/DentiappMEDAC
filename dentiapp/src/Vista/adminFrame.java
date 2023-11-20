@@ -176,9 +176,15 @@ public class adminFrame extends JFrame {
 		mntmBorrarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BorrarConsultaDialog dialConsulta2;
-				dialConsulta2 = new BorrarConsultaDialog();
-				dialConsulta2.setModal(true);
-				dialConsulta2.setVisible(true);
+				try {
+					dialConsulta2 = new BorrarConsultaDialog();
+					dialConsulta2.setModal(true);
+					dialConsulta2.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		mnGestionarConsultas.add(mntmBorrarConsulta);

@@ -3,6 +3,7 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -20,7 +21,7 @@ public class BorrarConsultaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private ControladorSQL cn = new ControladorSQL();
+	private ControladorSQL con = new ControladorSQL();
 
 	/**
 	 * Launch the application.
@@ -37,8 +38,9 @@ public class BorrarConsultaDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @throws SQLException 
 	 */
-	public BorrarConsultaDialog() {
+	public BorrarConsultaDialog() throws SQLException {
 	
 		//setBounds(100, 100, 575, 457);
 		setBounds(100, 100, 781, 486);
@@ -56,7 +58,7 @@ public class BorrarConsultaDialog extends JDialog {
 		lblFondo.setBounds(0, 0, 765, 447);
 		contentPanel.add(lblFondo);
 		
-		
+		con.rellenarComboBox("consulta", "idconsulta");
 	}
 	/*public ArrayList <String> cambiarControlador() {
 		cn.conectar();
