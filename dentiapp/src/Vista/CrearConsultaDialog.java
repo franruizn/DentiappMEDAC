@@ -56,7 +56,7 @@ public class CrearConsultaDialog extends JDialog {
 				
 			}
 		});
-		btnAceptar.setBounds(699, 481, 89, 23);
+		btnAceptar.setBounds(787, 495, 89, 23);
 		contentPanel.add(btnAceptar);
 		
 		JComboBox comboBox = new JComboBox();
@@ -68,7 +68,7 @@ public class CrearConsultaDialog extends JDialog {
 		contentPanel.add(comboBox_1);
 		
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(85, 359, 231, 22);
+		comboBox_2.setBounds(76, 363, 245, 22);
 		contentPanel.add(comboBox_2);
 		
 		JLabel lblNewLabel = new JLabel("");
