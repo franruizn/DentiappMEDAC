@@ -84,6 +84,10 @@ public class ControladorSQL {
 		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
 		ResultSet rset = cn.ejecutarSelect("SELECT * FROM " + nombreTabla);
 		modeloDatos.setRowCount(0);
+		String nombreColumnas = obtenerColumnas(nombreTabla);
+		String[] listaColumnas = nombreColumnas.split(",");
+		modeloDatos.setColumnCount(listaColumnas.length);
+		modeloDatos.setColumnIdentifiers(listaColumnas);
 		while (rset.next()) {
 			modeloDatos.setRowCount(modeloDatos.getRowCount() + 1);
 			for (int i = 0; i < modeloDatos.getColumnCount(); i++) {
@@ -145,6 +149,21 @@ public class ControladorSQL {
 
 		cn.desconectar();
 	}
+	
+	public void eliminarFila(String nombreTabla, String key) throws SQLException {
+		cn.conectar();
+		ResultSet rset = metaDatos.getPrimaryKeys(null, null, nombreTabla);
+		String campoPrimario = "";
+		while (rset.next()) {
+			campoPrimario = rset.getString("COLUMN_NAME");
+			// Obtenemos la columna del campo primario
+		}
+		String consulta = "DELETE FROM " + nombreTabla + " WHERE " + campoPrimario + " = " + key;
+		cn.ejecutarIDU(consulta);
+		JOptionPane.showMessageDialog(null, "Se ha eliminado con éxito",
+				nombreTabla + " eliminado", JOptionPane.INFORMATION_MESSAGE);
+		cn.desconectar();
+	}
 
 	public String obtenerIdEspecialidad(String especialidad) throws SQLException {
 		cn.conectar();
@@ -164,7 +183,7 @@ public class ControladorSQL {
 		return idNum;
 	}
 	
-	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, DefaultComboBoxModel<?> modeloDatos) throws SQLException {
+	public DefaultComboBoxModel<?> rellenarComboBox(String nombreTabla, DefaultComboBoxModel<?> modeloDatos, String campo) throws SQLException {
 		cn.conectar();
         metaDatos = cn.getConnection().getMetaData();
 
@@ -185,7 +204,7 @@ public class ControladorSQL {
         
         while (rset.next()) {
             for(int i = 0; i < listaColumnas.length; i++) {
-            	datos += rs.getString(i)+ ",";
+            	datos += rset.getString(i)+ ",";
             }
         }
         
@@ -197,10 +216,12 @@ public class ControladorSQL {
         	valores.put(listaColumnas[i],listaDatos[i]);
         }
         
+        
+        
         // Se cierra la conexión a la base de datos.
         cn.desconectar();
 		
-		return null;
+		return modeloDatos;
 	}
 
 }
