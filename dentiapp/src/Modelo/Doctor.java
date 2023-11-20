@@ -22,6 +22,7 @@ public class Doctor {
 	public Doctor() {
 
 	}
+	
 
 	public Doctor(int iddoctor, int fk_idusuario, int fk_idespecialidad, String nombre) throws SQLException {
 		this.idDoctor = iddoctor;
