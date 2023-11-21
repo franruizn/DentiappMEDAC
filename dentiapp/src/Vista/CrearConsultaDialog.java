@@ -21,6 +21,7 @@ import paqGUI.BotonPersonalizadoBean;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
@@ -69,11 +70,15 @@ public class CrearConsultaDialog extends JDialog {
 				dispose();
 			}
 		});
+		
+		
+
 		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
 		contentPanel.add(btnprsnlzdbnCerrar);
 
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(295, 288, 211, 29);
+		dateChooser.setMinSelectableDate(new Date());
 		contentPanel.add(dateChooser);
 
 		JButton btnAceptar = new JButton("Aceptar");

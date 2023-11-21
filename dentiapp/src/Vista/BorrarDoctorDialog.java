@@ -66,7 +66,7 @@ public class BorrarDoctorDialog extends JDialog {
 				dispose();
 			}
 		});
-		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
+		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
 
 		JComboBox<?> cmbDoctores = new JComboBox<Object>();
