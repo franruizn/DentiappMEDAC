@@ -27,7 +27,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
-//import paqGUI.BotonPersonalizadoBean;
+import paqGUI.BotonPersonalizadoBean;
 
 public class adminFrame extends JFrame {
 
@@ -357,7 +357,7 @@ public class adminFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		/*BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
 		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loginFrame login = new loginFrame();
@@ -365,8 +365,8 @@ public class adminFrame extends JFrame {
 				dispose();
 			}
 		});
-		*/
-	/*	BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
 		btnprsnlzdbnCerrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -378,7 +378,7 @@ public class adminFrame extends JFrame {
 		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
 		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
 		contentPane.add(btnprsnlzdbnCerrar);
-		*/
+		
 		JLabel lblListaDoctores = new JLabel("LISTA DOCTORES");
 		lblListaDoctores.setHorizontalAlignment(SwingConstants.CENTER);
 		lblListaDoctores.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -517,7 +517,7 @@ public class adminFrame extends JFrame {
 				}
 				
 			}
-		});
+		});   /*   */
 		
 		btnActListaPacientes.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		btnActListaPacientes.setBounds(335, 457, 112, 21);
