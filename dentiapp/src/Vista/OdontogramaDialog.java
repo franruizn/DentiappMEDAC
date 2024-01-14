@@ -172,29 +172,29 @@ public class OdontogramaDialog extends JDialog {
 		txtaDescripcion.setBounds(744, 222, 119, 69);
 		contentPanel.add(txtaDescripcion);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Ausencias");
-		chckbxNewCheckBox.setBounds(538, 315, 86, 21);
-		contentPanel.add(chckbxNewCheckBox);
+		JCheckBox chckbxAusencias = new JCheckBox("Ausencias");
+		chckbxAusencias.setBounds(538, 315, 86, 21);
+		contentPanel.add(chckbxAusencias);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Caries");
-		chckbxNewCheckBox_1.setBounds(652, 314, 93, 22);
-		contentPanel.add(chckbxNewCheckBox_1);
+		JCheckBox chckbxCaries = new JCheckBox("Caries");
+		chckbxCaries.setBounds(652, 314, 93, 22);
+		contentPanel.add(chckbxCaries);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Implantes");
-		chckbxNewCheckBox_2.setBounds(770, 315, 93, 22);
-		contentPanel.add(chckbxNewCheckBox_2);
+		JCheckBox chckbxImplantes = new JCheckBox("Implantes");
+		chckbxImplantes.setBounds(770, 315, 93, 22);
+		contentPanel.add(chckbxImplantes);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Prótesis");
-		chckbxNewCheckBox_3.setBounds(538, 361, 86, 22);
-		contentPanel.add(chckbxNewCheckBox_3);
+		JCheckBox chckbxProtesis = new JCheckBox("Prótesis");
+		chckbxProtesis.setBounds(538, 361, 86, 22);
+		contentPanel.add(chckbxProtesis);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Sangrado");
-		chckbxNewCheckBox_4.setBounds(652, 362, 93, 21);
-		contentPanel.add(chckbxNewCheckBox_4);
+		JCheckBox chckbxSangrado = new JCheckBox("Sangrado");
+		chckbxSangrado.setBounds(652, 362, 93, 21);
+		contentPanel.add(chckbxSangrado);
 		
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Rayos X");
-		chckbxNewCheckBox_5.setBounds(770, 362, 93, 21);
-		contentPanel.add(chckbxNewCheckBox_5);
+		JCheckBox chckbxRayos = new JCheckBox("Rayos X");
+		chckbxRayos.setBounds(770, 362, 93, 21);
+		contentPanel.add(chckbxRayos);
 		
 		JButton btnGuardar = new JButton("GUARDAR");
 		btnGuardar.setBounds(652, 435, 93, 21);
@@ -205,9 +205,9 @@ public class OdontogramaDialog extends JDialog {
 		lblPaciente.setBounds(593, 175, 223, 37);
 		contentPanel.add(lblPaciente);
 		
-		JButton btnNewButton = new JButton("SALIR");
-		btnNewButton.setBounds(847, 27, 85, 21);
-		contentPanel.add(btnNewButton);
+		JButton btnSalir = new JButton("SALIR");
+		btnSalir.setBounds(847, 27, 85, 21);
+		contentPanel.add(btnSalir);
 		
 		
 		
