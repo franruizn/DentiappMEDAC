@@ -11,11 +11,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JCheckBox;
 
 public class OdontogramaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	private JTextField txtNumDiente;
 
 	/**
 	 * Launch the application.
@@ -143,6 +148,66 @@ public class OdontogramaDialog extends JDialog {
 		btnd20.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnd20.setBounds(224, 449, 41, 21);
 		contentPanel.add(btnd20);	
+		
+		JLabel lblDatos = new JLabel("DATOS");
+		lblDatos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDatos.setFont(new Font("SansSerif", Font.PLAIN, 25));
+		lblDatos.setBounds(629, 132, 146, 33);
+		contentPanel.add(lblDatos);
+		
+		JLabel lblNumDiente = new JLabel("nº Diente :");
+		lblNumDiente.setBounds(538, 228, 52, 13);
+		contentPanel.add(lblNumDiente);
+		
+		JLabel lblDescripcion = new JLabel("Descripción :");
+		lblDescripcion.setBounds(674, 228, 60, 13);
+		contentPanel.add(lblDescripcion);
+		
+		txtNumDiente = new JTextField();
+		txtNumDiente.setBounds(593, 225, 34, 19);
+		contentPanel.add(txtNumDiente);
+		txtNumDiente.setColumns(10);
+		
+		JTextArea txtaDescripcion = new JTextArea();
+		txtaDescripcion.setBounds(744, 222, 119, 69);
+		contentPanel.add(txtaDescripcion);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Ausencias");
+		chckbxNewCheckBox.setBounds(538, 315, 86, 21);
+		contentPanel.add(chckbxNewCheckBox);
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Caries");
+		chckbxNewCheckBox_1.setBounds(652, 314, 93, 22);
+		contentPanel.add(chckbxNewCheckBox_1);
+		
+		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Implantes");
+		chckbxNewCheckBox_2.setBounds(770, 315, 93, 22);
+		contentPanel.add(chckbxNewCheckBox_2);
+		
+		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Prótesis");
+		chckbxNewCheckBox_3.setBounds(538, 361, 86, 22);
+		contentPanel.add(chckbxNewCheckBox_3);
+		
+		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Sangrado");
+		chckbxNewCheckBox_4.setBounds(652, 362, 93, 21);
+		contentPanel.add(chckbxNewCheckBox_4);
+		
+		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Rayos X");
+		chckbxNewCheckBox_5.setBounds(770, 362, 93, 21);
+		contentPanel.add(chckbxNewCheckBox_5);
+		
+		JButton btnGuardar = new JButton("GUARDAR");
+		btnGuardar.setBounds(652, 435, 93, 21);
+		contentPanel.add(btnGuardar);
+		
+		JLabel lblPaciente = new JLabel("Paciente");
+		lblPaciente.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblPaciente.setBounds(593, 175, 223, 37);
+		contentPanel.add(lblPaciente);
+		
+		JButton btnNewButton = new JButton("SALIR");
+		btnNewButton.setBounds(847, 27, 85, 21);
+		contentPanel.add(btnNewButton);
 		
 		
 		
