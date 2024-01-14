@@ -71,6 +71,11 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(txtaDescripcion);
 		
 		JButton btnSalir = new JButton("SALIR");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnSalir.setBounds(847, 27, 85, 21);
 		contentPanel.add(btnSalir);
 		
