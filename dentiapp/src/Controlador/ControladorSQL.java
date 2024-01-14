@@ -363,5 +363,32 @@ public class ControladorSQL {
 		cn.desconectar();
 
 	}
+	
+	public DefaultTableModel cargarSolicitudes(String nombreTabla, DefaultTableModel modeloDatos, String[] columnas) throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+
+		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
+		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla);
+		modeloDatos.setRowCount(0);
+
+		// Se establece el número de columnas del modelo de datos.
+		modeloDatos.setColumnCount(columnas.length);
+
+		// Se establece el nombre de las columnas del modelo de datos.
+		modeloDatos.setColumnIdentifiers(columnas);
+
+		while (rset.next()) {
+			modeloDatos.setRowCount(modeloDatos.getRowCount() + 1);
+
+			// Se insertan los datos de la fila actual en el modelo de datos.
+			for (int i = 0; i < columnas.length; i++) {
+				modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
+			}
+		}
+		
+		cn.desconectar();
+		return modeloDatos;
+	}
 
 }

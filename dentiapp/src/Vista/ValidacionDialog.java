@@ -38,6 +38,7 @@ public class ValidacionDialog extends JDialog {
 	private DefaultComboBoxModel modeloDoctores = new DefaultComboBoxModel();
 	private DefaultTableModel modeloSolicitudes = new DefaultTableModel();
 	private ControladorSQL con = new ControladorSQL();
+	private String[] mostrarSoli = {"fk_iddoctor","material","cantidad","proveedor"};
 
 	/**
 	 * Launch the application.
@@ -139,7 +140,11 @@ public class ValidacionDialog extends JDialog {
 					con.insertarConsulta("solicitudes",nombreColumnas, newValues);
 					JOptionPane.showMessageDialog(null, "Solicitud Creada con Exito",
 							"Solicitud Creada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
-					tblSolRecibidas.setModel(con.cargarDatos("solicitudes", modeloSolicitudes));
+					tblSolRecibidas.setModel(con.cargarSolicitudes("solicitudes", modeloSolicitudes, mostrarSoli));
+					tblSolRecibidas.getColumnModel().getColumn(0).setPreferredWidth(25);
+					tblSolRecibidas.getColumnModel().getColumn(1).setPreferredWidth(150);
+					tblSolRecibidas.getColumnModel().getColumn(2).setPreferredWidth(25);
+					tblSolRecibidas.getColumnModel().getColumn(3).setPreferredWidth(100);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -182,7 +187,11 @@ public class ValidacionDialog extends JDialog {
 			}
 		});
 		
-		tblSolRecibidas.setModel(con.cargarDatos("solicitudes", modeloSolicitudes));
+		tblSolRecibidas.setModel(con.cargarSolicitudes("solicitudes", modeloSolicitudes, mostrarSoli));
+		tblSolRecibidas.getColumnModel().getColumn(0).setPreferredWidth(25);
+		tblSolRecibidas.getColumnModel().getColumn(1).setPreferredWidth(150);
+		tblSolRecibidas.getColumnModel().getColumn(2).setPreferredWidth(25);
+		tblSolRecibidas.getColumnModel().getColumn(3).setPreferredWidth(100);
 		
 	}
 	
