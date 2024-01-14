@@ -203,7 +203,7 @@ public class CrearConsultaDialog extends JDialog {
 		                List<String> elementosFiltrados = new ArrayList<>();
 		                for (int i = 0; i<cmbPaciente.getItemCount();i++) {
 		                    if (cmbPaciente.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
-		                        elementosFiltrados.add(cmbPaciente.getItemAt(i).toString().toLowerCase());
+		                        elementosFiltrados.add(cmbPaciente.getItemAt(i).toString());
 		                    }
 		                }
 
