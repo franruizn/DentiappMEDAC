@@ -80,12 +80,12 @@ public class OdontogramaDialog extends JDialog {
 				
 			}
 		});
-		cmbPaciente.setBounds(535, 186, 156, 22);
+		cmbPaciente.setBounds(535, 186, 189, 22);
 		contentPanel.add(cmbPaciente);
-		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+		cmbPaciente.setModel(rellenarDatosDoble("paciente","nombre", "dni", modeloDatos));
 		
 		txtPaciente = new JTextField();
-		txtPaciente.setBounds(697, 185, 161, 25);
+		txtPaciente.setBounds(730, 185, 128, 25);
 		contentPanel.add(txtPaciente);
 		txtPaciente.setColumns(10);
 		
@@ -93,7 +93,7 @@ public class OdontogramaDialog extends JDialog {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				
-				cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+				cmbPaciente.setModel(rellenarDatosDoble("paciente", "nombre", "dni", modeloDatos));
 				String textoBusqueda = txtPaciente.getText().toLowerCase();
 
 				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
@@ -287,7 +287,8 @@ public class OdontogramaDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					consultas=con.obtenerOdontograma(con.selectWhere("paciente","idpaciente","nombre",cmbPaciente.getSelectedItem().toString()),1);
+					String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
+					consultas=con.obtenerOdontograma(con.selectWhere("paciente","idpaciente","dni",dni[0]),1);
 					txtNumDiente.setText(consultas.get(0)[0].toString());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -341,6 +342,20 @@ public class OdontogramaDialog extends JDialog {
 		try {
 
 			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
+	}
+	
+	public DefaultComboBoxModel rellenarDatosDoble(String nombreTabla, String campo, String campo2,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxDoble(nombreTabla, campo, campo2);
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block

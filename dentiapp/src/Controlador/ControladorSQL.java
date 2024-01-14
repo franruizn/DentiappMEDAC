@@ -205,6 +205,28 @@ public class ControladorSQL {
 
 		return modeloDatos;
 	}
+	
+	public DefaultComboBoxModel<?> rellenarComboBoxDoble(String nombreTabla, String campo, String campo2) throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
+
+		String consulta = "SELECT " + campo + "," + campo2 + " FROM " + nombreTabla;
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		ArrayList<String> datos = new ArrayList<>();
+		while (rset.next()) {
+			String resultado = rset.getString(campo2) + "-" +rset.getString(campo);
+			datos.add(resultado);
+		}
+
+		for (int i = 0; i < datos.size(); i++) {
+			modeloDatos.addElement(datos.get(i));
+		}
+
+		cn.desconectar();
+
+		return modeloDatos;
+	}
 
 	public ArrayList<String[]> obtenerConsulta(String fecha, String hora) throws SQLException {
 		cn.conectar();
