@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
@@ -26,7 +27,7 @@ public class ValidarPedidoDialog extends JDialog {
 	private JTable tblSoli;
 	private ControladorSQL con = new ControladorSQL();
 	private DefaultTableModel modeloDatos = new DefaultTableModel();
-	private String[] mostrarSoli = {"fk_iddoctor","material","cantidad","proveedor"};
+	private String[] mostrarSoli = {"idsolicitudes","fk_iddoctor","material","cantidad","proveedor"};
 
 	/**
 	 * Launch the application.
@@ -62,13 +63,50 @@ public class ValidarPedidoDialog extends JDialog {
 			}
 		});
 		
+		JButton btnHistorial = new JButton("Historial");
+		btnHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					HistorialSolicitudes hist = new HistorialSolicitudes();
+					hist.setModal(true);
+					hist.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnHistorial.setBounds(436, 444, 89, 23);
+		contentPanel.add(btnHistorial);
+		
 		JButton btnRechazar = new JButton("Rechazar");
+		btnRechazar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = JOptionPane.showInputDialog("Introduce el ID del pedido que deseas eliminar: ");
+				try {
+					con.eliminarFila("solicitudes", id);
+					tblSoli.setModel(con.cargarSolicitudesPendientes("solicitudes", modeloDatos,mostrarSoli));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnRechazar.setBounds(552, 444, 89, 23);
 		contentPanel.add(btnRechazar);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String id = JOptionPane.showInputDialog("Introduce el ID del pedido: ");
+				try {
+					con.cambiarAceptado(id);
+					tblSoli.setModel(con.cargarSolicitudesPendientes("solicitudes", modeloDatos,mostrarSoli));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnAceptar.setBounds(323, 444, 89, 23);
@@ -92,11 +130,12 @@ public class ValidarPedidoDialog extends JDialog {
 		lblFondo.setBounds(0, 0, 965, 594);
 		contentPanel.add(lblFondo);
 		
-		tblSoli.setModel(con.cargarSolicitudes("solicitudes", modeloDatos,mostrarSoli));
+		tblSoli.setModel(con.cargarSolicitudesPendientes("solicitudes", modeloDatos,mostrarSoli));
 		tblSoli.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tblSoli.getColumnModel().getColumn(1).setPreferredWidth(150);
-		tblSoli.getColumnModel().getColumn(2).setPreferredWidth(25);
-		tblSoli.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tblSoli.getColumnModel().getColumn(1).setPreferredWidth(25);
+		tblSoli.getColumnModel().getColumn(2).setPreferredWidth(150);
+		tblSoli.getColumnModel().getColumn(3).setPreferredWidth(25);
+		tblSoli.getColumnModel().getColumn(4).setPreferredWidth(100);
 		
 	}
 

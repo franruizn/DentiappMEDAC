@@ -420,12 +420,12 @@ public class ControladorSQL {
 
 	}
 	
-	public DefaultTableModel cargarSolicitudes(String nombreTabla, DefaultTableModel modeloDatos, String[] columnas) throws SQLException {
+	public DefaultTableModel cargarSolicitudesAceptadas(String nombreTabla, DefaultTableModel modeloDatos, String[] columnas) throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();
 
 		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
-		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla);
+		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE idconsultas = 1");
 		modeloDatos.setRowCount(0);
 
 		// Se establece el número de columnas del modelo de datos.
@@ -475,6 +475,40 @@ public class ControladorSQL {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void cambiarAceptado(String idsolicitudes) throws SQLException {
+		cn.conectar();
+		String consulta = "UPDATE solicitudes SET aceptado = 1 WHERE idsolicitudes = " + idsolicitudes;
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
+	}
+	
+	public DefaultTableModel cargarSolicitudesPendientes(String nombreTabla, DefaultTableModel modeloDatos, String[] columnas) throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+
+		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
+		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE aceptado = 0");
+		modeloDatos.setRowCount(0);
+
+		// Se establece el número de columnas del modelo de datos.
+		modeloDatos.setColumnCount(columnas.length);
+
+		// Se establece el nombre de las columnas del modelo de datos.
+		modeloDatos.setColumnIdentifiers(columnas);
+
+		while (rset.next()) {
+			modeloDatos.setRowCount(modeloDatos.getRowCount() + 1);
+
+			// Se insertan los datos de la fila actual en el modelo de datos.
+			for (int i = 0; i < columnas.length; i++) {
+				modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
+			}
+		}
+		
+		cn.desconectar();
+		return modeloDatos;
 	}
 
 }

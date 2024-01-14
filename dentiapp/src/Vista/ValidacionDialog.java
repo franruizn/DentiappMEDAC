@@ -147,7 +147,7 @@ public class ValidacionDialog extends JDialog {
 					con.insertarConsulta("solicitudes",nombreColumnas, newValues);
 					JOptionPane.showMessageDialog(null, "Solicitud Creada con Exito",
 							"Solicitud Creada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
-					tblSolRecibidas.setModel(con.cargarSolicitudes("solicitudes", modeloSolicitudes, mostrarSoli));
+					tblSolRecibidas.setModel(con.cargarSolicitudesPendientes("solicitudes", modeloSolicitudes, mostrarSoli));
 					tblSolRecibidas.getColumnModel().getColumn(0).setPreferredWidth(25);
 					tblSolRecibidas.getColumnModel().getColumn(1).setPreferredWidth(150);
 					tblSolRecibidas.getColumnModel().getColumn(2).setPreferredWidth(25);
@@ -188,7 +188,7 @@ public class ValidacionDialog extends JDialog {
 			}
 		});
 		
-		tblSolRecibidas.setModel(con.cargarSolicitudes("solicitudes", modeloSolicitudes, mostrarSoli));
+		tblSolRecibidas.setModel(con.cargarSolicitudesPendientes("solicitudes", modeloSolicitudes, mostrarSoli));
 		
 		txtDoctor = new JTextField();
 		txtDoctor.setBounds(681, 344, 155, 20);
