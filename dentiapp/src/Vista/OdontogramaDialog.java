@@ -87,7 +87,7 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(btnGuardar);
 		
 		JLabel lblDescripcion = new JLabel("Descripción :");
-		lblDescripcion.setBounds(674, 228, 60, 13);
+		lblDescripcion.setBounds(674, 228, 82, 13);
 		contentPanel.add(lblDescripcion);
 		
 		JCheckBox chckbxRayos = new JCheckBox("Rayos X");
@@ -100,12 +100,12 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(lblPaciente);
 		
 		txtNumDiente = new JTextField();
-		txtNumDiente.setBounds(593, 225, 34, 19);
+		txtNumDiente.setBounds(603, 224, 34, 19);
 		contentPanel.add(txtNumDiente);
 		txtNumDiente.setColumns(10);
 		
 		JLabel lblNumDiente = new JLabel("nº Diente :");
-		lblNumDiente.setBounds(538, 228, 52, 13);
+		lblNumDiente.setBounds(538, 228, 65, 13);
 		contentPanel.add(lblNumDiente);
 		
 

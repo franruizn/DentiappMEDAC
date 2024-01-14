@@ -72,11 +72,11 @@ public class ValidacionDialog extends JDialog {
 		contentPanel.add(tblSolRecibidas);
 		
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(186, 448, 85, 21);
+		btnAceptar.setBounds(186, 449, 85, 21);
 		contentPanel.add(btnAceptar);
 		
 		JButton btnDenegar = new JButton("Denegar");
-		btnDenegar.setBounds(304, 448, 85, 21);
+		btnDenegar.setBounds(306, 449, 85, 21);
 		contentPanel.add(btnDenegar);
 		
 		JLabel lblSolicitudes = new JLabel("Solicitud de Stock");
@@ -102,7 +102,7 @@ public class ValidacionDialog extends JDialog {
 		
 		JLabel lblDatosSol = new JLabel("Datos a Solicitar");
 		lblDatosSol.setFont(new Font("SansSerif", Font.PLAIN, 25));
-		lblDatosSol.setBounds(599, 133, 222, 33);
+		lblDatosSol.setBounds(599, 133, 193, 33);
 		contentPanel.add(lblDatosSol);
 		
 		txtCantidadMat = new JTextField();
