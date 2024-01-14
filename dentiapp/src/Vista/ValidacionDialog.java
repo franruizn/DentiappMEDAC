@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import paqGUI.BotonPersonalizadoBean;
 
 public class ValidacionDialog extends JDialog {
 
@@ -71,6 +72,15 @@ public class ValidacionDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar.setBounds(765, 37, 114, 59);
+		contentPanel.add(btnprsnlzdbnCerrar);
 		
 		tblSolRecibidas = new JTable();
 		tblSolRecibidas.setBounds(137, 182, 298, 256);
