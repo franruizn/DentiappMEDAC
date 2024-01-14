@@ -20,7 +20,11 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -39,6 +43,7 @@ public class ValidacionDialog extends JDialog {
 	private DefaultTableModel modeloSolicitudes = new DefaultTableModel();
 	private ControladorSQL con = new ControladorSQL();
 	private String[] mostrarSoli = {"fk_iddoctor","material","cantidad","proveedor"};
+	private JTextField txtDoctor;
 
 	/**
 	 * Launch the application.
@@ -115,7 +120,7 @@ public class ValidacionDialog extends JDialog {
 		contentPanel.add(cmbProveedores);
 		
 		JComboBox cmbDoctores = new JComboBox();
-		cmbDoctores.setBounds(682, 345, 154, 21);
+		cmbDoctores.setBounds(682, 372, 154, 21);
 		contentPanel.add(cmbDoctores);
 		cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDoctores));
 		
@@ -165,12 +170,6 @@ public class ValidacionDialog extends JDialog {
 		lblDoctor.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lblDoctor.setBounds(535, 348, 154, 13);
 		contentPanel.add(lblDoctor);
-		{
-			JLabel lblFondo = new JLabel("");
-			lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
-			lblFondo.setBounds(0, 0, 954, 594);
-			contentPanel.add(lblFondo);
-		}
 		
 		
 		cmbNombreMat.addItemListener((ItemListener) new ItemListener() {
@@ -188,6 +187,40 @@ public class ValidacionDialog extends JDialog {
 		});
 		
 		tblSolRecibidas.setModel(con.cargarSolicitudes("solicitudes", modeloSolicitudes, mostrarSoli));
+		
+		txtDoctor = new JTextField();
+		txtDoctor.setBounds(681, 344, 155, 20);
+		contentPanel.add(txtDoctor);
+		txtDoctor.setColumns(10);
+		{
+			JLabel lblFondo = new JLabel("");
+			lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
+			lblFondo.setBounds(0, 0, 954, 594);
+			contentPanel.add(lblFondo);
+		}
+		
+		txtDoctor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDoctores));
+				String textoBusqueda = txtDoctor.getText().toLowerCase();
+
+                // Filtrar los elementos del combo que coincidan con el texto de búsqueda
+				
+                List<String> elementosFiltrados = new ArrayList<>();
+                for (int i = 0; i<cmbDoctores.getItemCount();i++) {
+                    if (cmbDoctores.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
+                        elementosFiltrados.add(cmbDoctores.getItemAt(i).toString());
+                    }
+                }
+
+                // Actualizar los elementos del combo con los resultados filtrados
+                
+                cmbDoctores.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
+                cmbDoctores.setPopupVisible(true);
+			}
+		});
+		
 		tblSolRecibidas.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tblSolRecibidas.getColumnModel().getColumn(1).setPreferredWidth(150);
 		tblSolRecibidas.getColumnModel().getColumn(2).setPreferredWidth(25);
