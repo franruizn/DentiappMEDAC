@@ -113,12 +113,6 @@ public class ValidacionDialog extends JDialog {
 		JComboBox cmbDoctores = new JComboBox();
 		cmbDoctores.setBounds(682, 345, 154, 21);
 		contentPanel.add(cmbDoctores);
-		{
-			JLabel lblFondo = new JLabel("");
-			lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
-			lblFondo.setBounds(0, 0, 954, 594);
-			contentPanel.add(lblFondo);
-		}
 		cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDoctores));
 		
 		JComboBox cmbNombreMat = new JComboBox();
@@ -162,6 +156,12 @@ public class ValidacionDialog extends JDialog {
 		lblDoctor.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lblDoctor.setBounds(535, 348, 154, 13);
 		contentPanel.add(lblDoctor);
+		{
+			JLabel lblFondo = new JLabel("");
+			lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
+			lblFondo.setBounds(0, 0, 954, 594);
+			contentPanel.add(lblFondo);
+		}
 		
 		
 		cmbNombreMat.addItemListener((ItemListener) new ItemListener() {
