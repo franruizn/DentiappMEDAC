@@ -425,7 +425,7 @@ public class ControladorSQL {
 		metaDatos = cn.getConnection().getMetaData();
 
 		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
-		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE idconsultas = 1");
+		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE idsolicitudes = 1");
 		modeloDatos.setRowCount(0);
 
 		// Se establece el número de columnas del modelo de datos.
