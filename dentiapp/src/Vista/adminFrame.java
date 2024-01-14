@@ -309,6 +309,19 @@ public class adminFrame extends JFrame {
 		});
 		mnGestionarStock.add(mntmModificarStock);
 		
+		JMenuItem mntmValidar = new JMenuItem("Validación de solicitud");
+		mntmValidar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ValidacionDialog dialVal;
+				dialVal = new ValidacionDialog();
+				dialVal.setModal(true);
+				dialVal.setLocationRelativeTo(null);
+				dialVal.setVisible(true);
+				
+			}
+		});
+		mnStock.add(mntmValidar);
+		
 		JMenu mnFacturacion = new JMenu("Facturacion");
 		menuBar.add(mnFacturacion);
 		
