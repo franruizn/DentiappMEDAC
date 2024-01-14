@@ -5,12 +5,16 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.ControladorSQL;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -18,7 +22,13 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class OdontogramaDialog extends JDialog {
 
@@ -26,6 +36,9 @@ public class OdontogramaDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNumDiente;
 	private JButton[] listaBotones = new JButton[20];
+	private JTextField txtPaciente;
+	private ControladorSQL con = new ControladorSQL();
+	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 
 	/**
 	 * Launch the application.
@@ -53,6 +66,19 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(678, 168, 46, 14);
+		contentPanel.add(lblNombre);
+		
+		JComboBox cmbPaciente = new JComboBox();
+		cmbPaciente.setBounds(535, 186, 156, 22);
+		contentPanel.add(cmbPaciente);
+		
+		txtPaciente = new JTextField();
+		txtPaciente.setBounds(697, 185, 161, 25);
+		contentPanel.add(txtPaciente);
+		txtPaciente.setColumns(10);
 		
 		JCheckBox chckbxAusencias = new JCheckBox("Ausencias");
 		chckbxAusencias.setBounds(538, 315, 86, 21);
@@ -99,11 +125,6 @@ public class OdontogramaDialog extends JDialog {
 		chckbxRayos.setBounds(770, 362, 93, 21);
 		contentPanel.add(chckbxRayos);
 		
-		JLabel lblPaciente = new JLabel("Paciente");
-		lblPaciente.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblPaciente.setBounds(593, 175, 223, 37);
-		contentPanel.add(lblPaciente);
-		
 		txtNumDiente = new JTextField();
 		txtNumDiente.setBounds(603, 224, 34, 19);
 		contentPanel.add(txtNumDiente);
@@ -114,10 +135,10 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(lblNumDiente);
 		
 
-		JLabel lblDatos = new JLabel("DATOS");
+		JLabel lblDatos = new JLabel("DATOS PACIENTE");
 		lblDatos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDatos.setFont(new Font("SansSerif", Font.PLAIN, 25));
-		lblDatos.setBounds(629, 132, 146, 33);
+		lblDatos.setBounds(570, 134, 279, 33);
 		contentPanel.add(lblDatos);
 		
 		
@@ -271,4 +292,6 @@ public class OdontogramaDialog extends JDialog {
 			listaBotones[i].setBackground(new Color(0, 0, 0, 0));
 		}
 	}
+	
+	
 }

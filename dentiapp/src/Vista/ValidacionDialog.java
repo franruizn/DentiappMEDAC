@@ -76,14 +76,6 @@ public class ValidacionDialog extends JDialog {
 		tblSolRecibidas.setBounds(137, 182, 298, 256);
 		contentPanel.add(tblSolRecibidas);
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(186, 449, 85, 21);
-		contentPanel.add(btnAceptar);
-		
-		JButton btnDenegar = new JButton("Denegar");
-		btnDenegar.setBounds(306, 449, 85, 21);
-		contentPanel.add(btnDenegar);
-		
 		JLabel lblSolicitudes = new JLabel("Solicitud de Stock");
 		lblSolicitudes.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		lblSolicitudes.setHorizontalAlignment(SwingConstants.CENTER);

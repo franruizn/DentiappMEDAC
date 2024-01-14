@@ -390,5 +390,11 @@ public class ControladorSQL {
 		cn.desconectar();
 		return modeloDatos;
 	}
+	
+	public void ejecutarInsertar(String consulta) throws SQLException {
+		cn.conectar();
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
+	}
 
 }
