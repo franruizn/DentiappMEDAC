@@ -125,7 +125,7 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(chckbxSangrado);
 		
 		JTextArea txtaDescripcion = new JTextArea();
-		txtaDescripcion.setBounds(744, 222, 119, 69);
+		txtaDescripcion.setBounds(715, 219, 152, 86);
 		contentPanel.add(txtaDescripcion);
 		
 		JButton btnSalir = new JButton("SALIR");
@@ -150,7 +150,7 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(btnGuardar);
 		
 		JLabel lblDescripcion = new JLabel("Descripción :");
-		lblDescripcion.setBounds(674, 228, 82, 13);
+		lblDescripcion.setBounds(652, 228, 82, 13);
 		contentPanel.add(lblDescripcion);
 		
 		JCheckBox chckbxRayos = new JCheckBox("Rayos X");
@@ -180,7 +180,7 @@ public class OdontogramaDialog extends JDialog {
 		lblFondo.setBounds(0, 0, 954, 594);
 		contentPanel.add(lblFondo);
 		
-		JButton btnd2 = new JButton("");
+		JButton btnd2 = new JButton("2");
 		btnd2.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnd2.setBounds(303, 207, 18, 21);
 		contentPanel.add(btnd2);
@@ -282,19 +282,13 @@ public class OdontogramaDialog extends JDialog {
 		// Establecemos el cursor de mano
 		btnd2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		JButton btnd1 = new JButton("");
+		JButton btnd1 = new JButton("1");
 		btnd1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
-					consultas=con.obtenerOdontograma(con.selectWhere("paciente","idpaciente","dni",dni[0]),1);
-					txtNumDiente.setText(consultas.get(0)[0].toString());
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				int i = 1;
+				rellenarDatosDiente(cmbPaciente, i);
 			}
+
 		});
 		btnd1.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnd1.setBounds(285, 194, 18, 21);
@@ -363,6 +357,18 @@ public class OdontogramaDialog extends JDialog {
 		}
 
 		return comboDatos;
+	}
+	
+	private void rellenarDatosDiente(JComboBox cmbPaciente, int i) {
+		try {
+			String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
+			consultas=con.obtenerOdontograma(con.selectWhere("paciente","idpaciente","dni",dni[0]),i);
+			txtNumDiente.setText(consultas.get(0)[0].toString());
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	
 	
