@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorSQL;
 
@@ -35,6 +36,7 @@ public class ValidacionDialog extends JDialog {
 	private DefaultComboBoxModel modeloMateriales = new DefaultComboBoxModel();
 	private DefaultComboBoxModel modeloProv = new DefaultComboBoxModel();
 	private DefaultComboBoxModel modeloDoctores = new DefaultComboBoxModel();
+	private DefaultTableModel modeloSolicitudes = new DefaultTableModel();
 	private ControladorSQL con = new ControladorSQL();
 
 	/**
@@ -52,8 +54,9 @@ public class ValidacionDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @throws SQLException 
 	 */
-	public ValidacionDialog() {
+	public ValidacionDialog() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -136,6 +139,7 @@ public class ValidacionDialog extends JDialog {
 					con.insertarConsulta("solicitudes",nombreColumnas, newValues);
 					JOptionPane.showMessageDialog(null, "Solicitud Creada con Exito",
 							"Solicitud Creada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
+					tblSolRecibidas.setModel(con.cargarDatos("solicitudes", modeloSolicitudes));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -177,6 +181,8 @@ public class ValidacionDialog extends JDialog {
 				}
 			}
 		});
+		
+		tblSolRecibidas.setModel(con.cargarDatos("solicitudes", modeloSolicitudes));
 		
 	}
 	
