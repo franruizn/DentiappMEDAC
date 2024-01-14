@@ -105,7 +105,7 @@ public class loginFrame extends JFrame {
 		contentPane.add(txtPass);
 		
 		JButton btnRecupPass = new JButton("Recuperar Contraseña");
-		btnRecupPass.setBounds(414, 369, 141, 21);
+		btnRecupPass.setBounds(390, 369, 197, 21);
 		contentPane.add(btnRecupPass);
 		btnRecupPass.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
