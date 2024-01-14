@@ -284,7 +284,7 @@ public class ControladorSQL {
 		cn.desconectar();
 		return consultas;
 	}
-
+	
 	public String selectWhere(String nombreTabla, String campoBuscar, String campo, String valor) throws SQLException {
 		cn.conectar();
 
@@ -469,6 +469,19 @@ public class ControladorSQL {
 		try {
 			String contraseña = "'" + JOptionPane.showInputDialog("Añada la nueva contraseña") + "'";
 			String consulta = "UPDATE dentiapp.usuario SET pass=" + contraseña + " WHERE idusuario='" + idusuario + "'";
+			cn.ejecutarIDU(consulta);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void CambiarOdontograma(String idpaciente, String iddiente,String observaciones, int a,int b,int c,int d,int f,int g) {
+		cn.conectar();
+		try {
+			String consulta = "UPDATE dentiapp.odontograma SET observaciones= '" + observaciones + "' , ausencias=" + a + " , caries=" + b + " , implantes=" + c + " , protesis=" + d + " , sangrado=" + f + " , rayosx=" + g + " WHERE fk_idpaciente='" + idpaciente + "' AND iddiente=" + iddiente;
+			System.out.println(consulta);
 			cn.ejecutarIDU(consulta);
 			
 		} catch (SQLException e) {
