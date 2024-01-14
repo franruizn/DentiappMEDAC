@@ -97,6 +97,17 @@ public class CrearConsultaDialog extends JDialog {
 		JComboBox cmbTratamiento = new JComboBox();
 		cmbTratamiento.setBounds(48, 288, 211, 22);
 		contentPanel.add(cmbTratamiento);
+		
+		JComboBox cmbHora = new JComboBox();
+		cmbHora.setBounds(295, 366, 211, 22);
+		contentPanel.add(cmbHora);
+		
+		cmbHora.addItem("16:00");
+		cmbHora.addItem("17:00");
+		cmbHora.addItem("18:00");
+		cmbHora.addItem("19:00");
+		cmbHora.addItem("20:00");
+		cmbHora.addItem("21:00");
 
 		JTextArea txtObservaciones = new JTextArea();
 		txtObservaciones.setBounds(551, 240, 154, 170);
@@ -113,9 +124,10 @@ public class CrearConsultaDialog extends JDialog {
 					String paciente=con.selectWhere("paciente", "idpaciente", "nombre",cmbPaciente.getSelectedItem().toString());
 					String doctor=con.selectWhere("doctor", "iddoctor", "nombre",cmbDoctor.getSelectedItem().toString());
 					String observaciones=txtObservaciones.getText();
+					String hora = cmbHora.getSelectedItem().toString();
 					String nombreColumnas=con.obtenerColumnas("consulta");
 					nombreColumnas=nombreColumnas.substring(11,nombreColumnas.length());
-					String newValues=""+paciente+","+doctor+","+tratamiento+",'"+observaciones+"',"+fecha;
+					String newValues=""+paciente+","+doctor+","+tratamiento+",'"+observaciones+"',"+fecha+"',"+hora;
 					con.insertarConsulta("consulta",nombreColumnas, newValues);
 					JOptionPane.showMessageDialog(null, "Consulta Creada con Exito",
 							"Consulta Creada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
@@ -161,6 +173,14 @@ public class CrearConsultaDialog extends JDialog {
 		lblFecha.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblFecha.setBounds(283, 246, 228, 22);
 		contentPanel.add(lblFecha);
+				
+				
+				
+				JLabel lblHora = new JLabel("HORA");
+				lblHora.setHorizontalAlignment(SwingConstants.CENTER);
+				lblHora.setFont(new Font("SansSerif", Font.PLAIN, 20));
+				lblHora.setBounds(283, 333, 228, 22);
+				contentPanel.add(lblHora);
 		
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setBounds(0, 0, 959, 449);

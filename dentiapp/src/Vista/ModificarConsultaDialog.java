@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import com.toedter.calendar.JCalendar;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
 
 import Controlador.ControladorSQL;
 import paqGUI.BotonPersonalizadoBean;
@@ -24,6 +25,7 @@ import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.event.ItemEvent;
@@ -73,16 +75,31 @@ public class ModificarConsultaDialog extends JDialog {
 				dispose();
 			}
 		});
+		
+		JComboBox cmbHora = new JComboBox();
+		cmbHora.setBounds(155, 159, 92, 22);
+		contentPanel.add(cmbHora);
 		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
 		contentPanel.add(btnprsnlzdbnCerrar);
+		
+		cmbHora.addItem("16:00");
+		cmbHora.addItem("17:00");
+		cmbHora.addItem("18:00");
+		cmbHora.addItem("19:00");
+		cmbHora.addItem("20:00");
+		cmbHora.addItem("21:00");
 
 		JButton btnModificarConsulta = new JButton("Actualizar");
 		btnModificarConsulta.setBounds(641, 415, 100, 23);
 		contentPanel.add(btnModificarConsulta);
 
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(60, 149, 185, 42);
+		dateChooser.setBounds(60, 149, 85, 42);
 		contentPanel.add(dateChooser);
+		JTextFieldDateEditor editor = (JTextFieldDateEditor) dateChooser.getDateEditor();
+		editor.setEditable(false);
+		Date currentDate = new Date();
+		dateChooser.setMinSelectableDate(currentDate);
 
 		JComboBox cmbPaciente = new JComboBox();
 
@@ -96,8 +113,8 @@ public class ModificarConsultaDialog extends JDialog {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				fecha = "'" + sdf.format(dateChooser.getDate()) + "'";
 				try {
-
-					consultas = con.obtenerConsulta(fecha);
+					String hora=cmbHora.getSelectedItem().toString();
+					consultas = con.obtenerConsulta(fecha,hora);
 					for (int i = 0; i < consultas.size(); i++) {
 						cmbPaciente.addItem(con.selectWhere("paciente", "nombre", "idpaciente", consultas.get(i)[0]));
 					}
@@ -127,7 +144,7 @@ public class ModificarConsultaDialog extends JDialog {
 		JLabel lblFecha = new JLabel("FECHA");
 		lblFecha.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFecha.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblFecha.setBounds(31, 110, 228, 22);
+		lblFecha.setBounds(-21, 110, 228, 22);
 		contentPanel.add(lblFecha);
 		
 		JLabel lblPaciente = new JLabel("PACIENTE");
@@ -153,6 +170,12 @@ public class ModificarConsultaDialog extends JDialog {
 		lblObservaciones.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblObservaciones.setBounds(513, 203, 228, 22);
 		contentPanel.add(lblObservaciones);
+				
+				JLabel lblHora = new JLabel("HORA");
+				lblHora.setHorizontalAlignment(SwingConstants.CENTER);
+				lblHora.setFont(new Font("SansSerif", Font.PLAIN, 20));
+				lblHora.setBounds(122, 110, 172, 22);
+				contentPanel.add(lblHora);
 		
 				JLabel lblFondo = new JLabel("");
 				lblFondo.setIcon(new ImageIcon(ModificarConsultaDialog.class.getResource("/fotos/mod_consulta.PNG")));

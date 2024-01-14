@@ -206,13 +206,13 @@ public class ControladorSQL {
 		return modeloDatos;
 	}
 
-	public ArrayList<String[]> obtenerConsulta(String fecha) throws SQLException {
+	public ArrayList<String[]> obtenerConsulta(String fecha, String hora) throws SQLException {
 		cn.conectar();
 
 		ArrayList<String[]> consultas = new ArrayList();
 		// Consulta a ejecutar
-		String consulta = "SELECT fk_idpaciente, fk_iddoctor, fk_idtratamiento, observaciones FROM consulta WHERE fecha=" + fecha
-				+ ";";
+		String consulta = "SELECT fk_idpaciente, fk_iddoctor, fk_idtratamiento, observaciones FROM consulta WHERE fecha="
+				+ fecha + "AND hora=" + hora + ";";
 		System.out.print(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 
@@ -241,7 +241,7 @@ public class ControladorSQL {
 		}
 		cn.desconectar();
 		return resultado;
-		
+
 	}
 
 	public String selectWhereDoble(String nombreTabla, String campoBuscar, String campo, String valor, String campo2,
@@ -271,15 +271,15 @@ public class ControladorSQL {
 		}
 		String consulta = "UPDATE " + nombreTabla + " SET ";
 		for (int i = 0; i < nombreColumnas.length; i++) {
-			if(!nombreColumnas[i].equals(campoPrimario)) {
+			if (!nombreColumnas[i].equals(campoPrimario)) {
 				consulta += nombreColumnas[i] + "=";
-				consulta += newValues[i]+",";
+				consulta += newValues[i] + ",";
 			} else {
 				valorId = newValues[i];
 			}
 		}
-		
-		consulta = consulta.substring(0,consulta.length()-1) + " WHERE " + campoPrimario + " = " + valorId;
+
+		consulta = consulta.substring(0, consulta.length() - 1) + " WHERE " + campoPrimario + " = " + valorId;
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
@@ -287,25 +287,28 @@ public class ControladorSQL {
 
 	public void insertarConsulta(String nombreTabla, String nombreColumnas, String newValues) throws SQLException {
 		cn.conectar();
-		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "` (" + nombreColumnas + ") VALUES (" + newValues + ");";
+		String consulta = "INSERT INTO `dentiapp`.`" + nombreTabla + "` (" + nombreColumnas + ") VALUES (" + newValues
+				+ ");";
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}
-		
-	public void borrarConsulta(String id,String fecha) throws SQLException {
+
+	public void borrarConsulta(String id, String fecha) throws SQLException {
 		cn.conectar();
-		String nombreTabla="consulta";
-		String consulta = "DELETE FROM " + nombreTabla + " WHERE fk_idpaciente = " + id+" and fecha = "+fecha;
+		String nombreTabla = "consulta";
+		String consulta = "DELETE FROM " + nombreTabla + " WHERE fk_idpaciente = " + id + " and fecha = " + fecha;
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 
 	}
-	
+
 	public DefaultComboBoxModel<String> obtenerProveedor(String idmaterial) throws SQLException {
 		cn.conectar();
-		//String consulta = "SELECT nombre FROM proveedor WHERE idproveedor = (SELECT fk_idproveedor FROM stock WHERE nombre = '" + idmaterial +"');";
-		String consulta = "SELECT proveedor.nombre FROM  stock INNER JOIN proveedor ON stock.fk_idproveedor = proveedor.idproveedor WHERE stock.nombre = '" + idmaterial + "';";
+		// String consulta = "SELECT nombre FROM proveedor WHERE idproveedor = (SELECT
+		// fk_idproveedor FROM stock WHERE nombre = '" + idmaterial +"');";
+		String consulta = "SELECT proveedor.nombre FROM  stock INNER JOIN proveedor ON stock.fk_idproveedor = proveedor.idproveedor WHERE stock.nombre = '"
+				+ idmaterial + "';";
 		System.out.println(consulta);
 		cn.ejecutarSelect(consulta);
 		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
@@ -323,14 +326,18 @@ public class ControladorSQL {
 
 		return modeloDatos;
 	}
-	
-	public DefaultComboBoxModel<?> rellenarComboBoxWhere(String nombreTabla, String campo, String condicion, String campoCondicion) throws SQLException {
+
+	public DefaultComboBoxModel<?> rellenarComboBoxWhere(String nombreTabla, String campo, String condicion,
+			String campoCondicion) throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();
 		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
 
-		String consulta = "SELECT " + campo + " FROM " + nombreTabla + " WHERE " + campoCondicion + " = '" + condicion + "';";
-		//String consulta = "SELECT " + campo + " FROM " + nombreTabla + " INNER JOIN proveedor ON stock.fk_idproveedor WHERE proveedor.nombre = '" + condicion + "';";
+		String consulta = "SELECT " + campo + " FROM " + nombreTabla + " WHERE " + campoCondicion + " = '" + condicion
+				+ "';";
+		// String consulta = "SELECT " + campo + " FROM " + nombreTabla + " INNER JOIN
+		// proveedor ON stock.fk_idproveedor WHERE proveedor.nombre = '" + condicion +
+		// "';";
 		System.out.println(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 		ArrayList<String> datos = new ArrayList<>();
@@ -345,6 +352,16 @@ public class ControladorSQL {
 		cn.desconectar();
 
 		return modeloDatos;
+	}
+
+	public void borrarConsultaDoble(String id, String fecha, String hora) throws SQLException {
+		cn.conectar();
+		String nombreTabla = "consulta";
+		String consulta = "DELETE FROM " + nombreTabla + " WHERE fk_idpaciente = " + id + " and fecha = " + fecha
+				+ " and hora = " + hora;
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
+
 	}
 
 }
