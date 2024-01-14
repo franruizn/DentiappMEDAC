@@ -313,10 +313,16 @@ public class adminFrame extends JFrame {
 		mntmValidar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ValidacionDialog dialVal;
-				dialVal = new ValidacionDialog();
-				dialVal.setModal(true);
-				dialVal.setLocationRelativeTo(null);
-				dialVal.setVisible(true);
+				try {
+					dialVal = new ValidacionDialog();
+					dialVal.setModal(true);
+					dialVal.setLocationRelativeTo(null);
+					dialVal.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				
 			}
 		});
