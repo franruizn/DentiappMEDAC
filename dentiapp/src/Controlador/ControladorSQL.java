@@ -229,19 +229,19 @@ public class ControladorSQL {
 		return consultas;
 	}
 	
-	public ArrayList<Object> obtenerOdontograma(String idPaciente, int diente) throws SQLException {
+	public ArrayList<String[]> obtenerOdontograma(String idPaciente, int diente) throws SQLException {
 		cn.conectar();
 
-		ArrayList<Object> consultas = new ArrayList();
+		ArrayList<String[]> consultas = new ArrayList();
 		// Consulta a ejecutar
 		String consulta = "SELECT iddiente, observaciones, ausencias, caries, implantes, protesis, sangrado, rayosx FROM odontograma WHERE fk_idpaciente="
 				+ idPaciente + " AND iddiente = " + diente + ";";
-		System.out.print(consulta);
+		System.out.println(consulta);
 		ResultSet rset = cn.ejecutarSelect(consulta);
 
 		while (rset.next()) {
-			Object[] consultaNueva = new Object[8];
-			consultaNueva[0] = rset.getInt("iddiente");
+			String[] consultaNueva = new String[8];
+			consultaNueva[0] = rset.getString("iddiente");
 			consultaNueva[1] = rset.getString("observaciones");
 			consultaNueva[2] = rset.getString("ausencias");
 			consultaNueva[3] = rset.getString("caries");
@@ -250,7 +250,10 @@ public class ControladorSQL {
 			consultaNueva[6] = rset.getString("sangrado");
 			consultaNueva[7] = rset.getString("rayosx");
 			consultas.add(consultaNueva);
-			System.out.print(consultas.get(0));
+		}
+		
+		for(int i = 0; i < consultas.size(); i++) {
+			System.out.println(consultas.get(i).toString());
 		}
 
 		cn.desconectar();

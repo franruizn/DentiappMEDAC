@@ -41,7 +41,7 @@ public class OdontogramaDialog extends JDialog {
 	private JTextField txtPaciente;
 	private ControladorSQL con = new ControladorSQL();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
-	private ArrayList<Object> consultas = new ArrayList<>();
+	private ArrayList<String[]> consultas = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -288,7 +288,7 @@ public class OdontogramaDialog extends JDialog {
 				
 				try {
 					consultas=con.obtenerOdontograma(con.selectWhere("paciente","idpaciente","nombre",cmbPaciente.getSelectedItem().toString()),1);
-					txtNumDiente.setText(consultas.get(0).toString());
+					txtNumDiente.setText(consultas.get(0)[0].toString());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

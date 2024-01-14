@@ -161,7 +161,7 @@ public class ValidacionDialog extends JDialog {
 		btnEnvDatos.setBounds(634, 417, 113, 21);
 		contentPanel.add(btnEnvDatos);
 		
-		JLabel lblValidacion = new JLabel("VALIDACIÓN DE SOLICITUDES");
+		JLabel lblValidacion = new JLabel("CREACIÓN DE SOLICITUDES");
 		lblValidacion.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		lblValidacion.setBounds(254, 35, 444, 55);
 		contentPanel.add(lblValidacion);
