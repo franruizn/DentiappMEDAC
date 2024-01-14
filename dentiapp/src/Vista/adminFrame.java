@@ -50,7 +50,7 @@ public class adminFrame extends JFrame {
 				try {
 					adminFrame frame = new adminFrame();
 					frame.setUndecorated(true);
-					frame.setLocationRelativeTo(null);					
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
