@@ -396,5 +396,16 @@ public class ControladorSQL {
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}
+	
+	public void crearOdontograma(String dni) throws SQLException {
+		cn.conectar();
+		String idPaciente = selectWhere("paciente","idpaciente","dni",dni);
+		
+		for(int i = 1; i <= 20; i++) {
+			String consulta = "INSERT INTO odontograma VALUES (0,'" + idPaciente + "'," + i + ",'',0,0,0,0,0,0)";
+			cn.ejecutarIDU(consulta);
+		}
+		cn.desconectar();
+	}
 
 }

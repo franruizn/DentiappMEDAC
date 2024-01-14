@@ -63,6 +63,7 @@ public class CrearPacienteDialog extends JDialog {
 				String consulta = "INSERT INTO paciente VALUES (0,'" + txtNombre.getText().toString() + "','" + txtDni.getText().toString() + "')";
 				try {
 					con.ejecutarInsertar(consulta);
+					con.crearOdontograma(txtDni.getText().toString());
 					JOptionPane.showMessageDialog(null, "Paciente Creado con Exito",
 							"Paciente Creado", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 				} catch (SQLException e1) {
