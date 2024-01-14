@@ -7,23 +7,30 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
+import Controlador.ControladorSQL;
 import paqGUI.BotonPersonalizadoBean;
 
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JTable;
 
 public class doctorFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTable tblPacientes;
+	private DefaultTableModel modeloPacientes = new DefaultTableModel();
+	private DefaultTableModel modeloTratamientos = new DefaultTableModel();
+	private ControladorSQL con = new ControladorSQL();
+	private JTable tblTratamientos;
 
 	/**
 	 * Launch the application.
@@ -45,8 +52,9 @@ public class doctorFrame extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public doctorFrame() {
+	public doctorFrame() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -57,17 +65,41 @@ public class doctorFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		tblTratamientos = new JTable();
+		tblTratamientos.setEnabled(false);
+		tblTratamientos.setBounds(534, 170, 324, 276);
+		contentPane.add(tblTratamientos);
+		
+		tblPacientes = new JTable();
+		tblPacientes.setEnabled(false);
+		tblPacientes.setBounds(126, 170, 324, 276);
+		contentPane.add(tblPacientes);
+		
+		JButton btnOdontograma = new JButton("ODONTOGRAMA");
+		btnOdontograma.setForeground(Color.WHITE);
+		btnOdontograma.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnOdontograma.setBackground(new Color(55, 4, 102));
+		btnOdontograma.setBounds(496, 30, 127, 29);
+		contentPane.add(btnOdontograma);
+		
 		JButton btnPedido = new JButton("PEDIDO");
+		btnPedido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ValidacionDialog pedido = new ValidacionDialog();
+					pedido.setModal(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnPedido.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnPedido.setBounds(341, 30, 118, 29);
 		contentPane.add(btnPedido);	
 		btnPedido.setBackground(new Color(55,4,102));
 		btnPedido.setForeground(Color.WHITE);
-		
-		textField = new JTextField();
-		textField.setBounds(128, 170, 322, 275);
-		contentPane.add(textField);
-		textField.setColumns(10);
 		
 		
 		
@@ -85,11 +117,6 @@ public class doctorFrame extends JFrame {
 		btnTratamiento.setBackground(new Color(55,4,102));
 		btnTratamiento.setForeground(Color.WHITE);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(534, 170, 322, 275);
-		contentPane.add(textField_1);
-		
 		JLabel lblNewLabel = new JLabel("LISTA PACIENTES");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -103,6 +130,16 @@ public class doctorFrame extends JFrame {
 		contentPane.add(lblListaTratamientos);
 		
 		JButton btnActualizarPaciente = new JButton("ACTUALIZAR");
+		btnActualizarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tblPacientes.setModel(con.cargarDatos("paciente", modeloPacientes));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnActualizarPaciente.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		btnActualizarPaciente.setBounds(341, 456, 109, 23);
 		contentPane.add(btnActualizarPaciente);
@@ -155,5 +192,7 @@ public class doctorFrame extends JFrame {
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/fotos/ventana_doctor.PNG")));
 		lblImagenFondo.setBounds(0, 0, 956, 596);
 		contentPane.add(lblImagenFondo);
+		tblPacientes.setModel(con.cargarDatos("paciente", modeloPacientes));
+		tblTratamientos.setModel(con.cargarDatos("tratamiento", modeloTratamientos));
 	}
 }
