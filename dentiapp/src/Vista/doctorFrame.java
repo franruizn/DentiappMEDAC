@@ -65,6 +65,26 @@ public class doctorFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JButton btnStock = new JButton("STOCK");
+		btnStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ConsultarStockDiag consult = new ConsultarStockDiag();
+					consult.setModal(true);
+					consult.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnStock.setForeground(Color.WHITE);
+		btnStock.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnStock.setBackground(new Color(55, 4, 102));
+		btnStock.setBounds(493, 30, 118, 29);
+		contentPane.add(btnStock);
+		
 		tblTratamientos = new JTable();
 		tblTratamientos.setEnabled(false);
 		tblTratamientos.setBounds(534, 170, 324, 276);

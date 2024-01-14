@@ -2,39 +2,41 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorSQL;
-import paqGUI.BotonPersonalizadoBean;
 
-public class ValidarPedidoDialog extends JDialog {
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.sql.SQLException;
+
+import javax.swing.JTable;
+import paqGUI.BotonPersonalizadoBean;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ConsultarStockDiag extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTable tblSoli;
 	private ControladorSQL con = new ControladorSQL();
-	private DefaultTableModel modeloDatos = new DefaultTableModel();
-	private String[] mostrarSoli = {"fk_iddoctor","material","cantidad","proveedor"};
+	private DefaultTableModel modeloStock = new DefaultTableModel();
+	private JTable tblStock;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			ValidarPedidoDialog dialog = new ValidarPedidoDialog();
+			ConsultarStockDiag dialog = new ConsultarStockDiag();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,7 +47,7 @@ public class ValidarPedidoDialog extends JDialog {
 	 * Create the dialog.
 	 * @throws SQLException 
 	 */
-	public ValidarPedidoDialog() throws SQLException {
+	public ConsultarStockDiag() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -61,30 +63,18 @@ public class ValidarPedidoDialog extends JDialog {
 				dispose();
 			}
 		});
-		
-		JButton btnRechazar = new JButton("Rechazar");
-		btnRechazar.setBounds(552, 444, 89, 23);
-		contentPanel.add(btnRechazar);
-		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnAceptar.setBounds(323, 444, 89, 23);
-		contentPanel.add(btnAceptar);
 		btnprsnlzdbnCerrar_1.setTexto("Salir");
 		btnprsnlzdbnCerrar_1.setBounds(827, 36, 85, 34);
 		contentPanel.add(btnprsnlzdbnCerrar_1);
 		
-		tblSoli = new JTable();
-		tblSoli.setEnabled(false);
-		tblSoli.setBounds(313, 166, 336, 289);
-		contentPanel.add(tblSoli);
+		tblStock = new JTable();
+		tblStock.setEnabled(false);
+		tblStock.setBounds(313, 166, 336, 289);
+		contentPanel.add(tblStock);
 		
-		JLabel lblTitulo = new JLabel("LISTADO DE SOLICITUD");
+		JLabel lblTitulo = new JLabel("LISTADO DE STOCK");
 		lblTitulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
-		lblTitulo.setBounds(295, 37, 410, 58);
+		lblTitulo.setBounds(313, 36, 344, 58);
 		contentPanel.add(lblTitulo);
 		
 		JLabel lblFondo = new JLabel("");
@@ -92,12 +82,10 @@ public class ValidarPedidoDialog extends JDialog {
 		lblFondo.setBounds(0, 0, 965, 594);
 		contentPanel.add(lblFondo);
 		
-		tblSoli.setModel(con.cargarSolicitudes("solicitudes", modeloDatos,mostrarSoli));
-		tblSoli.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tblSoli.getColumnModel().getColumn(1).setPreferredWidth(150);
-		tblSoli.getColumnModel().getColumn(2).setPreferredWidth(25);
-		tblSoli.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tblStock.setModel(con.cargarDatos("stock", modeloStock));
+		tblStock.getColumnModel().getColumn(0).setPreferredWidth(25);
+		tblStock.getColumnModel().getColumn(1).setPreferredWidth(25);
+		tblStock.getColumnModel().getColumn(2).setPreferredWidth(150);
 		
 	}
-
 }
