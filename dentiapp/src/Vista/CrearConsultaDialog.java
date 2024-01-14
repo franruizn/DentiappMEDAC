@@ -21,12 +21,17 @@ import paqGUI.BotonPersonalizadoBean;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class CrearConsultaDialog extends JDialog {
 
@@ -34,6 +39,7 @@ public class CrearConsultaDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private ControladorSQL con = new ControladorSQL();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
+	private JTextField txtPaciente;
 
 	/**
 	 * Launch the application.
@@ -87,7 +93,7 @@ public class CrearConsultaDialog extends JDialog {
 		contentPanel.add(btnAceptar);
 
 		JComboBox cmbPaciente = new JComboBox();
-		cmbPaciente.setBounds(48, 161, 307, 22);
+		cmbPaciente.setBounds(48, 161, 154, 22);
 		contentPanel.add(cmbPaciente);
 
 		JComboBox cmbDoctor = new JComboBox();
@@ -112,6 +118,9 @@ public class CrearConsultaDialog extends JDialog {
 		JTextArea txtObservaciones = new JTextArea();
 		txtObservaciones.setBounds(551, 240, 154, 170);
 		contentPanel.add(txtObservaciones);
+		
+		
+		
 
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,13 +156,13 @@ public class CrearConsultaDialog extends JDialog {
 		JLabel lblPaciente = new JLabel("PACIENTE");
 		lblPaciente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPaciente.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblPaciente.setBounds(92, 117, 228, 22);
+		lblPaciente.setBounds(65, 117, 113, 22);
 		contentPanel.add(lblPaciente);
 		
 		JLabel lblDoctor = new JLabel("DOCTOR");
 		lblDoctor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDoctor.setFont(new Font("SansSerif", Font.PLAIN, 20));
-		lblDoctor.setBounds(451, 117, 228, 22);
+		lblDoctor.setBounds(431, 117, 113, 22);
 		contentPanel.add(lblDoctor);
 		
 		JLabel lblTratamiento = new JLabel("TRATAMIENTO");
@@ -181,6 +190,38 @@ public class CrearConsultaDialog extends JDialog {
 				lblHora.setFont(new Font("SansSerif", Font.PLAIN, 20));
 				lblHora.setBounds(283, 333, 228, 22);
 				contentPanel.add(lblHora);
+				
+				txtPaciente = new JTextField();
+				txtPaciente.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent e) {
+						cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+						String textoBusqueda = txtPaciente.getText().toLowerCase();
+
+		                // Filtrar los elementos del combo que coincidan con el texto de búsqueda
+						
+		                List<String> elementosFiltrados = new ArrayList<>();
+		                for (int i = 0; i<cmbPaciente.getItemCount();i++) {
+		                    if (cmbPaciente.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
+		                        elementosFiltrados.add(cmbPaciente.getItemAt(i).toString().toLowerCase());
+		                    }
+		                }
+
+		                // Actualizar los elementos del combo con los resultados filtrados
+		                
+		                cmbPaciente.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
+		                cmbPaciente.setPopupVisible(true);
+					}
+				});
+				txtPaciente.setBounds(203, 162, 137, 20);
+				contentPanel.add(txtPaciente);
+				txtPaciente.setColumns(10);
+				
+				JLabel lblBuscador = new JLabel("BUSCADOR");
+				lblBuscador.setHorizontalAlignment(SwingConstants.CENTER);
+				lblBuscador.setFont(new Font("SansSerif", Font.PLAIN, 20));
+				lblBuscador.setBounds(210, 117, 113, 22);
+				contentPanel.add(lblBuscador);
 		
 				JLabel lblNewLabel = new JLabel("");
 				lblNewLabel.setBounds(0, 0, 959, 449);
