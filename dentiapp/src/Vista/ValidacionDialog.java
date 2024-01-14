@@ -3,15 +3,23 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controlador.ControladorSQL;
+
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.SQLException;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
@@ -21,6 +29,9 @@ public class ValidacionDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable tblSolRecibidas;
 	private JTextField txtCantidadMat;
+	private DefaultComboBoxModel modeloMateriales = new DefaultComboBoxModel();
+	private DefaultComboBoxModel modeloProv = new DefaultComboBoxModel();
+	private ControladorSQL con = new ControladorSQL();
 
 	/**
 	 * Launch the application.
@@ -88,15 +99,15 @@ public class ValidacionDialog extends JDialog {
 		
 		txtCantidadMat = new JTextField();
 		txtCantidadMat.setColumns(10);
-		txtCantidadMat.setBounds(682, 268, 96, 19);
+		txtCantidadMat.setBounds(682, 268, 154, 19);
 		contentPanel.add(txtCantidadMat);
 		
-		JComboBox cmbxProveedores = new JComboBox();
-		cmbxProveedores.setBounds(682, 308, 96, 21);
-		contentPanel.add(cmbxProveedores);
+		JComboBox cmbProveedores = new JComboBox();
+		cmbProveedores.setBounds(682, 308, 154, 21);
+		contentPanel.add(cmbProveedores);
 		
 		JButton btnEnvDatos = new JButton("Enviar Solicitud");
-		btnEnvDatos.setBounds(634, 417, 103, 21);
+		btnEnvDatos.setBounds(634, 417, 113, 21);
 		contentPanel.add(btnEnvDatos);
 		
 		JLabel lblValidacion = new JLabel("VALIDACIÓN DE SOLICITUDES");
@@ -104,14 +115,60 @@ public class ValidacionDialog extends JDialog {
 		lblValidacion.setBounds(254, 35, 444, 55);
 		contentPanel.add(lblValidacion);
 		
-		JComboBox cmbxNombreMat = new JComboBox();
-		cmbxNombreMat.setBounds(682, 222, 96, 21);
-		contentPanel.add(cmbxNombreMat);
+		JComboBox cmbNombreMat = new JComboBox();
+		cmbNombreMat.setBounds(682, 222, 154, 21);
+		contentPanel.add(cmbNombreMat);
 		{
 			JLabel lblFondo = new JLabel("");
 			lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
 			lblFondo.setBounds(0, 0, 954, 594);
 			contentPanel.add(lblFondo);
 		}
+		
+		cmbNombreMat.setModel(rellenarDatos("stock","nombre",modeloMateriales));
+		
+		cmbNombreMat.addItemListener((ItemListener) new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					try {
+						cmbProveedores.setModel(con.obtenerProveedor(cmbNombreMat.getSelectedItem().toString()));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		
 	}
+	
+	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
+	}
+	
+	/*public DefaultComboBoxModel rellenarDatosWhere(String nombreTabla, String campo,
+			DefaultComboBoxModel<String> comboDatos, String nombreMat) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxWhere(nombreTabla, campo, con.obtenerProveedor(nombreMat),"nombre");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
+	}*/
 }
+
+

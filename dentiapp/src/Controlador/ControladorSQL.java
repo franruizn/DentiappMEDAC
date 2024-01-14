@@ -301,5 +301,50 @@ public class ControladorSQL {
 		cn.desconectar();
 
 	}
+	
+	public DefaultComboBoxModel<String> obtenerProveedor(String idmaterial) throws SQLException {
+		cn.conectar();
+		//String consulta = "SELECT nombre FROM proveedor WHERE idproveedor = (SELECT fk_idproveedor FROM stock WHERE nombre = '" + idmaterial +"');";
+		String consulta = "SELECT proveedor.nombre FROM  stock INNER JOIN proveedor ON stock.fk_idproveedor = proveedor.idproveedor WHERE stock.nombre = '" + idmaterial + "';";
+		System.out.println(consulta);
+		cn.ejecutarSelect(consulta);
+		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		ArrayList<String> datos = new ArrayList<>();
+		while (rset.next()) {
+			datos.add(rset.getString("proveedor.nombre"));
+		}
+
+		for (int i = 0; i < datos.size(); i++) {
+			modeloDatos.addElement(datos.get(i));
+		}
+
+		cn.desconectar();
+
+		return modeloDatos;
+	}
+	
+	public DefaultComboBoxModel<?> rellenarComboBoxWhere(String nombreTabla, String campo, String condicion, String campoCondicion) throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
+
+		String consulta = "SELECT " + campo + " FROM " + nombreTabla + " WHERE " + campoCondicion + " = '" + condicion + "';";
+		//String consulta = "SELECT " + campo + " FROM " + nombreTabla + " INNER JOIN proveedor ON stock.fk_idproveedor WHERE proveedor.nombre = '" + condicion + "';";
+		System.out.println(consulta);
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		ArrayList<String> datos = new ArrayList<>();
+		while (rset.next()) {
+			datos.add(rset.getString(campo));
+		}
+
+		for (int i = 0; i < datos.size(); i++) {
+			modeloDatos.addElement(datos.get(i));
+		}
+
+		cn.desconectar();
+
+		return modeloDatos;
+	}
 
 }
