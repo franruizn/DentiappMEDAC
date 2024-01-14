@@ -1,5 +1,6 @@
 package Controlador;
 
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import com.mysql.jdbc.Statement;
 
 import Vista.adminFrame;
 import Vista.doctorFrame;
@@ -459,6 +462,19 @@ public class ControladorSQL {
 			cn.ejecutarIDU(consulta);
 		}
 		cn.desconectar();
+	}
+	
+	public void CambiarContraseña(String idusuario) {
+		cn.conectar();
+		try {
+			String contraseña = "'" + JOptionPane.showInputDialog("Añada la nueva contraseña") + "'";
+			String consulta = "UPDATE dentiapp.usuario SET pass=" + contraseña + " WHERE idusuario='" + idusuario + "'";
+			cn.ejecutarIDU(consulta);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

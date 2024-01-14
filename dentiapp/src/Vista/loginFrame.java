@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -103,9 +104,25 @@ public class loginFrame extends JFrame {
 		txtPass.setBackground(new Color(246,246,246));
 		contentPane.add(txtPass);
 		
+		JButton btnRecupPass = new JButton("Recuperar Contraseña");
+		btnRecupPass.setBounds(414, 369, 141, 21);
+		contentPane.add(btnRecupPass);
+		btnRecupPass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtUsuario.getText().isBlank()) {
+					JOptionPane.showMessageDialog(null, "Tienes que poner el DNI", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					cn.CambiarContraseña(txtUsuario.getText());
+				}
+			}
+		});
+		
+		
 		JLabel lblImagenFondo = new JLabel("");
 		lblImagenFondo.setIcon(new ImageIcon(loginFrame.class.getResource("/fotos/login2.png")));
 		lblImagenFondo.setBounds(0, 0, 951, 592);
 		contentPane.add(lblImagenFondo);
+		
 	}
 }
