@@ -228,6 +228,34 @@ public class ControladorSQL {
 		cn.desconectar();
 		return consultas;
 	}
+	
+	public ArrayList<Object> obtenerOdontograma(String idPaciente, int diente) throws SQLException {
+		cn.conectar();
+
+		ArrayList<Object> consultas = new ArrayList();
+		// Consulta a ejecutar
+		String consulta = "SELECT iddiente, observaciones, ausencias, caries, implantes, protesis, sangrado, rayosx FROM odontograma WHERE fk_idpaciente="
+				+ idPaciente + " AND iddiente = " + diente + ";";
+		System.out.print(consulta);
+		ResultSet rset = cn.ejecutarSelect(consulta);
+
+		while (rset.next()) {
+			Object[] consultaNueva = new Object[8];
+			consultaNueva[0] = rset.getInt("iddiente");
+			consultaNueva[1] = rset.getString("observaciones");
+			consultaNueva[2] = rset.getString("ausencias");
+			consultaNueva[3] = rset.getString("caries");
+			consultaNueva[4] = rset.getString("implantes");
+			consultaNueva[5] = rset.getString("protesis");
+			consultaNueva[6] = rset.getString("sangrado");
+			consultaNueva[7] = rset.getString("rayosx");
+			consultas.add(consultaNueva);
+			System.out.print(consultas.get(0));
+		}
+
+		cn.desconectar();
+		return consultas;
+	}
 
 	public String selectWhere(String nombreTabla, String campoBuscar, String campo, String valor) throws SQLException {
 		cn.conectar();

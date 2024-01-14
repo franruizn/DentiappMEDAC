@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class OdontogramaDialog extends JDialog {
 
@@ -39,6 +41,7 @@ public class OdontogramaDialog extends JDialog {
 	private JTextField txtPaciente;
 	private ControladorSQL con = new ControladorSQL();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
+	private ArrayList<Object> consultas = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -72,13 +75,42 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(lblNombre);
 		
 		JComboBox cmbPaciente = new JComboBox();
+		cmbPaciente.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+			}
+		});
 		cmbPaciente.setBounds(535, 186, 156, 22);
 		contentPanel.add(cmbPaciente);
+		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
 		
 		txtPaciente = new JTextField();
 		txtPaciente.setBounds(697, 185, 161, 25);
 		contentPanel.add(txtPaciente);
 		txtPaciente.setColumns(10);
+		
+		txtPaciente.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+				String textoBusqueda = txtPaciente.getText().toLowerCase();
+
+				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
+
+				List<String> elementosFiltrados = new ArrayList<>();
+				for (int i = 0; i < cmbPaciente.getItemCount(); i++) {
+					if (cmbPaciente.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
+						elementosFiltrados.add(cmbPaciente.getItemAt(i).toString());
+					}
+				}
+
+				// Actualizar los elementos del combo con los resultados filtrados
+
+				cmbPaciente.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
+				cmbPaciente.setPopupVisible(true);
+			}
+		});
 		
 		JCheckBox chckbxAusencias = new JCheckBox("Ausencias");
 		chckbxAusencias.setBounds(538, 315, 86, 21);
@@ -251,6 +283,18 @@ public class OdontogramaDialog extends JDialog {
 		btnd2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		JButton btnd1 = new JButton("");
+		btnd1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					consultas=con.obtenerOdontograma(con.selectWhere("paciente","idpaciente","nombre",cmbPaciente.getSelectedItem().toString()),1);
+					txtNumDiente.setText(consultas.get(0).toString());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnd1.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnd1.setBounds(285, 194, 18, 21);
 		
@@ -291,6 +335,19 @@ public class OdontogramaDialog extends JDialog {
 			listaBotones[i].setOpaque(false);
 			listaBotones[i].setBackground(new Color(0, 0, 0, 0));
 		}
+	}
+	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
 	}
 	
 	
