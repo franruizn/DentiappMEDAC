@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import Controlador.ControladorSQL;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -22,6 +23,8 @@ import java.sql.SQLException;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ValidacionDialog extends JDialog {
 
@@ -31,6 +34,7 @@ public class ValidacionDialog extends JDialog {
 	private JTextField txtCantidadMat;
 	private DefaultComboBoxModel modeloMateriales = new DefaultComboBoxModel();
 	private DefaultComboBoxModel modeloProv = new DefaultComboBoxModel();
+	private DefaultComboBoxModel modeloDoctores = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 
 	/**
@@ -106,7 +110,44 @@ public class ValidacionDialog extends JDialog {
 		cmbProveedores.setBounds(682, 308, 154, 21);
 		contentPanel.add(cmbProveedores);
 		
+		JComboBox cmbDoctores = new JComboBox();
+		cmbDoctores.setBounds(682, 345, 154, 21);
+		contentPanel.add(cmbDoctores);
+		{
+			JLabel lblFondo = new JLabel("");
+			lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
+			lblFondo.setBounds(0, 0, 954, 594);
+			contentPanel.add(lblFondo);
+		}
+		cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDoctores));
+		
+		JComboBox cmbNombreMat = new JComboBox();
+		cmbNombreMat.setBounds(682, 222, 154, 21);
+		contentPanel.add(cmbNombreMat);
+		
+		cmbNombreMat.setModel(rellenarDatos("stock","nombre",modeloMateriales));
+		
 		JButton btnEnvDatos = new JButton("Enviar Solicitud");
+		btnEnvDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String nombreColumnas = con.obtenerColumnas("solicitudes");
+					String material=cmbNombreMat.getSelectedItem().toString();
+					String cantidad=txtCantidadMat.getText().toString();
+					String doctor=con.selectWhere("doctor", "iddoctor", "nombre",cmbDoctores.getSelectedItem().toString());
+					String proveedor=cmbProveedores.getSelectedItem().toString();
+					nombreColumnas=nombreColumnas.substring(14,nombreColumnas.length());
+					System.out.println(nombreColumnas);
+					String newValues="'"+doctor+"','"+material+"',"+cantidad+",0,'"+proveedor+"'";
+					con.insertarConsulta("solicitudes",nombreColumnas, newValues);
+					JOptionPane.showMessageDialog(null, "Solicitud Creada con Exito",
+							"Solicitud Creada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnEnvDatos.setBounds(634, 417, 113, 21);
 		contentPanel.add(btnEnvDatos);
 		
@@ -115,17 +156,13 @@ public class ValidacionDialog extends JDialog {
 		lblValidacion.setBounds(254, 35, 444, 55);
 		contentPanel.add(lblValidacion);
 		
-		JComboBox cmbNombreMat = new JComboBox();
-		cmbNombreMat.setBounds(682, 222, 154, 21);
-		contentPanel.add(cmbNombreMat);
-		{
-			JLabel lblFondo = new JLabel("");
-			lblFondo.setIcon(new ImageIcon(adminFrame.class.getResource("/fotos/ventana_admin.PNG")));
-			lblFondo.setBounds(0, 0, 954, 594);
-			contentPanel.add(lblFondo);
-		}
 		
-		cmbNombreMat.setModel(rellenarDatos("stock","nombre",modeloMateriales));
+		
+		JLabel lblDoctor = new JLabel("Doctor Solicitante:");
+		lblDoctor.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lblDoctor.setBounds(535, 348, 154, 13);
+		contentPanel.add(lblDoctor);
+		
 		
 		cmbNombreMat.addItemListener((ItemListener) new ItemListener() {
 			@Override
@@ -156,19 +193,6 @@ public class ValidacionDialog extends JDialog {
 
 		return comboDatos;
 	}
-	
-	/*public DefaultComboBoxModel rellenarDatosWhere(String nombreTabla, String campo,
-			DefaultComboBoxModel<String> comboDatos, String nombreMat) {
-		try {
-
-			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxWhere(nombreTabla, campo, con.obtenerProveedor(nombreMat),"nombre");
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		return comboDatos;
-	}*/
 }
 
 
