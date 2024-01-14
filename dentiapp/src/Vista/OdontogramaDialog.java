@@ -25,6 +25,7 @@ public class OdontogramaDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNumDiente;
+	private JButton[] listaBotones = new JButton[20];
 
 	/**
 	 * Launch the application.
@@ -224,20 +225,45 @@ public class OdontogramaDialog extends JDialog {
 		btnd2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		JButton btnd1 = new JButton("");
-		btnd1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-			}
-		});
 		btnd1.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		btnd1.setBounds(285, 194, 18, 21);
 		
-		btnd1.setOpaque(false);
-		btnd1.setBackground(new Color(0, 0, 0, 0));
-		
+		arreglarBotones(btnd2, btnd3, btnd4, btnd5, btnd6, btnd7, btnd8, btnd9, btnd10, btnd11, btnd12, btnd13, btnd14,
+				btnd15, btnd16, btnd17, btnd18, btnd19, btnd20, btnd1);
 		
 		contentPanel.add(btnd1);
 		
 
+	}
+
+	private void arreglarBotones(JButton btnd2, JButton btnd3, JButton btnd4, JButton btnd5, JButton btnd6,
+			JButton btnd7, JButton btnd8, JButton btnd9, JButton btnd10, JButton btnd11, JButton btnd12, JButton btnd13,
+			JButton btnd14, JButton btnd15, JButton btnd16, JButton btnd17, JButton btnd18, JButton btnd19,
+			JButton btnd20, JButton btnd1) {
+		listaBotones[0]=btnd1;
+		listaBotones[1]=btnd2;
+		listaBotones[2]=btnd3;
+		listaBotones[3]=btnd4;
+		listaBotones[4]=btnd5;
+		listaBotones[5]=btnd6;
+		listaBotones[6]=btnd7;
+		listaBotones[7]=btnd8;
+		listaBotones[8]=btnd9;
+		listaBotones[9]=btnd10;
+		listaBotones[10]=btnd11;
+		listaBotones[11]=btnd12;
+		listaBotones[12]=btnd13;
+		listaBotones[13]=btnd14;
+		listaBotones[14]=btnd15;
+		listaBotones[15]=btnd16;
+		listaBotones[16]=btnd17;
+		listaBotones[17]=btnd18;
+		listaBotones[18]=btnd19;
+		listaBotones[19]=btnd20;
+		
+		for(int i = 0; i < listaBotones.length; i++) {
+			listaBotones[i].setOpaque(false);
+			listaBotones[i].setBackground(new Color(0, 0, 0, 0));
+		}
 	}
 }
