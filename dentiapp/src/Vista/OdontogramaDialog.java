@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Controlador.ControladorSQL;
@@ -25,7 +26,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -42,6 +45,9 @@ public class OdontogramaDialog extends JDialog {
 	private ControladorSQL con = new ControladorSQL();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ArrayList<String[]> consultas = new ArrayList<>();
+	private String txtOriginal = "", txtNuevo = "";
+	private Date fechaActual = new Date();
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	protected int a;
 	protected int b;
 	protected int c;
@@ -76,6 +82,16 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+
+		JTextArea txtaDescripcion = new JTextArea();
+		txtaDescripcion.setText(" ");
+		txtaDescripcion.setColumns(5);
+		txtaDescripcion.setRows(20);
+		txtaDescripcion.setBounds(730, 219, 128, 86);
+		contentPanel.add(txtaDescripcion);
+
+		txtaDescripcion.setLineWrap(true);
+		txtaDescripcion.setWrapStyleWord(true);
 
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(678, 168, 46, 14);
@@ -131,13 +147,6 @@ public class OdontogramaDialog extends JDialog {
 		chckbxSangrado.setBounds(652, 362, 93, 21);
 		contentPanel.add(chckbxSangrado);
 
-		JTextArea txtaDescripcion = new JTextArea();
-		txtaDescripcion.setText(" ");
-		txtaDescripcion.setColumns(20);
-		txtaDescripcion.setRows(20);
-		txtaDescripcion.setBounds(730, 219, 128, 86);
-		contentPanel.add(txtaDescripcion);
-
 		JButton btnSalir = new JButton("SALIR");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,7 +163,7 @@ public class OdontogramaDialog extends JDialog {
 		JCheckBox chckbxImplantes = new JCheckBox("Implantes");
 		chckbxImplantes.setBounds(770, 315, 93, 22);
 		contentPanel.add(chckbxImplantes);
-		
+
 		JCheckBox chckbxRayos = new JCheckBox("Rayos X");
 		chckbxRayos.setBounds(770, 362, 93, 21);
 		contentPanel.add(chckbxRayos);
@@ -162,40 +171,50 @@ public class OdontogramaDialog extends JDialog {
 		JButton btnGuardar = new JButton("GUARDAR");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(chckbxAusencias.isSelected()) {
-					 a=1;
-				}else {
-					a=0;
+				if (chckbxAusencias.isSelected()) {
+					a = 1;
+				} else {
+					a = 0;
 				}
-				if(chckbxCaries.isSelected()) {
-					b=1;
-				}else {
-					b=0;
+				if (chckbxCaries.isSelected()) {
+					b = 1;
+				} else {
+					b = 0;
 				}
-				if(chckbxImplantes.isSelected()) {
-					c=1;
-				}else {
-					c=0;
+				if (chckbxImplantes.isSelected()) {
+					c = 1;
+				} else {
+					c = 0;
 				}
-				if(chckbxProtesis.isSelected()) {
-					d=1;
-				}else {
-					d=0;
+				if (chckbxProtesis.isSelected()) {
+					d = 1;
+				} else {
+					d = 0;
 				}
-				if(chckbxSangrado.isSelected()) {
-					f=1;
-				}else {
-					f=0;
+				if (chckbxSangrado.isSelected()) {
+					f = 1;
+				} else {
+					f = 0;
 				}
-				if(chckbxRayos.isSelected()) {
-					g=1;
-				}else {
-					g=0;
+				if (chckbxRayos.isSelected()) {
+					g = 1;
+				} else {
+					g = 0;
 				}
-				
+
+				String fechaFormato = sdf.format(fechaActual);
+
+				if (txtOriginal.equals(txtaDescripcion.getText().toString().substring(0, txtOriginal.length()))) {
+					txtNuevo = txtOriginal + "\n" + fechaFormato + ": "
+							+ txtaDescripcion.getText().toString().substring(txtOriginal.length());
+				} else {
+					txtNuevo = txtOriginal + "\n" + fechaFormato + ": " + txtaDescripcion.getText().toString();
+				}
+
 				try {
 					String[] id = cmbPaciente.getSelectedItem().toString().split("-");
-					con.CambiarOdontograma(con.selectWhere("paciente","idpaciente","dni",id[0]), txtNumDiente.getText().toString(), txtaDescripcion.getText().toString(),a , b, c, d, f, g);
+					con.CambiarOdontograma(con.selectWhere("paciente", "idpaciente", "dni", id[0]),
+							txtNumDiente.getText().toString(), txtNuevo, a, b, c, d, f, g);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -208,8 +227,6 @@ public class OdontogramaDialog extends JDialog {
 		JLabel lblDescripcion = new JLabel("Descripción :");
 		lblDescripcion.setBounds(652, 228, 82, 13);
 		contentPanel.add(lblDescripcion);
-
-		
 
 		txtNumDiente = new JTextField();
 		txtNumDiente.setBounds(603, 224, 34, 19);
@@ -551,6 +568,7 @@ public class OdontogramaDialog extends JDialog {
 			String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
 			consultas = con.obtenerOdontograma(con.selectWhere("paciente", "idpaciente", "dni", dni[0]), i);
 			txtNumDiente.setText(consultas.get(0)[0].toString());
+			txtOriginal = consultas.get(0)[1].toString();
 			txtaDescripcion.setText(consultas.get(0)[1].toString());
 			if (consultas.get(0)[2].toString().equals("1")) {
 				chckbxAusencias.setSelected(true);
