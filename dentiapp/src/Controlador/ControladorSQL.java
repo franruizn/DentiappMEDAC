@@ -71,10 +71,12 @@ public class ControladorSQL {
 				frame.dispose();
 				adminFrame aframe = new adminFrame();
 				aframe.setVisible(true);
+				aframe.setLocationRelativeTo(null);
 			} else {
 				frame.dispose();
 				doctorFrame dframe = new doctorFrame();
 				dframe.setVisible(true);
+				dframe.setLocationRelativeTo(null);
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Error al iniciar sesión - Los credenciales no son correctos",

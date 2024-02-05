@@ -71,6 +71,7 @@ public class doctorFrame extends JFrame {
 				try {
 					ConsultarStockDiag consult = new ConsultarStockDiag();
 					consult.setModal(true);
+					consult.setLocationRelativeTo(null);
 					consult.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -101,6 +102,7 @@ public class doctorFrame extends JFrame {
 				try {
 					ValidacionDialog pedido = new ValidacionDialog();
 					pedido.setModal(true);
+					pedido.setLocationRelativeTo(null);
 					pedido.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -122,6 +124,7 @@ public class doctorFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				CrearPacienteDialog pac = new CrearPacienteDialog();
 				pac.setModal(true);
+				
 				pac.setVisible(true);  
 			}
 		});

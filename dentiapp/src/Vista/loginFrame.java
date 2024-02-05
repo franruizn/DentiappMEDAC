@@ -67,9 +67,7 @@ public class loginFrame extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					
 					cn.tryLogin(txtUsuario, txtPass, loginFrame.this);
-					
 				} catch(SQLException r) {
 					System.out.println(r.getMessage());
 				}
