@@ -154,6 +154,8 @@ public class ValidacionDialog extends JDialog {
 					tblSolRecibidas.getColumnModel().getColumn(3).setPreferredWidth(100);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Error al Crear Solicitud con Exito",
+							"Error al crear", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoNo.png")));
 					e1.printStackTrace();
 				}
 			}

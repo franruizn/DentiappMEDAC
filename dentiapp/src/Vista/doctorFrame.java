@@ -118,6 +118,13 @@ public class doctorFrame extends JFrame {
 		
 		
 		JButton btnPacientes = new JButton("PACIENTES");
+		btnPacientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearPacienteDialog pac = new CrearPacienteDialog();
+				pac.setModal(true);
+				pac.setVisible(true);  
+			}
+		});
 		btnPacientes.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnPacientes.setBounds(191, 30, 118, 29);
 		contentPane.add(btnPacientes);

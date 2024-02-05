@@ -312,9 +312,9 @@ public class adminFrame extends JFrame {
 		JMenuItem mntmValidar = new JMenuItem("Validación de solicitud");
 		mntmValidar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ValidacionDialog dialVal;
+				ValidarPedidoDialog dialVal;
 				try {
-					dialVal = new ValidacionDialog();
+					dialVal = new ValidarPedidoDialog();
 					dialVal.setModal(true);
 					dialVal.setLocationRelativeTo(null);
 					dialVal.setVisible(true);
@@ -425,6 +425,10 @@ public class adminFrame extends JFrame {
 		btnPacientes.setForeground(Color.WHITE);
 		
 		JButton btnFacturacion = new JButton("FACTURACION");
+		btnFacturacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnFacturacion.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnFacturacion.setBounds(793, 30, 122, 34);
 		contentPane.add(btnFacturacion);
@@ -432,6 +436,18 @@ public class adminFrame extends JFrame {
 		btnFacturacion.setForeground(Color.WHITE);
 		
 		JButton btnStock = new JButton("STOCK");
+		btnStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ConsultarStockDiag stock = new ConsultarStockDiag();
+					stock.setModal(true);
+					stock.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnStock.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnStock.setBounds(642, 30, 118, 34);
 		contentPane.add(btnStock);
