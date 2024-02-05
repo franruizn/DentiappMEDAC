@@ -22,6 +22,7 @@ public class CrearStockDialog extends JDialog {
 		try {
 			CrearStockDialog dialog = new CrearStockDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -46,17 +47,6 @@ public class CrearStockDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(CrearStockDialog.class.getResource("/fotos/crear_stock.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-		{
-			{
-				//JButton okButton = new JButton("OK");
-				//okButton.setActionCommand("OK");
-			//	buttonPane.add(okButton);
-				//getRootPane().setDefaultButton(okButton);
-			}
-			{
-				
-			}
-		}
 	}
 
 }

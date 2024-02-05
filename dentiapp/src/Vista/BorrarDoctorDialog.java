@@ -38,6 +38,7 @@ public class BorrarDoctorDialog extends JDialog {
 		try {
 			BorrarDoctorDialog dialog = new BorrarDoctorDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

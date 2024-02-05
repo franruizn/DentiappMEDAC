@@ -22,6 +22,7 @@ public class CrearUsuarioDialog extends JDialog {
 		try {
 			CrearUsuarioDialog dialog = new CrearUsuarioDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -46,15 +47,6 @@ public class CrearUsuarioDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(CrearUsuarioDialog.class.getResource("/fotos/crear_usuario.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-		
-		{
-			{
-				
-			}
-			{
-			
-			}
-		}
 	}
 
 }

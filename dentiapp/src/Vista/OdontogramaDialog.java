@@ -56,6 +56,7 @@ public class OdontogramaDialog extends JDialog {
 		try {
 			OdontogramaDialog dialog = new OdontogramaDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

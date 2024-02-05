@@ -36,6 +36,8 @@ public class ValidarPedidoDialog extends JDialog {
 		try {
 			ValidarPedidoDialog dialog = new ValidarPedidoDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

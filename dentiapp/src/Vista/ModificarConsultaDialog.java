@@ -49,6 +49,7 @@ public class ModificarConsultaDialog extends JDialog {
 		try {
 			ModificarConsultaDialog dialog = new ModificarConsultaDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

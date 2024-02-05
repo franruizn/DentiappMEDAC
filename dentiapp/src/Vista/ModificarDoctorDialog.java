@@ -29,6 +29,7 @@ public class ModificarDoctorDialog extends JDialog {
 		try {
 			ModificarDoctorDialog dialog = new ModificarDoctorDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

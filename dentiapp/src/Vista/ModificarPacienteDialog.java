@@ -22,6 +22,7 @@ public class ModificarPacienteDialog extends JDialog {
 		try {
 			ModificarPacienteDialog dialog = new ModificarPacienteDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -46,14 +47,6 @@ public class ModificarPacienteDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(ModificarPacienteDialog.class.getResource("/fotos/mod_paciente.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-		{
-			{
-				
-			}
-			{
-				
-			}
-		}
 	}
 
 }

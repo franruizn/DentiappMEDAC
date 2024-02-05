@@ -44,6 +44,7 @@ public class BorrarConsultaDialog extends JDialog {
 		try {
 			BorrarConsultaDialog dialog = new BorrarConsultaDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

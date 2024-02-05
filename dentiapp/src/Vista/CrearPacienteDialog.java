@@ -37,6 +37,7 @@ public class CrearPacienteDialog extends JDialog {
 		try {
 			CrearPacienteDialog dialog = new CrearPacienteDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

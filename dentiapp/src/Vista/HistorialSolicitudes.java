@@ -37,6 +37,7 @@ public class HistorialSolicitudes extends JDialog {
 		try {
 			HistorialSolicitudes dialog = new HistorialSolicitudes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

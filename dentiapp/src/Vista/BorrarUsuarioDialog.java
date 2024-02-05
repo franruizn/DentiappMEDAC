@@ -22,6 +22,7 @@ public class BorrarUsuarioDialog extends JDialog {
 		try {
 			BorrarUsuarioDialog dialog = new BorrarUsuarioDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -46,14 +47,6 @@ public class BorrarUsuarioDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(BorrarUsuarioDialog.class.getResource("/fotos/borrar_usuario.PNG")));
 		lblFondo.setBounds(0, 0, 564, 421);
 		contentPanel.add(lblFondo);
-		{
-			{
-				
-			}
-			{
-				
-			}
-		}
 	}
 
 }

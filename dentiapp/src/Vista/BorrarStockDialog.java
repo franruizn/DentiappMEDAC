@@ -22,6 +22,7 @@ public class BorrarStockDialog extends JDialog {
 		try {
 			BorrarStockDialog dialog = new BorrarStockDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -46,14 +47,6 @@ public class BorrarStockDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(BorrarStockDialog.class.getResource("/fotos/borrar_stock.PNG")));
 		lblFondo.setBounds(0, 0, 564, 421);
 		contentPanel.add(lblFondo);
-		{
-			{
-				
-			}
-			{
-				
-			}
-		}
 	}
 
 }

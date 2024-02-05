@@ -22,6 +22,7 @@ public class BorrarFacturacionDialog extends JDialog {
 		try {
 			BorrarFacturacionDialog dialog = new BorrarFacturacionDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -46,17 +47,6 @@ public class BorrarFacturacionDialog extends JDialog {
 		lblNewLabel.setBounds(0, 0, 564, 421);
 		lblNewLabel.setIcon(new ImageIcon(BorrarFacturacionDialog.class.getResource("/fotos/borrar_facturacion.PNG")));
 		contentPanel.add(lblNewLabel);
-		{
-			
-		}
-		{
-			{
-				
 			}
-			{
-				
-			}
-		}
-	}
 
 }

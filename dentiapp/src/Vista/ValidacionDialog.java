@@ -53,6 +53,8 @@ public class ValidacionDialog extends JDialog {
 		try {
 			ValidacionDialog dialog = new ValidacionDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setUndecorated(true);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

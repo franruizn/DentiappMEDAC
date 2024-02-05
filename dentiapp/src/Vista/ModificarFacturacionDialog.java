@@ -22,6 +22,7 @@ public class ModificarFacturacionDialog extends JDialog {
 		try {
 			ModificarFacturacionDialog dialog = new ModificarFacturacionDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

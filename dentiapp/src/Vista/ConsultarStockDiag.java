@@ -36,6 +36,7 @@ public class ConsultarStockDiag extends JDialog {
 		try {
 			ConsultarStockDiag dialog = new ConsultarStockDiag();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

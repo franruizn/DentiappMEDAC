@@ -23,6 +23,7 @@ public class ModificarUsuarioDialog extends JDialog {
 			ModificarUsuarioDialog dialog = new ModificarUsuarioDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setUndecorated(true);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,14 +47,6 @@ public class ModificarUsuarioDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(ModificarUsuarioDialog.class.getResource("/fotos/mod_usuario.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-		{
-			{
-				
-			}
-			{
-				
-			}
-		}
 	}
 
 }

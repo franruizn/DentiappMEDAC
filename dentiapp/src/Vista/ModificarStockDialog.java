@@ -23,6 +23,7 @@ public class ModificarStockDialog extends JDialog {
 			ModificarStockDialog dialog = new ModificarStockDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setUndecorated(true);
+			dialog.setLocationRelativeTo(null);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,14 +47,6 @@ public class ModificarStockDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(ModificarStockDialog.class.getResource("/fotos/mod_stock.PNG")));
 		lblFondo.setBounds(0, 0, 763, 449);
 		contentPanel.add(lblFondo);
-		{
-			{
-			
-			}
-			{
-				
-			}
-		}
 	}
 
 }

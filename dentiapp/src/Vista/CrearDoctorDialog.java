@@ -50,6 +50,7 @@ public class CrearDoctorDialog extends JDialog {
 		try {
 			CrearDoctorDialog dialog = new CrearDoctorDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {

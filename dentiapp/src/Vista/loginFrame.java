@@ -122,6 +122,7 @@ public class loginFrame extends JFrame {
 		JLabel lblImagenFondo = new JLabel("");
 		lblImagenFondo.setIcon(new ImageIcon(loginFrame.class.getResource("/fotos/login2.png")));
 		lblImagenFondo.setBounds(0, 0, 951, 592);
+		
 		contentPane.add(lblImagenFondo);
 		
 	}

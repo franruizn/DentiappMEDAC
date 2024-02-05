@@ -22,6 +22,7 @@ public class BorrarPacienteDialog extends JDialog {
 		try {
 			BorrarPacienteDialog dialog = new BorrarPacienteDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -47,15 +48,6 @@ public class BorrarPacienteDialog extends JDialog {
 		lblFondo.setBounds(0, 0, 564, 421);
 		contentPanel.add(lblFondo);
 		
-	
-		{
-			{
-				
-			}
-			{
-				
-			}
-		}
 	}
 
 }

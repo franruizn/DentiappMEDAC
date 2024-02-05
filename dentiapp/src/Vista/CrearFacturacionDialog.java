@@ -22,6 +22,7 @@ public class CrearFacturacionDialog extends JDialog {
 		try {
 			CrearFacturacionDialog dialog = new CrearFacturacionDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -46,16 +47,6 @@ public class CrearFacturacionDialog extends JDialog {
 		lblFondo.setIcon(new ImageIcon(CrearFacturacionDialog.class.getResource("/fotos/crear_factura1.PNG")));
 		lblFondo.setBounds(0, 0, 763, 457);
 		contentPanel.add(lblFondo);
-		
-		
-		{
-			{
-				
-			}
-			{
-				
-			}
-		}
 	}
 
 }
