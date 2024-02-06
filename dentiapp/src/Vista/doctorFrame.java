@@ -124,6 +124,15 @@ public class doctorFrame extends JFrame {
 		menuBar.add(mnPacientes);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Odontograma");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OdontogramaDialog dialOdonto;
+				dialOdonto = new OdontogramaDialog();
+				dialOdonto.setModal(true);
+				dialOdonto.setLocationRelativeTo(null);
+				dialOdonto.setVisible(true);
+			}
+		});
 		mnPacientes.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Buscar Paciente");
@@ -133,12 +142,42 @@ public class doctorFrame extends JFrame {
 		menuBar.add(mnNewMenu_3);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Peticiones de material");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ValidacionDialog dialVali;
+				try {
+					dialVali = new ValidacionDialog();
+					dialVali.setModal(true);
+					dialVali.setLocationRelativeTo(null);
+					dialVali.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnNewMenu_3.add(mntmNewMenuItem_2);
 		
 		JMenu mnNewMenu_2 = new JMenu("Stock");
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Consultar Stock");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConsultarStockDiag dialStock;
+				try {
+					dialStock = new ConsultarStockDiag();
+					dialStock.setModal(true);
+					dialStock.setLocationRelativeTo(null);
+					dialStock.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnNewMenu_2.add(mntmNewMenuItem_3);
 		
 		JMenu mnNewMenu_1 = new JMenu("Ayuda");
