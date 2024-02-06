@@ -29,6 +29,7 @@ import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import paqGUI.BotonPersonalizadoBean;
+import java.awt.Component;
 
 public class adminFrame extends JFrame {
 
