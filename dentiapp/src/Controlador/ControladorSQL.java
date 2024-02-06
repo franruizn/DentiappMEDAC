@@ -495,6 +495,14 @@ public class ControladorSQL {
 		cn.desconectar();
 	}
 	
+	public void cambiarBaja(String doctor) throws SQLException {
+		cn.conectar();
+		String iddoctor = this.selectWhere("doctor", "iddoctor", "nombre", doctor);
+		String consulta = "UPDATE doctor SET baja = 1 WHERE iddoctor = " + iddoctor;
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
+	}
+	
 	public DefaultTableModel cargarSolicitudesPendientes(String nombreTabla, DefaultTableModel modeloDatos, String[] columnas) throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();

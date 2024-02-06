@@ -111,7 +111,7 @@ public class BorrarDoctorDialog extends JDialog {
 			}
 		});
 
-		JButton btnAceptar = new JButton("Borrar");
+		JButton btnAceptar = new JButton("DAR BAJA");
 		btnAceptar.setForeground(Color.WHITE);
 		btnAceptar.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		btnAceptar.setBackground(new Color(55, 4, 102));
@@ -132,12 +132,16 @@ public class BorrarDoctorDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String seleccionado = cmbDoctores.getSelectedItem().toString();
 				String id;
-				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere borrar el doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de baja al doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
-						confirmarBorrar(seleccionado);
+						con.cambiarBaja(seleccionado);
+						JOptionPane.showMessageDialog(null, "Baja dada con Exito",
+								"Baja dada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, "Error al dar de Baja al doctor",
+								"Error al dar de baja", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 						e1.printStackTrace();
 					}
 				}
@@ -146,22 +150,13 @@ public class BorrarDoctorDialog extends JDialog {
 		});
 	}
 	
-	public void confirmarBorrar(String seleccionado) throws SQLException {
-		String id = null;
-		for (int i = 0; i < tblDocs.getRowCount(); i++) {
-			if(seleccionado.equals(tblDocs.getValueAt(i, 3))) {
-				id = tblDocs.getValueAt(i, 0).toString();
-			}
-		}
-		
-		con.eliminarFila("doctor", id);
-	}
+	
 	
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
 
-			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxWhere(nombreTabla, campo, "0", "baja");
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
