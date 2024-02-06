@@ -50,3 +50,5 @@ Derek:
 			-  Material (Peticiones)
 			-  Stock (Consultar)
 			-  AYUDA (JavaHelp)
+	- Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Baja Doctor
+	- Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Alta Doctor
