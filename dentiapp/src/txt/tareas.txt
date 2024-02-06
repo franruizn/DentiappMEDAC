@@ -1,13 +1,6 @@
 CrearStockDialog:
 	- Falta añadir funcionalidad al boton "Añadir Proveedor"
 
-Ventana doctor:
-- Cambiar los dos cuadrados por uno solo grande donde mostrar las citas
-- Quitar los botones y poner un menú con:
-	-  Pacientes (Odontogramas / Buscar)
-	-  Material (Peticiones)
-	-  Stock (Consultar)
-	-  AYUDA (JavaHelp)
 	
 Ventana admin:
 -  Falta:
@@ -36,3 +29,12 @@ Ventana admin:
 	
 Fran:
 	- Crear stock
+	
+Derek:
+	- Ventana doctor:
+		- Cambiar los dos cuadrados por uno solo grande donde mostrar las citas
+		- Quitar los botones y poner un menú con:
+			-  Pacientes (Odontogramas / Buscar)
+			-  Material (Peticiones)
+			-  Stock (Consultar)
+			-  AYUDA (JavaHelp)
