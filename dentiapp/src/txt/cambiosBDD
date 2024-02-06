@@ -1,3 +1,5 @@
 Cambios en la Base de Datos
 
 Cambiado en la tabla doctor -> fkidespecialidad >> fk_idespecialidad
+
+Cambios tabla doctor -> Añadido el campo "baja" (0=false, 1=true)
