@@ -85,6 +85,15 @@ public class doctorFrame extends JFrame {
 		mnPacientes.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Buscar Paciente");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuscarPacienteDialog dialBuscaPac;
+				dialBuscaPac = new BuscarPacienteDialog();
+				dialBuscaPac.setModal(true);
+				dialBuscaPac.setLocationRelativeTo(null);
+				dialBuscaPac.setVisible(true);
+			}
+		});
 		mnPacientes.add(mntmNewMenuItem_1);
 		
 		JMenu mnNewMenu_3 = new JMenu("Material");
@@ -190,9 +199,7 @@ public class doctorFrame extends JFrame {
 		contentPane.add(btnprsnlzdbnCerrar_1);
 		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
 		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
-		contentPane.add(btnprsnlzdbnCerrar);
-		
-		
+		contentPane.add(btnprsnlzdbnCerrar);		
 		
 		
 		
