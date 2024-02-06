@@ -40,6 +40,7 @@ Fran:
 	- Crear stock
 	- Modificaciones a "BorrarDoctorDialog"
 	- Arreglado el Menú de doctor (estaba dentro del content pane)
+	- Funcionalidad BajaDoctor
 	
 Derek:
 	- Ventana doctor:
