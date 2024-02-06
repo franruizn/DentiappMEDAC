@@ -2,6 +2,8 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -20,16 +22,21 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
 
 public class BorrarDoctorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private DefaultComboBoxModel<String> modeloDocs = new DefaultComboBoxModel<String>();
+	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 	private JTable tblDocs;
 	private DefaultTableModel modeloTblDocs = new DefaultTableModel();
+	private JTextField txtDoctor;
 
 	/**
 	 * Launch the application.
@@ -67,13 +74,43 @@ public class BorrarDoctorDialog extends JDialog {
 				dispose();
 			}
 		});
-		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
-		contentPanel.add(btnprsnlzdbnCerrar);
-
-		JComboBox<?> cmbDoctores = new JComboBox<Object>();
-		cmbDoctores.setBounds(108, 110, 399, 37);
+		
+		JComboBox cmbDoctores = new JComboBox();
+		cmbDoctores.setBounds(113, 107, 221, 47);
 		contentPanel.add(cmbDoctores);
 		
+		txtDoctor = new JTextField();
+		txtDoctor.setColumns(10);
+		txtDoctor.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		txtDoctor.setBackground(new Color(246, 246, 246));
+		txtDoctor.setBounds(335, 104, 181, 49);
+		contentPanel.add(txtDoctor);
+		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
+		contentPanel.add(btnprsnlzdbnCerrar);
+		cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
+		txtDoctor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+				cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
+				String textoBusqueda = txtDoctor.getText().toLowerCase();
+
+				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
+
+				List<String> elementosFiltrados = new ArrayList<>();
+				for (int i = 0; i < cmbDoctores.getItemCount(); i++) {
+					if (cmbDoctores.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
+						elementosFiltrados.add(cmbDoctores.getItemAt(i).toString());
+					}
+				}
+
+				// Actualizar los elementos del combo con los resultados filtrados
+
+				cmbDoctores.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
+				cmbDoctores.setPopupVisible(true);
+			}
+		});
+
 		JButton btnAceptar = new JButton("Borrar");
 		btnAceptar.setForeground(Color.WHITE);
 		btnAceptar.setFont(new Font("SansSerif", Font.PLAIN, 16));
@@ -91,7 +128,6 @@ public class BorrarDoctorDialog extends JDialog {
 		tblDocs = new JTable();
 		tblDocs.setBounds(305, 166, 175, 152);
 		contentPanel.add(tblDocs);
-		cmbDoctores.setModel(rellenarCombo());
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String seleccionado = cmbDoctores.getSelectedItem().toString();
@@ -109,17 +145,6 @@ public class BorrarDoctorDialog extends JDialog {
 
 		});
 	}
-
-	public DefaultComboBoxModel rellenarCombo() throws SQLException {
-		modeloTblDocs = con.cargarDatos("doctor", modeloTblDocs);
-		tblDocs.setModel(modeloTblDocs);
-
-		for (int i = 0; i < modeloTblDocs.getRowCount(); i++) {
-			modeloDocs.addElement((String) modeloTblDocs.getValueAt(i, 3));
-		}
-
-		return modeloDocs;
-	}
 	
 	public void confirmarBorrar(String seleccionado) throws SQLException {
 		String id = null;
@@ -130,5 +155,19 @@ public class BorrarDoctorDialog extends JDialog {
 		}
 		
 		con.eliminarFila("doctor", id);
+	}
+	
+	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
 	}
 }
