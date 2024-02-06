@@ -1,20 +1,14 @@
 package Controlador;
 
-import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
-import com.mysql.jdbc.Statement;
 
 import Vista.adminFrame;
 import Vista.doctorFrame;
@@ -74,7 +68,9 @@ public class ControladorSQL {
 				aframe.setLocationRelativeTo(null);
 			} else {
 				frame.dispose();
-				doctorFrame dframe = new doctorFrame();
+				String nombreDoc = selectWhere("doctor","nombre","fk_idusuario",user);
+				System.out.println(nombreDoc);
+				doctorFrame dframe = new doctorFrame(nombreDoc);
 				dframe.setVisible(true);
 				dframe.setLocationRelativeTo(null);
 			}
@@ -236,7 +232,7 @@ public class ControladorSQL {
 	public ArrayList<String[]> obtenerConsulta(String fecha, String hora) throws SQLException {
 		cn.conectar();
 
-		ArrayList<String[]> consultas = new ArrayList();
+		ArrayList<String[]> consultas = new ArrayList<String[]>();
 		// Consulta a ejecutar
 		String consulta = "SELECT fk_idpaciente, fk_iddoctor, fk_idtratamiento, observaciones FROM consulta WHERE fecha="
 				+ fecha + "AND hora=" + hora + ";";
@@ -259,7 +255,7 @@ public class ControladorSQL {
 	public ArrayList<String[]> obtenerOdontograma(String idPaciente, int diente) throws SQLException {
 		cn.conectar();
 
-		ArrayList<String[]> consultas = new ArrayList();
+		ArrayList<String[]> consultas = new ArrayList<String[]>();
 		// Consulta a ejecutar
 		String consulta = "SELECT iddiente, observaciones, ausencias, caries, implantes, protesis, sangrado, rayosx FROM odontograma WHERE fk_idpaciente="
 				+ idPaciente + " AND iddiente = " + diente + ";";

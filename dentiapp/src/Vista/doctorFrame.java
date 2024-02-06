@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 
@@ -27,6 +26,7 @@ public class doctorFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tblPacientes;
+	private static String initialize = ""; 
 	private DefaultTableModel modeloPacientes = new DefaultTableModel();
 	private DefaultTableModel modeloTratamientos = new DefaultTableModel();
 	private ControladorSQL con = new ControladorSQL();
@@ -39,7 +39,7 @@ public class doctorFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					doctorFrame frame = new doctorFrame();
+					doctorFrame frame = new doctorFrame(initialize);
 					frame.setLocationRelativeTo(null);
 					frame.setUndecorated(true);
 					frame.setVisible(true);
@@ -54,7 +54,7 @@ public class doctorFrame extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public doctorFrame() throws SQLException {
+	public doctorFrame(String nombreDoc) throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -80,11 +80,19 @@ public class doctorFrame extends JFrame {
 				
 			}
 		});
+		
+		JLabel lblBienvenido = new JLabel("BIENVENIDO");
+		lblBienvenido.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblBienvenido.setBounds(246, 25, 682, 49);
+		contentPane.add(lblBienvenido);
 		btnStock.setForeground(Color.WHITE);
 		btnStock.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnStock.setBackground(new Color(55, 4, 102));
 		btnStock.setBounds(493, 30, 118, 29);
 		contentPane.add(btnStock);
+		
+		lblBienvenido.setText(lblBienvenido.getText() + " " + nombreDoc);
 		
 		tblTratamientos = new JTable();
 		tblTratamientos.setEnabled(false);
@@ -207,5 +215,6 @@ public class doctorFrame extends JFrame {
 		
 		tblTratamientos.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tblTratamientos.getColumnModel().getColumn(1).setPreferredWidth(150);
+
 	}
 }
