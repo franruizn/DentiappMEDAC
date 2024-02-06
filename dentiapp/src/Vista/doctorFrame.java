@@ -20,17 +20,18 @@ import java.sql.SQLException;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class doctorFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable tblPacientes;
 	private static String initialize = ""; 
-	private DefaultTableModel modeloPacientes = new DefaultTableModel();
-	private DefaultTableModel modeloTratamientos = new DefaultTableModel();
+	private DefaultTableModel modeloConsulta = new DefaultTableModel();
 	private ControladorSQL con = new ControladorSQL();
-	private JTable tblTratamientos;
+	private JTable tblConsulta;
 
 	/**
 	 * Launch the application.
@@ -65,125 +66,34 @@ public class doctorFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnStock = new JButton("STOCK");
-		btnStock.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					ConsultarStockDiag consult = new ConsultarStockDiag();
-					consult.setModal(true);
-					consult.setLocationRelativeTo(null);
-					consult.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		
 		JLabel lblBienvenido = new JLabel("BIENVENIDO");
 		lblBienvenido.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblBienvenido.setBounds(246, 25, 682, 49);
+		lblBienvenido.setBounds(508, 25, 420, 49);
 		contentPane.add(lblBienvenido);
-		btnStock.setForeground(Color.WHITE);
-		btnStock.setFont(new Font("SansSerif", Font.BOLD, 12));
-		btnStock.setBackground(new Color(55, 4, 102));
-		btnStock.setBounds(493, 30, 118, 29);
-		contentPane.add(btnStock);
 		
 		lblBienvenido.setText(lblBienvenido.getText() + " " + nombreDoc);
 		
-		tblTratamientos = new JTable();
-		tblTratamientos.setEnabled(false);
-		tblTratamientos.setBounds(534, 170, 324, 276);
-		contentPane.add(tblTratamientos);
+		tblConsulta = new JTable();
+		tblConsulta.setBounds(310, 162, 345, 298);
+		contentPane.add(tblConsulta);
 		
-		tblPacientes = new JTable();
-		tblPacientes.setEnabled(false);
-		tblPacientes.setBounds(126, 170, 324, 276);
-		contentPane.add(tblPacientes);
-		
-		JButton btnPedido = new JButton("PEDIDO");
-		btnPedido.addActionListener(new ActionListener() {
+		JButton btnActualizarConsulta = new JButton("ACTUALIZAR");
+		btnActualizarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ValidacionDialog pedido = new ValidacionDialog();
-					pedido.setModal(true);
-					pedido.setLocationRelativeTo(null);
-					pedido.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		btnPedido.setFont(new Font("SansSerif", Font.BOLD, 12));
-		btnPedido.setBounds(341, 30, 118, 29);
-		contentPane.add(btnPedido);	
-		btnPedido.setBackground(new Color(55,4,102));
-		btnPedido.setForeground(Color.WHITE);
-		
-		
-		
-		JButton btnPacientes = new JButton("PACIENTES");
-		btnPacientes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearPacienteDialog pac = new CrearPacienteDialog();
-				pac.setModal(true);
-				
-				pac.setVisible(true);  
-			}
-		});
-		btnPacientes.setFont(new Font("SansSerif", Font.BOLD, 12));
-		btnPacientes.setBounds(191, 30, 118, 29);
-		contentPane.add(btnPacientes);
-		btnPacientes.setBackground(new Color(55,4,102));
-		btnPacientes.setForeground(Color.WHITE);
-		
-		JButton btnOdontograma = new JButton("ODONTOGRAMA");
-		btnOdontograma.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				OdontogramaDialog odonto = new OdontogramaDialog();
-				odonto.setModal(true);
-				odonto.setVisible(true);
-			}
-		});
-		btnOdontograma.setFont(new Font("SansSerif", Font.BOLD, 12));
-		btnOdontograma.setBounds(37, 30, 127, 29);
-		contentPane.add(btnOdontograma);
-		btnOdontograma.setBackground(new Color(55,4,102));
-		btnOdontograma.setForeground(Color.WHITE);
-		
-		JLabel lblNewLabel = new JLabel("LISTA PACIENTES");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
-		lblNewLabel.setBounds(128, 137, 322, 29);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblListaTratamientos = new JLabel("LISTA TRATAMIENTOS");
-		lblListaTratamientos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblListaTratamientos.setFont(new Font("SansSerif", Font.BOLD, 20));
-		lblListaTratamientos.setBounds(534, 137, 322, 29);
-		contentPane.add(lblListaTratamientos);
-		
-		JButton btnActualizarPaciente = new JButton("ACTUALIZAR");
-		btnActualizarPaciente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					tblPacientes.setModel(con.cargarDatos("paciente", modeloPacientes));
+					tblConsulta.setModel(con.cargarDatos("consulta", modeloConsulta));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnActualizarPaciente.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		btnActualizarPaciente.setBounds(341, 456, 109, 23);
-		contentPane.add(btnActualizarPaciente);
-		btnActualizarPaciente.setBackground(new Color(55,4,102));
-		btnActualizarPaciente.setForeground(Color.WHITE);
+		btnActualizarConsulta.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnActualizarConsulta.setBounds(434, 471, 109, 23);
+		contentPane.add(btnActualizarConsulta);
+		btnActualizarConsulta.setBackground(new Color(55,4,102));
+		btnActualizarConsulta.setForeground(Color.WHITE);
 		
 		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
 		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
@@ -193,7 +103,7 @@ public class doctorFrame extends JFrame {
 				dispose();
 			}
 		});
-		BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
+	BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
 		btnprsnlzdbnCerrar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -206,15 +116,43 @@ public class doctorFrame extends JFrame {
 		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
 		contentPane.add(btnprsnlzdbnCerrar);
 		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 1092, 22);
+		contentPane.add(menuBar);
+		
+		JMenu mnPacientes = new JMenu("Pacientes");
+		menuBar.add(mnPacientes);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Odontograma");
+		mnPacientes.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Buscar Paciente");
+		mnPacientes.add(mntmNewMenuItem_1);
+		
+		JMenu mnNewMenu_3 = new JMenu("Material");
+		menuBar.add(mnNewMenu_3);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Peticiones de material");
+		mnNewMenu_3.add(mntmNewMenuItem_2);
+		
+		JMenu mnNewMenu_2 = new JMenu("Stock");
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Consultar Stock");
+		mnNewMenu_2.add(mntmNewMenuItem_3);
+		
+		JMenu mnNewMenu_1 = new JMenu("Ayuda");
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Archivo javahelp");
+		mnNewMenu_1.add(mntmNewMenuItem_4);
+		
+		
+		
 		JLabel lblImagenFondo = new JLabel("");
-		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/fotos/ventana_doctor.PNG")));
+		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/fotos/plantilla1azul.png")));
 		lblImagenFondo.setBounds(0, 0, 956, 596);
 		contentPane.add(lblImagenFondo);
-		tblPacientes.setModel(con.cargarDatos("paciente", modeloPacientes));
-		tblTratamientos.setModel(con.cargarDatos("tratamiento", modeloTratamientos));
-		
-		tblTratamientos.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tblTratamientos.getColumnModel().getColumn(1).setPreferredWidth(150);
 
 	}
 }
