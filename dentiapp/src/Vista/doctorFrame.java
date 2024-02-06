@@ -66,59 +66,8 @@ public class doctorFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBienvenido = new JLabel("BIENVENIDO");
-		lblBienvenido.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblBienvenido.setBounds(508, 25, 420, 49);
-		contentPane.add(lblBienvenido);
-		
-		lblBienvenido.setText(lblBienvenido.getText() + " " + nombreDoc);
-		
-		tblConsulta = new JTable();
-		tblConsulta.setBounds(310, 162, 345, 298);
-		contentPane.add(tblConsulta);
-		
-		JButton btnActualizarConsulta = new JButton("ACTUALIZAR");
-		btnActualizarConsulta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					tblConsulta.setModel(con.cargarDatos("consulta", modeloConsulta));
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnActualizarConsulta.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		btnActualizarConsulta.setBounds(434, 471, 109, 23);
-		contentPane.add(btnActualizarConsulta);
-		btnActualizarConsulta.setBackground(new Color(55,4,102));
-		btnActualizarConsulta.setForeground(Color.WHITE);
-		
-		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
-		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				loginFrame login = new loginFrame();
-				login.setVisible(true);
-				dispose();
-			}
-		});
-	BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
-		btnprsnlzdbnCerrar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnprsnlzdbnCerrar_1.setTexto("Salir");
-		btnprsnlzdbnCerrar_1.setBounds(129, 75, 85, 34);
-		contentPane.add(btnprsnlzdbnCerrar_1);
-		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
-		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
-		contentPane.add(btnprsnlzdbnCerrar);
-		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1092, 22);
-		contentPane.add(menuBar);
+		setJMenuBar(menuBar);
 		
 		JMenu mnPacientes = new JMenu("Pacientes");
 		menuBar.add(mnPacientes);
@@ -146,6 +95,65 @@ public class doctorFrame extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Archivo javahelp");
 		mnNewMenu_1.add(mntmNewMenuItem_4);
+		
+		JButton btnAcceder = new JButton("ACCEDER");
+		btnAcceder.setForeground(Color.WHITE);
+		btnAcceder.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnAcceder.setBackground(new Color(55, 4, 102));
+		btnAcceder.setBounds(546, 472, 109, 23);
+		contentPane.add(btnAcceder);
+		
+		JLabel lblBienvenido = new JLabel("BIENVENIDO");
+		lblBienvenido.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblBienvenido.setBounds(508, 25, 420, 49);
+		contentPane.add(lblBienvenido);
+		
+		lblBienvenido.setText(lblBienvenido.getText() + " " + nombreDoc);
+		
+		tblConsulta = new JTable();
+		tblConsulta.setBounds(310, 162, 345, 298);
+		contentPane.add(tblConsulta);
+		
+		JButton btnActualizar = new JButton("ACTUALIZAR");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tblConsulta.setModel(con.cargarDatos("consulta", modeloConsulta));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnActualizar.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnActualizar.setBounds(310, 471, 109, 23);
+		contentPane.add(btnActualizar);
+		btnActualizar.setBackground(new Color(55,4,102));
+		btnActualizar.setForeground(Color.WHITE);
+		
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginFrame login = new loginFrame();
+				login.setVisible(true);
+				dispose();
+			}
+		});
+	BotonPersonalizadoBean btnprsnlzdbnCerrar_1 = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnprsnlzdbnCerrar_1.setTexto("Salir");
+		btnprsnlzdbnCerrar_1.setBounds(129, 75, 85, 34);
+		contentPane.add(btnprsnlzdbnCerrar_1);
+		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
+		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
+		contentPane.add(btnprsnlzdbnCerrar);
+		
+		
 		
 		
 		
