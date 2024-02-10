@@ -15,7 +15,7 @@ public class ConexionMySQL {
 	private static final String CLAVE = "1234";
 	Statement stm = null;
 	DatabaseMetaData databaseMetaData;
-	Connection cn = null;
+	static Connection cn = null;
 
 	static {
 		try {

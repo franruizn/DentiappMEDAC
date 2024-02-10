@@ -137,16 +137,23 @@ public class CrearConsultaDialog extends JDialog {
 					String nombreColumnas = con.obtenerColumnas("consulta");
 					nombreColumnas = nombreColumnas.substring(11, nombreColumnas.length());
 					String newValues = "" + paciente + "," + doctor + "," + tratamiento + ",'" + observaciones + "',"
-							+ fecha + "'," + hora;
-					con.insertarConsulta("consulta", nombreColumnas, newValues);
-					JOptionPane.showMessageDialog(null, "Consulta Creada con Exito", "Consulta Creada",
-							JOptionPane.WARNING_MESSAGE,
-							new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
+							+ fecha + ",'" + hora+"'";
+					if(!con.comprobarCita("consulta", nombreColumnas, fecha, hora, paciente, doctor)) {
+						con.insertarConsulta("consulta", nombreColumnas, newValues);
+						JOptionPane.showMessageDialog(null, "Consulta Creada con Exito", "Consulta Creada",
+								JOptionPane.WARNING_MESSAGE,
+								new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
+					} else {
+						JOptionPane.showMessageDialog(null, "Error al crear Consulta\n El paciente o doctor ya tiene una cita asignada en esa fecha", "Error al crear consulta",
+								JOptionPane.WARNING_MESSAGE,
+								new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoNo.png")));
+					}
+					
 
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "Error al crear Consulta", "Error al crear consulta",
 							JOptionPane.WARNING_MESSAGE,
-							new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoOk.png")));
+							new ImageIcon(CrearConsultaDialog.class.getResource("/fotos/iconoNo.png")));
 					e1.printStackTrace();
 				}
 

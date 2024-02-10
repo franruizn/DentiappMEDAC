@@ -78,7 +78,7 @@ public class ModificarConsultaDialog extends JDialog {
 		});
 		
 		JComboBox cmbHora = new JComboBox();
-		cmbHora.setBounds(155, 159, 92, 22);
+		cmbHora.setBounds(182, 159, 65, 22);
 		contentPanel.add(cmbHora);
 		btnprsnlzdbnCerrar.setBounds(650, 11, 85, 42);
 		contentPanel.add(btnprsnlzdbnCerrar);
@@ -95,7 +95,7 @@ public class ModificarConsultaDialog extends JDialog {
 		contentPanel.add(btnModificarConsulta);
 
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(60, 149, 85, 42);
+		dateChooser.setBounds(55, 149, 122, 42);
 		contentPanel.add(dateChooser);
 		JTextFieldDateEditor editor = (JTextFieldDateEditor) dateChooser.getDateEditor();
 		editor.setEditable(false);

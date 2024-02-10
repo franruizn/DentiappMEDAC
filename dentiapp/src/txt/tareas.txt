@@ -38,6 +38,8 @@ Fran:
 	- Modificada la BBDD para poder hacer todas las funcionalidades
 	- Al abrir odontograma desde buscarpaciente te selecciona el paciente automaticamente
 	- Modificar los comentarios del diente te guarda los anteriores aunque los borres
+	- Ventana doctor solo muestra las citas del mismo dia (puedes buscar dias posteriores)
+	- No se pueden crear citas a la misma fecha y hora para un doctor o paciente
 	
 Derek:
 	- Ventana doctor:

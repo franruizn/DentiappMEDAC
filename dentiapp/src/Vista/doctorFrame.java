@@ -24,12 +24,16 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import com.toedter.calendar.JDateChooser;
 
 public class doctorFrame extends JFrame {
 
@@ -39,6 +43,10 @@ public class doctorFrame extends JFrame {
 	private DefaultTableModel modeloConsulta = new DefaultTableModel();
 	private ControladorSQL con = new ControladorSQL();
 	private JTable tblConsulta;
+	private Date fechaActual = new Date();
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	private String fechaFormato = sdf.format(fechaActual);
+	
 
 	/**
 	 * Launch the application.
@@ -67,7 +75,7 @@ public class doctorFrame extends JFrame {
 		setResizable(false);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 594);
+		setBounds(100, 100, 956, 615);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -176,6 +184,11 @@ public class doctorFrame extends JFrame {
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(378, 120, 195, 29);
+		dateChooser.setMinSelectableDate(new Date());
+		contentPane.add(dateChooser);
+		
 		JButton btnAcceder = new JButton("ACCEDER");
 		btnAcceder.setForeground(Color.WHITE);
 		btnAcceder.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -192,14 +205,15 @@ public class doctorFrame extends JFrame {
 		lblBienvenido.setText(lblBienvenido.getText() + " " + nombreDoc);
 		
 		tblConsulta = new JTable();
-		tblConsulta.setBounds(310, 162, 345, 298);
+		tblConsulta.setBounds(297, 162, 373, 298);
 		contentPane.add(tblConsulta);
 		
-		JButton btnActualizar = new JButton("ACTUALIZAR");
+		JButton btnActualizar = new JButton("BUSCAR");
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					tblConsulta.setModel(con.cargarDatosPacientes("consulta", modeloConsulta,nombreDoc));
+					String fecha = sdf.format(dateChooser.getDate());
+					tblConsulta.setModel(con.cargarDatosPacientes("consulta", modeloConsulta,nombreDoc, fecha));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -227,10 +241,10 @@ public class doctorFrame extends JFrame {
 			}
 		});
 		btnprsnlzdbnCerrar_1.setTexto("Salir");
-		btnprsnlzdbnCerrar_1.setBounds(129, 75, 85, 34);
+		btnprsnlzdbnCerrar_1.setBounds(129, 25, 85, 34);
 		contentPane.add(btnprsnlzdbnCerrar_1);
 		btnprsnlzdbnCerrar.setTexto("Cerrar Sesion");
-		btnprsnlzdbnCerrar.setBounds(34, 75, 85, 34);
+		btnprsnlzdbnCerrar.setBounds(34, 25, 85, 34);
 		contentPane.add(btnprsnlzdbnCerrar);		
 		
 		
@@ -239,6 +253,7 @@ public class doctorFrame extends JFrame {
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/fotos/plantilla1azul.png")));
 		lblImagenFondo.setBounds(0, 0, 956, 596);
 		contentPane.add(lblImagenFondo);
-		tblConsulta.setModel(con.cargarDatosPacientes("consulta", modeloConsulta,nombreDoc));
+		
+		tblConsulta.setModel(con.cargarDatosPacientes("consulta", modeloConsulta,nombreDoc,fechaFormato));
 	}
 }

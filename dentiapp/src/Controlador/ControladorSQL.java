@@ -1,14 +1,19 @@
 package Controlador;
 
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import java.sql.PreparedStatement;
 
 import Vista.adminFrame;
 import Vista.doctorFrame;
@@ -68,7 +73,7 @@ public class ControladorSQL {
 				aframe.setLocationRelativeTo(null);
 			} else {
 				frame.dispose();
-				String nombreDoc = selectWhere("doctor","nombre","fk_idusuario",user);
+				String nombreDoc = selectWhere("doctor", "nombre", "fk_idusuario", user);
 				System.out.println(nombreDoc);
 				doctorFrame dframe = new doctorFrame(nombreDoc);
 				dframe.setVisible(true);
@@ -102,23 +107,31 @@ public class ControladorSQL {
 		cn.desconectar();
 		return modeloDatos;
 	}
-	
-	public DefaultTableModel cargarDatosPacientes(String nombreTabla, DefaultTableModel modeloDatos,String nombreDoctor) throws SQLException {
+
+	public DefaultTableModel cargarDatosPacientes(String nombreTabla, DefaultTableModel modeloDatos,
+			String nombreDoctor, String fecha) throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();
 
 		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
-		ResultSet rset = cn.ejecutarSelect("SELECT paciente.nombre,observaciones,fecha,hora FROM consulta JOIN doctor ON iddoctor = fk_iddoctor JOIN paciente ON idpaciente = fk_idpaciente where doctor.nombre =  '"+nombreDoctor+"'");
-		
+		ResultSet rset = cn.ejecutarSelect(
+				"SELECT paciente.nombre,tratamiento.nombre,fecha,hora FROM consulta JOIN doctor ON iddoctor = fk_iddoctor JOIN paciente ON idpaciente = fk_idpaciente "
+				+ "JOIN tratamiento ON idtratamiento = fk_idtratamiento where doctor.nombre =  '"
+						+ nombreDoctor + "'");
+
 		modeloDatos.setRowCount(0);
-		
-		String[] listaColumnas = {"paciente.nombre","observaciones","fecha","hora"};
+
+		String[] listaColumnas = { "paciente.nombre", "tratamiento", "fecha", "hora" };
 		modeloDatos.setColumnCount(listaColumnas.length);
 		modeloDatos.setColumnIdentifiers(listaColumnas);
 		while (rset.next()) {
-			modeloDatos.setRowCount(modeloDatos.getRowCount() + 1);
-			for (int i = 0; i < modeloDatos.getColumnCount(); i++) {
-				modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
+			System.out.println(rset.getDate("fecha").toString() + fecha);
+			if (fecha.equals(rset.getDate("fecha").toString())) {
+				modeloDatos.setRowCount(modeloDatos.getRowCount() + 1);
+				for (int i = 0; i < modeloDatos.getColumnCount(); i++) {
+					modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
+
+				}
 			}
 		}
 
@@ -230,8 +243,9 @@ public class ControladorSQL {
 
 		return modeloDatos;
 	}
-	
-	public DefaultComboBoxModel<?> rellenarComboBoxDoble(String nombreTabla, String campo, String campo2) throws SQLException {
+
+	public DefaultComboBoxModel<?> rellenarComboBoxDoble(String nombreTabla, String campo, String campo2)
+			throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();
 		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
@@ -240,7 +254,7 @@ public class ControladorSQL {
 		ResultSet rset = cn.ejecutarSelect(consulta);
 		ArrayList<String> datos = new ArrayList<>();
 		while (rset.next()) {
-			String resultado = rset.getString(campo2) + "-" +rset.getString(campo);
+			String resultado = rset.getString(campo2) + "-" + rset.getString(campo);
 			datos.add(resultado);
 		}
 
@@ -275,7 +289,7 @@ public class ControladorSQL {
 		cn.desconectar();
 		return consultas;
 	}
-	
+
 	public ArrayList<String[]> obtenerOdontograma(String idPaciente, int diente) throws SQLException {
 		cn.conectar();
 
@@ -298,15 +312,15 @@ public class ControladorSQL {
 			consultaNueva[7] = rset.getString("rayosx");
 			consultas.add(consultaNueva);
 		}
-		
-		for(int i = 0; i < consultas.size(); i++) {
+
+		for (int i = 0; i < consultas.size(); i++) {
 			System.out.println(consultas.get(i).toString());
 		}
 
 		cn.desconectar();
 		return consultas;
 	}
-	
+
 	public String selectWhere(String nombreTabla, String campoBuscar, String campo, String valor) throws SQLException {
 		cn.conectar();
 
@@ -441,13 +455,15 @@ public class ControladorSQL {
 		cn.desconectar();
 
 	}
-	
-	public DefaultTableModel cargarSolicitudesAceptadas(String nombreTabla, DefaultTableModel modeloDatos, String[] columnas) throws SQLException {
+
+	public DefaultTableModel cargarSolicitudesAceptadas(String nombreTabla, DefaultTableModel modeloDatos,
+			String[] columnas) throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();
 
 		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
-		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE aceptado = 1");
+		ResultSet rset = cn.ejecutarSelect(
+				"SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE aceptado = 1");
 		modeloDatos.setRowCount(0);
 
 		// Se establece el número de columnas del modelo de datos.
@@ -464,61 +480,64 @@ public class ControladorSQL {
 				modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
 			}
 		}
-		
+
 		cn.desconectar();
 		return modeloDatos;
 	}
-	
+
 	public void ejecutarInsertar(String consulta) throws SQLException {
 		cn.conectar();
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}
-	
+
 	public void crearOdontograma(String dni) throws SQLException {
 		cn.conectar();
-		String idPaciente = selectWhere("paciente","idpaciente","dni",dni);
-		
-		for(int i = 1; i <= 20; i++) {
+		String idPaciente = selectWhere("paciente", "idpaciente", "dni", dni);
+
+		for (int i = 1; i <= 20; i++) {
 			String consulta = "INSERT INTO odontograma VALUES (0,'" + idPaciente + "'," + i + ",'',0,0,0,0,0,0)";
 			cn.ejecutarIDU(consulta);
 		}
 		cn.desconectar();
 	}
-	
+
 	public void CambiarContraseña(String idusuario) {
 		cn.conectar();
 		try {
 			String contraseña = "'" + JOptionPane.showInputDialog("Añada la nueva contraseña") + "'";
 			String consulta = "UPDATE dentiapp.usuario SET pass=" + contraseña + " WHERE idusuario='" + idusuario + "'";
 			cn.ejecutarIDU(consulta);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public void CambiarOdontograma(String idpaciente, String iddiente,String observaciones, int a,int b,int c,int d,int f,int g) {
+
+	public void CambiarOdontograma(String idpaciente, String iddiente, String observaciones, int a, int b, int c, int d,
+			int f, int g) {
 		cn.conectar();
 		try {
-			String consulta = "UPDATE dentiapp.odontograma SET observaciones= '" + observaciones + "' , ausencias=" + a + " , caries=" + b + " , implantes=" + c + " , protesis=" + d + " , sangrado=" + f + " , rayosx=" + g + " WHERE fk_idpaciente='" + idpaciente + "' AND iddiente=" + iddiente;
+			String consulta = "UPDATE dentiapp.odontograma SET observaciones= '" + observaciones + "' , ausencias=" + a
+					+ " , caries=" + b + " , implantes=" + c + " , protesis=" + d + " , sangrado=" + f + " , rayosx="
+					+ g + " WHERE fk_idpaciente='" + idpaciente + "' AND iddiente=" + iddiente;
 			System.out.println(consulta);
 			cn.ejecutarIDU(consulta);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void cambiarAceptado(String idsolicitudes) throws SQLException {
 		cn.conectar();
 		String consulta = "UPDATE solicitudes SET aceptado = 1 WHERE idsolicitudes = " + idsolicitudes;
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}
-	
+
 	public void cambiarAlta(String doctor) throws SQLException {
 		cn.conectar();
 		String iddoctor = this.selectWhere("doctor", "iddoctor", "nombre", doctor);
@@ -526,13 +545,15 @@ public class ControladorSQL {
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}
-	
-	public DefaultTableModel cargarSolicitudesPendientes(String nombreTabla, DefaultTableModel modeloDatos, String[] columnas) throws SQLException {
+
+	public DefaultTableModel cargarSolicitudesPendientes(String nombreTabla, DefaultTableModel modeloDatos,
+			String[] columnas) throws SQLException {
 		cn.conectar();
 		metaDatos = cn.getConnection().getMetaData();
 
 		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
-		ResultSet rset = cn.ejecutarSelect("SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE aceptado = 0");
+		ResultSet rset = cn.ejecutarSelect(
+				"SELECT " + String.join(",", columnas) + " FROM " + nombreTabla + " WHERE aceptado = 0");
 		modeloDatos.setRowCount(0);
 
 		// Se establece el número de columnas del modelo de datos.
@@ -549,21 +570,33 @@ public class ControladorSQL {
 				modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
 			}
 		}
-		
+
 		cn.desconectar();
 		return modeloDatos;
 	}
-	
+
 	public void modificarDoctor(String iddoctor, String idespecialidad, String nombre) throws SQLException {
-		String consulta = "UPDATE doctor SET fk_idespecialidad = " + idespecialidad + ", nombre = '" + nombre + "' WHERE iddoctor = " + iddoctor;
+		String consulta = "UPDATE doctor SET fk_idespecialidad = " + idespecialidad + ", nombre = '" + nombre
+				+ "' WHERE iddoctor = " + iddoctor;
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}
-	
+
 	public void modificarPaciente(String idpaciente, String nombre, String dni) throws SQLException {
-		String consulta = "UPDATE paciente SET nombre ='" + nombre + "', dni ='" + dni +"' WHERE idpaciente = "+ idpaciente;
-		System.out.println(consulta);
-		//cn.ejecutarIDU(consulta);
+		String consulta = "UPDATE paciente SET nombre ='" + nombre + "', dni ='" + dni + "' WHERE idpaciente = "
+				+ idpaciente;
+		cn.ejecutarIDU(consulta);
+	}
+	
+	public boolean comprobarCita(String nombreTabla, String nombreColumnas, String fecha, String hora, String idpaciente, String iddoctor) throws SQLException {
+	    String consulta = "SELECT * FROM consulta WHERE fecha = "+fecha+" AND hora = '"+hora+"' AND (fk_idpaciente = "+idpaciente+" OR fk_iddoctor = "+iddoctor+")";
+	    PreparedStatement statement = ConexionMySQL.cn.prepareStatement(consulta);
+	    ResultSet resultSet = statement.executeQuery();
+	    boolean hayCitaAsignada = resultSet.next();
+	    resultSet.close();
+	    statement.close();
+
+	    return hayCitaAsignada;
 	}
 
 }
