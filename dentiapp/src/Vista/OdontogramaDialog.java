@@ -42,6 +42,7 @@ public class OdontogramaDialog extends JDialog {
 	private JTextField txtNumDiente;
 	private JButton[] listaBotones = new JButton[20];
 	private JTextField txtPaciente;
+	private JTextField txtPaciente;
 	private ControladorSQL con = new ControladorSQL();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ArrayList<String[]> consultas = new ArrayList<>();
@@ -82,12 +83,21 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		JTextArea txtComentario = new JTextArea();
+		txtComentario.setBounds(662, 247, 187, 80);
+		contentPanel.add(txtComentario);
+		
+		JLabel lblComentario = new JLabel("Comentario:");
+		lblComentario.setBounds(662, 227, 72, 14);
+		contentPanel.add(lblComentario);
 
 		JTextArea txtaDescripcion = new JTextArea();
+		txtaDescripcion.setEditable(false);
 		txtaDescripcion.setText(" ");
 		txtaDescripcion.setColumns(5);
 		txtaDescripcion.setRows(20);
-		txtaDescripcion.setBounds(730, 219, 128, 86);
+		txtaDescripcion.setBounds(535, 338, 323, 86);
 		contentPanel.add(txtaDescripcion);
 
 		txtaDescripcion.setLineWrap(true);
@@ -135,18 +145,6 @@ public class OdontogramaDialog extends JDialog {
 			}
 		});
 
-		JCheckBox chckbxAusencias = new JCheckBox("Ausencias");
-		chckbxAusencias.setBounds(538, 315, 86, 21);
-		contentPanel.add(chckbxAusencias);
-
-		JCheckBox chckbxProtesis = new JCheckBox("Prótesis");
-		chckbxProtesis.setBounds(538, 361, 86, 22);
-		contentPanel.add(chckbxProtesis);
-
-		JCheckBox chckbxSangrado = new JCheckBox("Sangrado");
-		chckbxSangrado.setBounds(652, 362, 93, 21);
-		contentPanel.add(chckbxSangrado);
-
 		JButton btnSalir = new JButton("SALIR");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -156,51 +154,10 @@ public class OdontogramaDialog extends JDialog {
 		btnSalir.setBounds(847, 27, 85, 21);
 		contentPanel.add(btnSalir);
 
-		JCheckBox chckbxCaries = new JCheckBox("Caries");
-		chckbxCaries.setBounds(652, 314, 93, 22);
-		contentPanel.add(chckbxCaries);
-
-		JCheckBox chckbxImplantes = new JCheckBox("Implantes");
-		chckbxImplantes.setBounds(770, 315, 93, 22);
-		contentPanel.add(chckbxImplantes);
-
-		JCheckBox chckbxRayos = new JCheckBox("Rayos X");
-		chckbxRayos.setBounds(770, 362, 93, 21);
-		contentPanel.add(chckbxRayos);
-
 		JButton btnGuardar = new JButton("GUARDAR");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (chckbxAusencias.isSelected()) {
-					a = 1;
-				} else {
-					a = 0;
-				}
-				if (chckbxCaries.isSelected()) {
-					b = 1;
-				} else {
-					b = 0;
-				}
-				if (chckbxImplantes.isSelected()) {
-					c = 1;
-				} else {
-					c = 0;
-				}
-				if (chckbxProtesis.isSelected()) {
-					d = 1;
-				} else {
-					d = 0;
-				}
-				if (chckbxSangrado.isSelected()) {
-					f = 1;
-				} else {
-					f = 0;
-				}
-				if (chckbxRayos.isSelected()) {
-					g = 1;
-				} else {
-					g = 0;
-				}
+				
 
 				String fechaFormato = sdf.format(fechaActual);
 
@@ -225,7 +182,7 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(btnGuardar);
 
 		JLabel lblDescripcion = new JLabel("Descripción :");
-		lblDescripcion.setBounds(652, 228, 82, 13);
+		lblDescripcion.setBounds(535, 314, 82, 13);
 		contentPanel.add(lblDescripcion);
 
 		txtNumDiente = new JTextField();
@@ -606,5 +563,4 @@ public class OdontogramaDialog extends JDialog {
 			e1.printStackTrace();
 		}
 	}
-
 }
