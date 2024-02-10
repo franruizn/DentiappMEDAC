@@ -13,7 +13,7 @@
     <view>
         <name>Indice</name>
         <label>Indice</label>
-        <type>javax.help.indexView</type>
+        <type>javax.help.IndexView</type>
         <data>indice.xml</data>
     </view>
     <view>
