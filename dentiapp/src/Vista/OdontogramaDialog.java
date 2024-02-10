@@ -42,7 +42,7 @@ public class OdontogramaDialog extends JDialog {
 	private JTextField txtNumDiente;
 	private JButton[] listaBotones = new JButton[20];
 	private JTextField txtPaciente;
-	private JTextField txtPaciente;
+	private JTextField txtComentario;
 	private ControladorSQL con = new ControladorSQL();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ArrayList<String[]> consultas = new ArrayList<>();
@@ -83,21 +83,13 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		JTextArea txtComentario = new JTextArea();
-		txtComentario.setBounds(662, 247, 187, 80);
-		contentPanel.add(txtComentario);
-		
-		JLabel lblComentario = new JLabel("Comentario:");
-		lblComentario.setBounds(662, 227, 72, 14);
-		contentPanel.add(lblComentario);
 
 		JTextArea txtaDescripcion = new JTextArea();
 		txtaDescripcion.setEditable(false);
 		txtaDescripcion.setText(" ");
 		txtaDescripcion.setColumns(5);
 		txtaDescripcion.setRows(20);
-		txtaDescripcion.setBounds(535, 338, 323, 86);
+		txtaDescripcion.setBounds(535, 278, 323, 146);
 		contentPanel.add(txtaDescripcion);
 
 		txtaDescripcion.setLineWrap(true);
@@ -182,7 +174,7 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.add(btnGuardar);
 
 		JLabel lblDescripcion = new JLabel("Descripción :");
-		lblDescripcion.setBounds(535, 314, 82, 13);
+		lblDescripcion.setBounds(535, 254, 82, 13);
 		contentPanel.add(lblDescripcion);
 
 		txtNumDiente = new JTextField();
@@ -209,8 +201,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 2;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd2.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -221,8 +212,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 3;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd3.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -233,8 +223,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 4;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd4.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -245,8 +234,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 5;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd5.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -257,8 +245,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 6;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd6.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -269,8 +256,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 7;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd7.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -281,8 +267,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 8;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd8.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -293,8 +278,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 9;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd9.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -305,8 +289,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 10;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd10.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -317,8 +300,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 11;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd11.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -329,8 +311,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 12;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd12.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -341,8 +322,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 13;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd13.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -353,8 +333,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 14;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd14.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -365,8 +344,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 15;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd15.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -377,8 +355,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 16;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd16.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -389,8 +366,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 17;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd17.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -401,8 +377,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd18.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 18;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd18.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -413,8 +388,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd19.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 19;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd19.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -425,8 +399,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 20;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 		});
 		btnd20.setFont(new Font("Tahoma", Font.PLAIN, 8));
@@ -444,8 +417,7 @@ public class OdontogramaDialog extends JDialog {
 		btnd1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = 1;
-				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion, chckbxAusencias, chckbxProtesis, chckbxSangrado,
-						chckbxCaries, chckbxImplantes, chckbxRayos);
+				rellenarDatosDiente(cmbPaciente, i, txtaDescripcion);
 			}
 
 		});
@@ -518,45 +490,13 @@ public class OdontogramaDialog extends JDialog {
 		return comboDatos;
 	}
 
-	private void rellenarDatosDiente(JComboBox cmbPaciente, int i, JTextArea txtaDescripcion, JCheckBox chckbxAusencias,
-			JCheckBox chckbxProtesis, JCheckBox chckbxSangrado, JCheckBox chckbxCaries, JCheckBox chckbxImplantes,
-			JCheckBox chckbxRayosx) {
+	private void rellenarDatosDiente(JComboBox cmbPaciente, int i, JTextArea txtaDescripcion) {
 		try {
 			String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
 			consultas = con.obtenerOdontograma(con.selectWhere("paciente", "idpaciente", "dni", dni[0]), i);
 			txtNumDiente.setText(consultas.get(0)[0].toString());
 			txtOriginal = consultas.get(0)[1].toString();
 			txtaDescripcion.setText(consultas.get(0)[1].toString());
-			if (consultas.get(0)[2].toString().equals("1")) {
-				chckbxAusencias.setSelected(true);
-			} else {
-				chckbxAusencias.setSelected(false);
-			}
-			if (consultas.get(0)[3].toString().equals("1")) {
-				chckbxCaries.setSelected(true);
-			} else {
-				chckbxCaries.setSelected(false);
-			}
-			if (consultas.get(0)[4].toString().equals("1")) {
-				chckbxImplantes.setSelected(true);
-			} else {
-				chckbxImplantes.setSelected(false);
-			}
-			if (consultas.get(0)[5].toString().equals("1")) {
-				chckbxProtesis.setSelected(true);
-			} else {
-				chckbxProtesis.setSelected(false);
-			}
-			if (consultas.get(0)[6].toString().equals("1")) {
-				chckbxSangrado.setSelected(true);
-			} else {
-				chckbxSangrado.setSelected(false);
-			}
-			if (consultas.get(0)[7].toString().equals("1")) {
-				chckbxRayosx.setSelected(true);
-			} else {
-				chckbxRayosx.setSelected(false);
-			}
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
