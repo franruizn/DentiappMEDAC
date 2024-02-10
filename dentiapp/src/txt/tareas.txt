@@ -10,8 +10,7 @@ Ventana doctor:
 
 Ventana admin:
 -  Falta:
-	- Buscar paciente
-	- Consultar pagos de cliente
+	- Buscar paciente (Falta historial y pagos)
 	- Consultar doctor
 	- Actualizar stock
 	- Consultar stock
@@ -24,7 +23,6 @@ Ventana admin:
 	- Modificar especialidad
 	- Consultar especialidad
 	- Eliminar especialidad
-	- Generar historial paciente
 	- Crear tratamiento
 	- Modificar tratamiento
 	- Dar de baja tratamiento

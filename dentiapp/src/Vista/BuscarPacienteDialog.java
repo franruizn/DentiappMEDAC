@@ -76,7 +76,7 @@ public class BuscarPacienteDialog extends JDialog {
 		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
 
-        JButton btnMostrarConsultas = new JButton("Mostrar Consultas");
+        JButton btnMostrarConsultas = new JButton("Historial del Paciente");
         btnMostrarConsultas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 MostrarConsultasDialog dialog = new MostrarConsultasDialog();
