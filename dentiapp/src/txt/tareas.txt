@@ -29,6 +29,8 @@ Ventana admin:
 	- Consultar AYUDA
 	
 Fran:
+	- Creados HTML: 
+		- 
 	- Crear stock
 	- Modificaciones a "BorrarDoctorDialog"
 	- Arreglado el Menú de doctor (estaba dentro del content pane)
@@ -42,6 +44,8 @@ Fran:
 	- No se pueden crear citas a la misma fecha y hora para un doctor o paciente
 	
 Derek:
+	- Creados HTML: 
+		- 
 	- Ventana doctor:
 		- Cambiar los dos cuadrados por uno solo grande donde mostrar las citas
 		- Quitar los botones y poner un menú con:
@@ -55,4 +59,4 @@ Derek:
 	- Funcionalidad Buscar paciente
 	- funcionalidad javahelp(cmd, aparicion de menu)
 	
-	
+Ivan:
