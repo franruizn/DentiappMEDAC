@@ -38,6 +38,8 @@ Fran:
 	- Funcionalidad de "ModificarDoctorDialog"
 	- Funcionalidad de "ModificarPacienteDialog"
 	- Modificada la BBDD para poder hacer todas las funcionalidades
+	- Al abrir odontograma desde buscarpaciente te selecciona el paciente automaticamente
+	- Modificar los comentarios del diente te guarda los anteriores aunque los borres
 	
 Derek:
 	- Ventana doctor:

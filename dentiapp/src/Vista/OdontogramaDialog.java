@@ -17,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 import Controlador.ControladorSQL;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -179,8 +181,12 @@ public class OdontogramaDialog extends JDialog {
 					con.CambiarOdontograma(con.selectWhere("paciente", "idpaciente", "dni", id[0]),
 							txtNumDiente.getText().toString(), txtNuevo, a, b, c, d, f, g);
 					rellenarDatosDiente(cmbPaciente, Integer.parseInt(txtNumDiente.getText()), txtaDescripcion);
+					JOptionPane.showMessageDialog(null, "Diente Modificado con Exito",
+							"Diente Modificado", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Error al modificar Diente - Los datos introducidos no son correctos.",
+							"Error al modificar diente", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 					e1.printStackTrace();
 				}
 			}
