@@ -1,13 +1,19 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,9 +21,12 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 import Controlador.ControladorSQL;
+import paqGUI.BotonPersonalizadoBean;
 
 public class BuscarPacienteDialog extends JDialog {
 
@@ -25,6 +34,9 @@ public class BuscarPacienteDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private ControladorSQL con = new ControladorSQL();
 	private ArrayList<String[]> consultas = new ArrayList<>();
+	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
+	private JTextField txtPaciente;
+
 
 
 	/**
@@ -54,27 +66,59 @@ public class BuscarPacienteDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JComboBox cmbPaciente = new JComboBox();
-
-		cmbPaciente.setBounds(178, 107, 275, 43);
-		contentPanel.add(cmbPaciente);
-		
-		cmbPaciente.addActionListener(new ActionListener() {
+		BotonPersonalizadoBean btnprsnlzdbnCerrar = new BotonPersonalizadoBean();
+		btnprsnlzdbnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < consultas.size(); i++) {
-					try {
-						if (cmbPaciente.getSelectedItem().equals(con.selectWhere("paciente", "nombre", "idpaciente", consultas.get(i)[0]))) {
-							cmbPaciente.setSelectedItem(con.selectWhere("paciente", "nombre", "idpaciente", consultas.get(i)[0]));							
-						}
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
+				dispose();
 			}
 		});
+		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
+		contentPanel.add(btnprsnlzdbnCerrar);
+		
+		JComboBox cmbPaciente = new JComboBox();
+		cmbPaciente.setBounds(113, 107, 221, 47);
+		contentPanel.add(cmbPaciente);
+		
+		txtPaciente = new JTextField();
+		txtPaciente.setColumns(10);
+		txtPaciente.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		txtPaciente.setBackground(new Color(246, 246, 246));
+		txtPaciente.setBounds(335, 104, 181, 49);
+		contentPanel.add(txtPaciente);
+		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
+		contentPanel.add(btnprsnlzdbnCerrar);
+		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+		txtPaciente.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+				cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+				String textoBusqueda = txtPaciente.getText().toLowerCase();
+
+				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
+
+				List<String> elementosFiltrados = new ArrayList<>();
+				for (int i = 0; i < cmbPaciente.getItemCount(); i++) {
+					if (cmbPaciente.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
+						elementosFiltrados.add(cmbPaciente.getItemAt(i).toString());
+					}
+				}
+
+				// Actualizar los elementos del combo con los resultados filtrados
+
+				cmbPaciente.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
+				cmbPaciente.setPopupVisible(true);
+			}
+		});
+		JButton btnAceptar = new JButton("ACEPTAR");
+		btnAceptar.setForeground(Color.WHITE);
+		btnAceptar.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		btnAceptar.setBackground(new Color(55, 4, 102));
+		btnAceptar.setActionCommand("OK");
+		btnAceptar.setBounds(364, 344, 157, 50);
+		contentPanel.add(btnAceptar);
 	
-			
+		
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(BorrarUsuarioDialog.class.getResource("/fotos/buscar_paciente.PNG")));
@@ -84,6 +128,19 @@ public class BuscarPacienteDialog extends JDialog {
 			
 			
 		
+	}
+	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
 	}
 }
 	

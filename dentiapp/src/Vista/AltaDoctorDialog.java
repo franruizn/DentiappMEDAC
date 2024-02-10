@@ -134,11 +134,11 @@ public class AltaDoctorDialog extends JDialog {
 				if(op == 0) {
 					try {
 						con.cambiarAlta(seleccionado);
-						JOptionPane.showMessageDialog(null, "Baja dada con Exito",
-								"Baja dada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
+						JOptionPane.showMessageDialog(null, "Alta dada con Exito",
+								"Alta dada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Error al dar de Baja al doctor",
+						JOptionPane.showMessageDialog(null, "Error al dar de Alta al doctor",
 								"Error al dar de baja", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 						e1.printStackTrace();
 					}
@@ -151,7 +151,7 @@ public class AltaDoctorDialog extends JDialog {
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
 
-			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxWhere(nombreTabla, campo, "0", "baja");
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxWhere(nombreTabla, campo, "1", "baja");
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
