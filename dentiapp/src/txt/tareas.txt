@@ -3,13 +3,6 @@ CrearStockDialog:
 
 Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Baja Doctor
 
-Ventana doctor:
-- Cambiar los dos cuadrados por uno solo grande donde mostrar las citas
-- Quitar los botones y poner un menú con:
-	-  Pacientes (Odontogramas / Buscar)
-	-  Material (Peticiones)
-	-  Stock (Consultar)
-	-  AYUDA (JavaHelp)
 	
 Ventana admin:
 -  Falta:
