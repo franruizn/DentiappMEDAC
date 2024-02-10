@@ -3,7 +3,11 @@ CrearStockDialog:
 
 Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Baja Doctor
 
-	
+Ventana doctor:
+-  Falta:
+	- Consultar AYUDA
+
+
 Ventana admin:
 -  Falta:
 	- Buscar paciente
@@ -33,6 +37,7 @@ Fran:
 	- Funcionalidad BajaDoctor
 	- Funcionalidad de "ModificarDoctorDialog"
 	- Funcionalidad de "ModificarPacienteDialog"
+	- Modificada la BBDD para poder hacer todas las funcionalidades
 	
 Derek:
 	- Ventana doctor:
