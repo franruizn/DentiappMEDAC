@@ -13,7 +13,6 @@ Ventana doctor:
 	
 Ventana admin:
 -  Falta:
-	- Modificar paciente
 	- Buscar paciente
 	- Consultar pagos de cliente
 	- Consultar doctor
@@ -40,6 +39,7 @@ Fran:
 	- Arreglado el Menú de doctor (estaba dentro del content pane)
 	- Funcionalidad BajaDoctor
 	- Funcionalidad de "ModificarDoctorDialog"
+	- Funcionalidad de "ModificarPacienteDialog"
 	
 Derek:
 	- Ventana doctor:
