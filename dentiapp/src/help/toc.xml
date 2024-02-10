@@ -1,0 +1,11 @@
+<toc version="1.0">
+    <tocitem txt="Login" target="Login"></tocitem>
+    <tocitem txt="AdminFrame" target="AdminFrame"/>
+    <tocitem txt="BorrarConsulta" target="BorrarConsulta"/>
+    <tocitem txt="BorrarDoctor" target="BorrarDoctor"/>
+    <tocitem txt="CrearConsulta" target="CrearConsulta"/>
+    <tocitem txt="CrearDoctor" target="CrearDoctor"/>
+    <tocitem txt="CrearPaciente" target="CrearPaciente"/>
+    <tocitem txt="CrearStock" target="CrearStock"/>
+    <tocitem txt="ModificarConsulta" target="ModificarConsulta"/>
+</toc>
