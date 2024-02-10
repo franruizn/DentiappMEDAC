@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<map version="1.0">
+    <mapID target="Login" url="html/login.html"/>
+    <mapID target="AdminFrame" url="html/adminFrame.html"/>
+    <mapID target="BorrarConsulta" url="html/borrarConsulta.html"/>
+    <mapID target="BorrarDoctor" url="html/borrarDoctor.html"/>
+    <mapID target="CrearConsulta" url="html/crearConsulta.html"/>
+    <mapID target="CrearDoctor" url="html/crearDoctor.html"/>
+    <mapID target="CrearPaciente" url="html/crearPaciente.html"/>
+    <mapID target="CrearStock" url="html/crearStock.html"/>
+    <mapID target="ModificarConsulta" url="html/modificarConsulta.html"/>
+</map>    
