@@ -239,6 +239,6 @@ public class doctorFrame extends JFrame {
 		lblImagenFondo.setIcon(new ImageIcon(doctorFrame.class.getResource("/fotos/plantilla1azul.png")));
 		lblImagenFondo.setBounds(0, 0, 956, 596);
 		contentPane.add(lblImagenFondo);
-
+		tblConsulta.setModel(con.cargarDatosPacientes("consulta", modeloConsulta,nombreDoc));
 	}
 }
