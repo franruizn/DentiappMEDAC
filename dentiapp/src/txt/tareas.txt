@@ -51,3 +51,6 @@ Derek:
 	- Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Alta Doctor
 	- Funcionalidad dar alta doctor
 	- Funcionalidad Buscar paciente
+	- funcionalidad javahelp(cmd, aparicion de menu)
+	
+	

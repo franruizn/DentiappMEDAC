@@ -75,6 +75,30 @@ public class BuscarPacienteDialog extends JDialog {
 		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
 		
+		JButton btnOdontograma = new JButton("Odontograma");
+        btnOdontograma.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                OdontogramaDialog dialog = new OdontogramaDialog();
+                dialog.setModal(true);
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+            }
+        });
+        btnOdontograma.setBounds(114, 370, 150, 40);
+        contentPanel.add(btnOdontograma);
+
+        JButton btnMostrarConsultas = new JButton("Mostrar Consultas");
+        btnMostrarConsultas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                MostrarConsultasDialog dialog = new MostrarConsultasDialog();
+                dialog.setModal(true);
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+            }
+        });
+        btnMostrarConsultas.setBounds(343, 370, 150, 40);
+        contentPanel.add(btnMostrarConsultas);
+		
 		JComboBox cmbPaciente = new JComboBox();
 		cmbPaciente.setBounds(113, 107, 221, 47);
 		contentPanel.add(cmbPaciente);
@@ -110,13 +134,7 @@ public class BuscarPacienteDialog extends JDialog {
 				cmbPaciente.setPopupVisible(true);
 			}
 		});
-		JButton btnAceptar = new JButton("ACEPTAR");
-		btnAceptar.setForeground(Color.WHITE);
-		btnAceptar.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		btnAceptar.setBackground(new Color(55, 4, 102));
-		btnAceptar.setActionCommand("OK");
-		btnAceptar.setBounds(364, 344, 157, 50);
-		contentPanel.add(btnAceptar);
+		
 	
 		
 		
