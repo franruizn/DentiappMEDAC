@@ -102,6 +102,30 @@ public class ControladorSQL {
 		cn.desconectar();
 		return modeloDatos;
 	}
+	
+	public DefaultTableModel cargarDatosPacientes(String nombreTabla, DefaultTableModel modeloDatos,String nombreDoctor) throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+
+		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
+		ResultSet rset = cn.ejecutarSelect("SELECT * FROM "+nombreTabla+" INNER JOIN doctor ON iddoctor = fk_iddoctor WHERE nombre = "+ nombreDoctor);
+		
+		modeloDatos.setRowCount(0);
+		String nombreColumnas = obtenerColumnas(nombreTabla);
+		String[] listaColumnas = nombreColumnas.split(",");
+		modeloDatos.setColumnCount(listaColumnas.length);
+		modeloDatos.setColumnIdentifiers(listaColumnas);
+		while (rset.next()) {
+			modeloDatos.setRowCount(modeloDatos.getRowCount() + 1);
+			for (int i = 0; i < modeloDatos.getColumnCount(); i++) {
+				modeloDatos.setValueAt(rset.getObject(i + 1), modeloDatos.getRowCount() - 1, i);
+			}
+		}
+
+		// Se cierra la conexión a la base de datos.
+		cn.desconectar();
+		return modeloDatos;
+	}
 
 	public String obtenerColumnas(String nombreTabla) throws SQLException {
 		// Método para obtener las columnas de una tabla y guardarlas en un String que

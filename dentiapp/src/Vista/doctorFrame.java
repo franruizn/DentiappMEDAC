@@ -199,7 +199,7 @@ public class doctorFrame extends JFrame {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					tblConsulta.setModel(con.cargarDatos("consulta", modeloConsulta));
+					tblConsulta.setModel(con.cargarDatosPacientes("consulta", modeloConsulta,nombreDoc));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
