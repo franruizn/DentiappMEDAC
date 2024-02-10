@@ -12,6 +12,8 @@ import javax.help.HelpSet;
 import javax.help.HelpBroker;
 import java.io.File;
 import java.net.URL;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class botonAyuda extends JFrame {
 
@@ -33,7 +35,20 @@ public class botonAyuda extends JFrame {
 
     public botonAyuda() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setPreferredSize(new Dimension(450, 300)); // Tamaño preferido de la ventana
+        pack(); // Empaqueta los componentes para que se ajusten automáticamente
+        setResizable(false); // No se puede redimensionar la ventana
+
+        // Obtener la dimensión de la pantalla
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        // Obtener la dimensión de la ventana
+        Dimension windowSize = getSize();
+        // Calcular la posición para centrar la ventana en la pantalla
+        int posX = (screenSize.width - windowSize.width) / 2;
+        int posY = (screenSize.height - windowSize.height) / 2;
+        // Establecer la posición de la ventana
+        setLocation(posX, posY);
+
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -61,3 +76,5 @@ public class botonAyuda extends JFrame {
         contentPane.add(btnAyuda, BorderLayout.NORTH);
     }
 }
+
+
