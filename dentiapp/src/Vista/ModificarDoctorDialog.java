@@ -69,6 +69,26 @@ public class ModificarDoctorDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
+		JLabel lblDoctor = new JLabel("Doctor Seleccionado:");
+		lblDoctor.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDoctor.setBounds(58, 118, 156, 18);
+		contentPanel.add(lblDoctor);
+		
+		JLabel lblEspecialidad = new JLabel("Especialidad");
+		lblEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblEspecialidad.setBounds(419, 245, 80, 18);
+		contentPanel.add(lblEspecialidad);
+		
+		JLabel lblModNom = new JLabel("Modificar Nombre");
+		lblModNom.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModNom.setBounds(58, 245, 114, 18);
+		contentPanel.add(lblModNom);
+		
+		JLabel lblNombre = new JLabel("Buscar Nombre");
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNombre.setBounds(419, 118, 96, 18);
+		contentPanel.add(lblNombre);
+		
 		JComboBox cmbDr = new JComboBox();
 		cmbDr.setBounds(58, 274, 55, 50);
 		contentPanel.add(cmbDr);
@@ -178,6 +198,4 @@ public class ModificarDoctorDialog extends JDialog {
 
 		return comboDatos;
 	}
-	
-	
 }

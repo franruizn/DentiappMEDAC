@@ -535,5 +535,11 @@ public class ControladorSQL {
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}
+	
+	public void modificarPaciente(String idpaciente, String nombre, String dni) throws SQLException {
+		String consulta = "UPDATE paciente SET nombre ='" + nombre + "', dni ='" + dni +"' WHERE idpaciente = "+ idpaciente;
+		System.out.println(consulta);
+		//cn.ejecutarIDU(consulta);
+	}
 
 }

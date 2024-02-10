@@ -16,7 +16,6 @@ Ventana admin:
 	- Modificar paciente
 	- Buscar paciente
 	- Consultar pagos de cliente
-	- Modificar doctor
 	- Consultar doctor
 	- Actualizar stock
 	- Consultar stock
