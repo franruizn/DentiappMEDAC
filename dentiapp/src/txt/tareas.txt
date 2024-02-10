@@ -15,7 +15,7 @@ Ventana admin:
 	- Consultar doctor
 	- Actualizar stock
 	- Consultar stock
-	- Dar de baja stock
+	- Dar de baja stock 
 	- Crear proveedor
 	- Modificar proveedor
 	- Dar de baja proveedor
