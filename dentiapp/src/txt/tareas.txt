@@ -52,3 +52,5 @@ Derek:
 			-  AYUDA (JavaHelp)
 	- Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Baja Doctor
 	- Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Alta Doctor
+	- Funcionalidad dar alta doctor
+	- Funcionalidad Buscar paciente
