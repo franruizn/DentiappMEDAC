@@ -108,11 +108,11 @@ public class ControladorSQL {
 		metaDatos = cn.getConnection().getMetaData();
 
 		// Se ejecuta una consulta SQL para obtener los datos de la tabla.
-		ResultSet rset = cn.ejecutarSelect("SELECT * FROM "+nombreTabla+" INNER JOIN doctor ON iddoctor = fk_iddoctor WHERE nombre = "+ nombreDoctor);
+		ResultSet rset = cn.ejecutarSelect("SELECT paciente.nombre,observaciones,fecha,hora FROM consulta JOIN doctor ON iddoctor = fk_iddoctor JOIN paciente ON idpaciente = fk_idpaciente where doctor.nombre =  '"+nombreDoctor+"'");
 		
 		modeloDatos.setRowCount(0);
-		String nombreColumnas = obtenerColumnas(nombreTabla);
-		String[] listaColumnas = nombreColumnas.split(",");
+		
+		String[] listaColumnas = {"paciente.nombre","observaciones","fecha","hora"};
 		modeloDatos.setColumnCount(listaColumnas.length);
 		modeloDatos.setColumnIdentifiers(listaColumnas);
 		while (rset.next()) {
