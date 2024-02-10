@@ -495,7 +495,7 @@ public class ControladorSQL {
 		cn.desconectar();
 	}
 	
-	public void cambiarBaja(String doctor) throws SQLException {
+	public void cambiarAlta(String doctor) throws SQLException {
 		cn.conectar();
 		String iddoctor = this.selectWhere("doctor", "iddoctor", "nombre", doctor);
 		String consulta = "UPDATE doctor SET baja = 1 WHERE iddoctor = " + iddoctor;

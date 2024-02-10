@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
-public class BorrarDoctorDialog extends JDialog {
+public class AltaDoctorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -43,7 +43,7 @@ public class BorrarDoctorDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			BorrarDoctorDialog dialog = new BorrarDoctorDialog();
+			AltaDoctorDialog dialog = new AltaDoctorDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
@@ -55,10 +55,8 @@ public class BorrarDoctorDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
-	 * 
-	 * @throws SQLException
 	 */
-	public BorrarDoctorDialog() throws SQLException {
+	public AltaDoctorDialog() {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -111,7 +109,7 @@ public class BorrarDoctorDialog extends JDialog {
 			}
 		});
 
-		JButton btnAceptar = new JButton("DAR BAJA");
+		JButton btnAceptar = new JButton("DAR ALTA");
 		btnAceptar.setForeground(Color.WHITE);
 		btnAceptar.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		btnAceptar.setBackground(new Color(55, 4, 102));
@@ -120,7 +118,7 @@ public class BorrarDoctorDialog extends JDialog {
 		contentPanel.add(btnAceptar);
 		{
 			JLabel lblFondo = new JLabel("");
-			lblFondo.setIcon(new ImageIcon(BorrarDoctorDialog.class.getResource("/fotos/dialog_borrar_doctor.PNG")));
+			lblFondo.setIcon(new ImageIcon(BorrarDoctorDialog.class.getResource("/fotos/alta_doctor.PNG")));
 			lblFondo.setBounds(0, 0, 564, 421);
 			contentPanel.add(lblFondo);
 		}
@@ -132,7 +130,7 @@ public class BorrarDoctorDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String seleccionado = cmbDoctores.getSelectedItem().toString();
 				String id;
-				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de baja al doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de alta al doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
 						con.cambiarAlta(seleccionado);
@@ -149,9 +147,6 @@ public class BorrarDoctorDialog extends JDialog {
 
 		});
 	}
-	
-	
-	
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
@@ -165,4 +160,5 @@ public class BorrarDoctorDialog extends JDialog {
 
 		return comboDatos;
 	}
+
 }
