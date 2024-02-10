@@ -36,6 +36,7 @@ public class BuscarPacienteDialog extends JDialog {
 	private ArrayList<String[]> consultas = new ArrayList<>();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private JTextField txtPaciente;
+	private String paciente;
 
 
 
@@ -74,18 +75,6 @@ public class BuscarPacienteDialog extends JDialog {
 		});
 		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
-		
-		JButton btnOdontograma = new JButton("Odontograma");
-        btnOdontograma.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                OdontogramaDialog dialog = new OdontogramaDialog();
-                dialog.setModal(true);
-				dialog.setLocationRelativeTo(null);
-				dialog.setVisible(true);
-            }
-        });
-        btnOdontograma.setBounds(114, 370, 150, 40);
-        contentPanel.add(btnOdontograma);
 
         JButton btnMostrarConsultas = new JButton("Mostrar Consultas");
         btnMostrarConsultas.addActionListener(new ActionListener() {
@@ -112,6 +101,25 @@ public class BuscarPacienteDialog extends JDialog {
 		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
 		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+		
+		JButton btnOdontograma = new JButton("Odontograma");
+        btnOdontograma.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+					paciente = con.selectWhere("paciente", "dni", "nombre", cmbPaciente.getSelectedItem().toString())+"-"+cmbPaciente.getSelectedItem().toString();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                OdontogramaDialog dialog = new OdontogramaDialog(paciente);
+                dialog.setModal(true);
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+            }
+        });
+        btnOdontograma.setBounds(114, 370, 150, 40);
+        contentPanel.add(btnOdontograma);
+		
 		txtPaciente.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {

@@ -49,19 +49,28 @@ public class OdontogramaDialog extends JDialog {
 	private String txtOriginal = "", txtNuevo = "";
 	private Date fechaActual = new Date();
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	private String nombrePaciente = "asdfasdfadfsasdfasd";
 	protected int a;
 	protected int b;
 	protected int c;
 	protected int d;
 	protected int f;
 	protected int g;
+	
+	public String getNombrePaciente() {
+		return nombrePaciente;
+	}
+
+	public void setNombrePaciente(String nombrePaciente) {
+		this.nombrePaciente = nombrePaciente;
+	}
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			OdontogramaDialog dialog = new OdontogramaDialog();
+			OdontogramaDialog dialog = new OdontogramaDialog("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
@@ -73,8 +82,9 @@ public class OdontogramaDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @param nombrePaciente TODO
 	 */
-	public OdontogramaDialog() {
+	public OdontogramaDialog(String nombrePaciente) {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setUndecorated(true);
@@ -83,9 +93,9 @@ public class OdontogramaDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-
+		this.nombrePaciente = nombrePaciente;
+		
 		JTextArea txtaDescripcion = new JTextArea();
-		txtaDescripcion.setEditable(false);
 		txtaDescripcion.setText(" ");
 		txtaDescripcion.setColumns(5);
 		txtaDescripcion.setRows(20);
@@ -102,13 +112,13 @@ public class OdontogramaDialog extends JDialog {
 		JComboBox cmbPaciente = new JComboBox();
 		cmbPaciente.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-
+				
 			}
 		});
 		cmbPaciente.setBounds(535, 186, 189, 22);
 		contentPanel.add(cmbPaciente);
 		cmbPaciente.setModel(rellenarDatosDoble("paciente", "nombre", "dni", modeloDatos));
-
+		cmbPaciente.setSelectedItem(nombrePaciente);
 		txtPaciente = new JTextField();
 		txtPaciente.setBounds(730, 185, 128, 25);
 		contentPanel.add(txtPaciente);
@@ -150,20 +160,25 @@ public class OdontogramaDialog extends JDialog {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
 				String fechaFormato = sdf.format(fechaActual);
-
-				if (txtOriginal.equals(txtaDescripcion.getText().toString().substring(0, txtOriginal.length()))) {
-					txtNuevo = txtOriginal + "\n" + fechaFormato + ": "
-							+ txtaDescripcion.getText().toString().substring(txtOriginal.length());
+				
+				String newContent;
+				if (txtaDescripcion.getText().contains(txtOriginal)) {
+				    newContent = txtaDescripcion.getText().substring(txtOriginal.length());
 				} else {
-					txtNuevo = txtOriginal + "\n" + fechaFormato + ": " + txtaDescripcion.getText().toString();
+				    newContent = txtaDescripcion.getText();
 				}
-
+				if(txtOriginal.length()<=1) {
+					txtNuevo = fechaFormato + ": " + newContent;
+				} else {
+					txtNuevo = txtOriginal + "\n" + fechaFormato + ": " + newContent;
+				}
+				
 				try {
 					String[] id = cmbPaciente.getSelectedItem().toString().split("-");
 					con.CambiarOdontograma(con.selectWhere("paciente", "idpaciente", "dni", id[0]),
 							txtNumDiente.getText().toString(), txtNuevo, a, b, c, d, f, g);
+					rellenarDatosDiente(cmbPaciente, Integer.parseInt(txtNumDiente.getText()), txtaDescripcion);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -428,7 +443,7 @@ public class OdontogramaDialog extends JDialog {
 				btnd15, btnd16, btnd17, btnd18, btnd19, btnd20, btnd1);
 
 		contentPanel.add(btnd1);
-
+		
 	}
 
 	private void arreglarBotones(JButton btnd2, JButton btnd3, JButton btnd4, JButton btnd5, JButton btnd6,

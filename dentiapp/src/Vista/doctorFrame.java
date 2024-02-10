@@ -83,7 +83,7 @@ public class doctorFrame extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OdontogramaDialog dialOdonto;
-				dialOdonto = new OdontogramaDialog();
+				dialOdonto = new OdontogramaDialog("");
 				dialOdonto.setModal(true);
 				dialOdonto.setLocationRelativeTo(null);
 				dialOdonto.setVisible(true);
