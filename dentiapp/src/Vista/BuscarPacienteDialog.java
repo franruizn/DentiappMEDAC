@@ -85,7 +85,7 @@ public class BuscarPacienteDialog extends JDialog {
 				dialog.setVisible(true);
             }
         });
-        btnMostrarConsultas.setBounds(343, 370, 150, 40);
+        btnMostrarConsultas.setBounds(211, 370, 150, 40);
         contentPanel.add(btnMostrarConsultas);
 		
 		JComboBox cmbPaciente = new JComboBox();
@@ -117,7 +117,7 @@ public class BuscarPacienteDialog extends JDialog {
 				dialog.setVisible(true);
             }
         });
-        btnOdontograma.setBounds(114, 370, 150, 40);
+        btnOdontograma.setBounds(28, 370, 150, 40);
         contentPanel.add(btnOdontograma);
 		
 		txtPaciente.addKeyListener(new KeyAdapter() {
@@ -142,6 +142,10 @@ public class BuscarPacienteDialog extends JDialog {
 				cmbPaciente.setPopupVisible(true);
 			}
 		});
+		
+		JButton btnPagos = new JButton("Pagos");
+		btnPagos.setBounds(387, 370, 150, 40);
+		contentPanel.add(btnPagos);
 		
 	
 		
