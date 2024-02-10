@@ -1,7 +1,11 @@
 package Vista;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,8 +18,11 @@ import paqGUI.BotonPersonalizadoBean;
 
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.URL;
 import java.sql.SQLException;
 
 import javax.swing.SwingConstants;
@@ -142,6 +149,31 @@ public class doctorFrame extends JFrame {
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Archivo javahelp");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        try {
+		            // Carga el fichero de ayuda
+		            File fichero = new File("src/help/help_set.hs");
+		            URL hsURL = fichero.toURI().toURL();
+
+		            // Crea el HelpSet y el HelpBroker
+		            HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+		            HelpBroker hb = helpset.createHelpBroker();
+
+		            // Obtiene el tamaño de la pantalla
+		            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		            // Establece el tamaño del marco de ayuda para que sea el mismo que el tamaño de la pantalla
+		            hb.setSize(screenSize);
+		            
+		            // Muestra el menú de ayuda
+		            hb.setDisplayed(true);
+
+		        } catch (Exception ex) {
+		            ex.printStackTrace();
+		        }
+		    }
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 		
 		JButton btnAcceder = new JButton("ACCEDER");
