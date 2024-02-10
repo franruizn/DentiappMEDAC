@@ -529,5 +529,11 @@ public class ControladorSQL {
 		cn.desconectar();
 		return modeloDatos;
 	}
+	
+	public void modificarDoctor(String iddoctor, String idespecialidad, String nombre) throws SQLException {
+		String consulta = "UPDATE doctor SET fk_idespecialidad = " + idespecialidad + ", nombre = '" + nombre + "' WHERE iddoctor = " + iddoctor;
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
 
 }

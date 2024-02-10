@@ -383,6 +383,7 @@ public class adminFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				loginFrame login = new loginFrame();
 				login.setVisible(true);
+				login.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
@@ -476,6 +477,7 @@ public class adminFrame extends JFrame {
 					dialDoctor.setModal(true);
 					dialDoctor.setUndecorated(true);
 					dialDoctor.setVisible(true);
+					dialDoctor.setLocationRelativeTo(null);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -499,6 +501,7 @@ public class adminFrame extends JFrame {
 					dialDoctor.setModal(true);
 					dialDoctor.setUndecorated(true);
 					dialDoctor.setVisible(true);
+					dialDoctor.setLocationRelativeTo(null);
 					
 					dialDoctor.addWindowListener(new WindowAdapter() {
 						public void windowClosed(WindowEvent e) {
@@ -547,6 +550,15 @@ public class adminFrame extends JFrame {
 		btnActListaPacientes.setForeground(Color.WHITE);
 		
 		JButton btnBorrarPaciente = new JButton("BORRAR");
+		btnBorrarPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BorrarPacienteDialog dialog = new BorrarPacienteDialog();
+				dialog.setLocationRelativeTo(null);
+				dialog.setUndecorated(true);
+				dialog.setModal(true);
+				dialog.setVisible(true);
+ 			}
+		});
 		btnBorrarPaciente.setFont(new Font("SansSerif", Font.PLAIN, 10));
 		btnBorrarPaciente.setBounds(228, 457, 85, 21);
 		contentPane.add(btnBorrarPaciente);
@@ -556,6 +568,11 @@ public class adminFrame extends JFrame {
 		JButton btnCrearPaciente = new JButton("CREAR");
 		btnCrearPaciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CrearPacienteDialog dialog = new CrearPacienteDialog();
+				dialog.setModal(true);
+				dialog.setUndecorated(true);
+				dialog.setVisible(true);
+				dialog.setLocationRelativeTo(null);
 			}
 		});
 		btnCrearPaciente.setFont(new Font("SansSerif", Font.PLAIN, 10));
