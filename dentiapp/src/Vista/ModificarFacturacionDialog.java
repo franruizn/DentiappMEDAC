@@ -10,6 +10,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -57,9 +59,10 @@ public class ModificarFacturacionDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @throws SQLException 
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ModificarFacturacionDialog() {
+	public ModificarFacturacionDialog() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -75,6 +78,10 @@ public class ModificarFacturacionDialog extends JDialog {
 				dispose();
 			}
 		});
+		
+		JComboBox cmbFactura = new JComboBox();
+		cmbFactura.setBounds(422, 260, 291, 41);
+		contentPanel.add(cmbFactura);
 		btnCancelar.setBounds(488, 406, 109, 36);
 		contentPanel.add(btnCancelar);
 		
@@ -144,17 +151,19 @@ public class ModificarFacturacionDialog extends JDialog {
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
+			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Date fecha = new Date();
 					String fechaFormato = sdf.format(fecha);
 					String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
+					String[] idfactura = cmbFactura.getSelectedItem().toString().split((" - "));
 					String idpaciente = con.selectWhere("paciente", "idpaciente", "dni", dni[0]);
-					int pagar = 0;
+					int pagar = Integer.parseInt(con.selectWhere("facturacion", "pagar","idfacturacion",idfactura[0]));
 					if(txtPagado.getText().equals("")) {
-						pagar = 0;
+						pagar += 0;
 					} else {
-						pagar = Integer.parseInt(txtPagado.getText());
+						pagar += Integer.parseInt(txtPagado.getText());
 					}
 					int total = Integer.parseInt(con.selectWhere("tratamiento", "precio", "nombre", cmbTratamiento.getSelectedItem().toString()));
 					int pagado = 0;
@@ -162,9 +171,13 @@ public class ModificarFacturacionDialog extends JDialog {
 						pagado = 1;
 					}
 					
-					con.crearFactura(idpaciente, pagado, pagar, fechaFormato, total);
+					con.modificarFactura(idfactura[0], pagado, pagar);
+					JOptionPane.showMessageDialog(null, "Factura Modificada con Exito",
+							"Factura Modificada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Error al modificar la factura\nComprueba que los datos son correctos",
+							"Error", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 					e1.printStackTrace();
 				}
 				
@@ -180,6 +193,26 @@ public class ModificarFacturacionDialog extends JDialog {
 		
 		cmbPaciente.setModel(rellenarDatosDoble("paciente", "nombre", "dni", modeloDatos));
 		cmbTratamiento.setModel(rellenarDatos("tratamiento","nombre",modeloDatos));
+		
+		cmbPaciente.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
+				try {
+					String idpaciente = con.selectWhere("paciente", "idpaciente", "dni", dni[0]);
+					cmbFactura.setModel(rellenarDatosTriple("facturacion","fecha","idfacturacion","total",idpaciente, modeloDatos));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
+		String idpaciente = con.selectWhere("paciente", "idpaciente", "dni", dni[0]);
+		cmbFactura.setModel(rellenarDatosTriple("facturacion","fecha","idfacturacion","total",idpaciente, modeloDatos));
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -196,11 +229,27 @@ public class ModificarFacturacionDialog extends JDialog {
 		return comboDatos;
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DefaultComboBoxModel rellenarDatosDoble(String nombreTabla, String campo, String campo2,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
 
 			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxDoble(nombreTabla, campo, campo2);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public DefaultComboBoxModel rellenarDatosTriple(String nombreTabla, String campo, String campo2, String campo3, String idpaciente,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxTriple(nombreTabla, campo, campo2, campo3, idpaciente);
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block

@@ -263,6 +263,29 @@ public class ControladorSQL {
 
 		return modeloDatos;
 	}
+	
+	public DefaultComboBoxModel<?> rellenarComboBoxTriple(String nombreTabla, String campo, String campo2,String campo3,String idpaciente)
+			throws SQLException {
+		cn.conectar();
+		metaDatos = cn.getConnection().getMetaData();
+		DefaultComboBoxModel<String> modeloDatos = new DefaultComboBoxModel<>();
+
+		String consulta = "SELECT " + campo + "," + campo2 + "," + campo3 + " FROM " + nombreTabla + " WHERE fk_idpaciente = " + idpaciente + ";";
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		ArrayList<String> datos = new ArrayList<>();
+		while (rset.next()) {
+			String resultado = rset.getString(campo2) + " - " + rset.getString(campo) + " - " + rset.getString(campo3);
+			datos.add(resultado);
+		}
+
+		for (int i = 0; i < datos.size(); i++) {
+			modeloDatos.addElement(datos.get(i));
+		}
+
+		cn.desconectar();
+
+		return modeloDatos;
+	}
 
 	public ArrayList<String[]> obtenerConsulta(String fecha, String hora) throws SQLException {
 		cn.conectar();
@@ -674,13 +697,6 @@ public class ControladorSQL {
 	
 	public void crearFactura(String idpaciente, int pagado, int pagar, String fecha, int total) throws SQLException {
 		String consulta = "INSERT INTO `dentiapp`.`facturacion` (`idfacturacion`,`fk_idpaciente`, `pagado`, `pagar`,`fecha`, `total`)  VALUES ('0','"+idpaciente+"','"+pagado+"','"+pagar+"','"+fecha+"','"+total+"')" ;
-		System.out.println(consulta);
-		cn.ejecutarIDU(consulta);
-	}
-	
-	public void modificarFactura(String idpaciente, int pagado, int pagar, String fecha, int total) throws SQLException {
-		String consulta = "UPDATE facturacion SET pagado ='"+ pagado+"',fecha="+fecha+"',total="+total+ " WHERE fk_idpaciente = " +idpaciente
-				+ "//(`idfacturacion`,`fk_idpaciente`, SET pagado`, `pagar`,`fecha`, `total`)
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}

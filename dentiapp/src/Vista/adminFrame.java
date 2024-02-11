@@ -321,10 +321,16 @@ public class adminFrame extends JFrame {
 		mntmModificarFacturacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ModificarFacturacionDialog dialFactura3;
-				dialFactura3 = new ModificarFacturacionDialog();
-				dialFactura3.setModal(true);
-				dialFactura3.setLocationRelativeTo(null);
-				dialFactura3.setVisible(true);
+				try {
+					dialFactura3 = new ModificarFacturacionDialog();
+					dialFactura3.setModal(true);
+					dialFactura3.setLocationRelativeTo(null);
+					dialFactura3.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		mnGestionarFacturacion.add(mntmModificarFacturacion);
