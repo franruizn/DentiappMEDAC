@@ -69,3 +69,7 @@ Ivan:
 	- Funcionalidad ModificarConsulta
 	- Arreglado no se pueden modificar ni borrar fechas ya pasadas
 	- Funcionalidad CrearEspecialidad
+	- Funcionalidad Odontograma
+	- Funcionalidad ModificarEspecialidad
+	- Funcionalidad BorrarEspecialidad
+	- Funcionalidad Crear Tratamiento
