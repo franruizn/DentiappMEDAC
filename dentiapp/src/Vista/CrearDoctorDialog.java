@@ -94,6 +94,7 @@ public class CrearDoctorDialog extends JDialog {
 			lblPass.setFont(new Font("SansSerif", Font.PLAIN, 18));
 			lblPass.setBounds(493, 235, 102, 32);
 			contentPanel.add(lblPass);
+			
 			btnCancelar.setFont(new Font("SansSerif", Font.PLAIN, 16));
 			btnCancelar.setBounds(619, 367, 97, 41);
 			btnCancelar.setActionCommand("Cancel");
