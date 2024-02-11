@@ -133,9 +133,10 @@ public class AltaDoctorDialog extends JDialog {
 				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de alta al doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
-						con.cambiarBaja(seleccionado,"doctor","iddoctor");
+						con.cambiarAlta(seleccionado,"doctor","iddoctor");
 						JOptionPane.showMessageDialog(null, "Alta dada con Exito",
 								"Alta dada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
+						cmbDoctores.setModel(rellenarDatos("proveedor", "nombre", modeloDatos));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null, "Error al dar de Alta al doctor",
