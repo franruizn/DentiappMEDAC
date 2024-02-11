@@ -10,7 +10,6 @@ Ventana doctor:
 
 Ventana admin:
 -  Falta:
-	- Buscar paciente (Falta pagos)
 	- Consultar doctor
 	- Actualizar stock
 	- Consultar stock
@@ -23,6 +22,8 @@ Ventana admin:
 	- Eliminar especialidad
 	- Crear tratamiento
 	- Modificar tratamiento
+	- Crear facturacion
+	- Modificar facturacion
 	- Consultar AYUDA
 	
 Fran:
@@ -43,6 +44,7 @@ Fran:
 	- Funcionalidad Baja/Alta Tratamiento
 	- Funcionalidad BajaDoctor
 	- Historial Paciente
+	- Historial de Pagos
 	
 	
 Derek:
