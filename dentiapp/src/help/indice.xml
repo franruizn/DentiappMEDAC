@@ -18,7 +18,6 @@
     <indexitem text="CrearFacturacion" target="CrearFacturacion"/>
     <indexitem text="CrearProveedor" target="CrearProveedor"/>
     <indexitem text="DoctorFrame" target="DoctorFrame"/>
-    <indexitem text="AyudaHistorial" target="AyudaHistorial"/>
     <indexitem text="Historial" target="Historial"/>
     <indexitem text="ModificarDoctor" target="ModificarDoctor"/>
     <indexitem text="ModificarEspecialidad" target="ModificarEspecialidad"/>

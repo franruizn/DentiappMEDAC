@@ -19,7 +19,6 @@
     <mapID target="CrearFacturacion" url="html/crearFacturacion.html"/>
     <mapID target="CrearProveedor" url="html/crearProveedor.html"/>
     <mapID target="DoctorFrame" url="html/doctorFrame.html"/>
-    <mapID target="AyudaHistorial" url="html/ayudaHistorial.html"/>
     <mapID target="Historial" url="html/historial.html"/>
     <mapID target="ModificarDoctor" url="html/modificarDoctor.html"/>
     <mapID target="ModificarEspecialidad" url="html/modificarEspecialidad.html"/>

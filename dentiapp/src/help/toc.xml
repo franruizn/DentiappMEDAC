@@ -18,7 +18,6 @@
     <tocitem text="CrearFacturacion" target="CrearFacturacion"/>
     <tocitem text="CrearProveedor" target="CrearProveedor"/>
     <tocitem text="DoctorFrame" target="DoctorFrame"/>
-    <tocitem text="AyudaHistorial" target="AyudaHistorial"/>
     <tocitem text="Historial" target="Historial"/>
     <tocitem text="ModificarDoctor" target="ModificarDoctor"/>
     <tocitem text="ModificarEspecialidad" target="ModificarEspecialidad"/>
