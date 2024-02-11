@@ -452,6 +452,15 @@ public class ControladorSQL {
 		cn.desconectar();
 
 	}
+	
+	public void borrarId(String id) throws SQLException {
+		cn.conectar();
+		String nombreTabla = "especialidad";
+		String consulta = "DELETE FROM " + nombreTabla + " WHERE idespecialidad = " + id;
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
+
+	}
 
 	public DefaultTableModel cargarSolicitudesAceptadas(String nombreTabla, DefaultTableModel modeloDatos,
 			String[] columnas) throws SQLException {
@@ -591,6 +600,12 @@ public class ControladorSQL {
 	public void modificarPaciente(String idpaciente, String nombre, String dni) throws SQLException {
 		String consulta = "UPDATE paciente SET nombre ='" + nombre + "', dni ='" + dni + "' WHERE idpaciente = "
 				+ idpaciente;
+		cn.ejecutarIDU(consulta);
+	}
+	
+	public void modificarEspecialidad(String idespecialidad, String nombre) throws SQLException {
+		String consulta = "UPDATE especialidad SET nombre ='" + nombre + "' WHERE idespecialidad = "
+				+ idespecialidad;
 		cn.ejecutarIDU(consulta);
 	}
 	
