@@ -16,7 +16,6 @@ Ventana admin:
 	- Consultar stock
 	- Crear proveedor
 	- Modificar proveedor
-	- Dar de baja proveedor
 	- Consultar proveedor
 	- Crear especialidad
 	- Modificar especialidad
@@ -41,8 +40,10 @@ Fran:
 	- Modificar los comentarios del diente te guarda los anteriores aunque los borres
 	- Ventana doctor solo muestra las citas del mismo dia (puedes buscar dias posteriores)
 	- No se pueden crear citas a la misma fecha y hora para un doctor o paciente
-	- Funcionalidad BajaStock
-	- Funcionalidad AltaStock
+	- Funcionalidad Baja/Alta Stock
+	- Funcionalidad Baja/Alta Proveedor
+	- Funcionalidad Baja/Alta Tratamiento
+	
 	
 Derek:
 	- Creados HTML: 
