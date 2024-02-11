@@ -22,10 +22,13 @@ import paqGUI.BotonPersonalizadoBean;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.event.ItemEvent;
@@ -41,6 +44,7 @@ public class ModificarConsultaDialog extends JDialog {
 	private ArrayList<String[]> consultas = new ArrayList<>();
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private String fecha = "";
+	private JTextField txtPaciente;
 
 	/**
 	 * Launch the application.
@@ -77,6 +81,37 @@ public class ModificarConsultaDialog extends JDialog {
 			}
 		});
 		
+		JComboBox cmbPaciente = new JComboBox();
+		cmbPaciente.setBounds(417, 151, 146, 38);
+		contentPanel.add(cmbPaciente);
+		
+		txtPaciente = new JTextField();
+		txtPaciente.setColumns(10);
+		txtPaciente.setBounds(573, 152, 146, 37);
+		txtPaciente.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+				cmbPaciente.setModel(rellenarDatosDoble("paciente", "nombre", "dni", modeloDatos));
+				String textoBusqueda = txtPaciente.getText().toLowerCase();
+
+				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
+
+				List<String> elementosFiltrados = new ArrayList<>();
+				for (int i = 0; i < cmbPaciente.getItemCount(); i++) {
+					if (cmbPaciente.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
+						elementosFiltrados.add(cmbPaciente.getItemAt(i).toString());
+					}
+				}
+
+				// Actualizar los elementos del combo con los resultados filtrados
+
+				cmbPaciente.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
+				cmbPaciente.setPopupVisible(true);
+			}
+		});
+		contentPanel.add(txtPaciente);
+				
 		JComboBox cmbHora = new JComboBox();
 		cmbHora.setBounds(182, 159, 65, 22);
 		contentPanel.add(cmbHora);
@@ -101,11 +136,6 @@ public class ModificarConsultaDialog extends JDialog {
 		editor.setEditable(false);
 		Date currentDate = new Date();
 		dateChooser.setMinSelectableDate(currentDate);
-
-		JComboBox cmbPaciente = new JComboBox();
-
-		cmbPaciente.setBounds(428, 149, 275, 43);
-		contentPanel.add(cmbPaciente);
 
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
@@ -183,34 +213,6 @@ public class ModificarConsultaDialog extends JDialog {
 				lblFondo.setBounds(0, 0, 763, 449);
 				contentPanel.add(lblFondo);
 
-		cmbPaciente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cmbDoctor.removeAll();
-				cmbTratamiento.removeAll();
-				for (int i = 0; i < consultas.size(); i++) {
-					try {
-						if (cmbPaciente.getSelectedItem()
-								.equals(con.selectWhere("paciente", "nombre", "idpaciente", consultas.get(i)[0]))) {
-							cmbDoctor.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
-							cmbTratamiento.setModel(rellenarDatos("tratamiento", "nombre", modeloDatos));
-							cmbPaciente.setSelectedItem(
-									con.selectWhere("paciente", "nombre", "idpaciente", consultas.get(i)[0]));
-							cmbDoctor.setSelectedItem(
-									con.selectWhere("doctor", "nombre", "iddoctor", consultas.get(i)[1]));
-							cmbTratamiento.setSelectedItem(
-									con.selectWhere("tratamiento", "nombre", "idtratamiento", consultas.get(i)[2]));
-							txtaObservaciones.setText(consultas.get(i)[3]);
-							
-						}
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-
-			}
-		});
-
 		btnModificarConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombreColumnas;
@@ -242,13 +244,31 @@ public class ModificarConsultaDialog extends JDialog {
 
 			}
 		});
+		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+		cmbDoctor.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
 
 			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public DefaultComboBoxModel rellenarDatosDoble(String nombreTabla, String campo, String campo2,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxDoble(nombreTabla, campo, campo2);
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block

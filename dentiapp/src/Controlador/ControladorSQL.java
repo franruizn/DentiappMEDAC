@@ -4,6 +4,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -662,6 +664,18 @@ public class ControladorSQL {
 	}
 	public void modificarProveedor(String idproveedor,  String nombre, String telefono) throws SQLException {
 		String consulta = "UPDATE proveedor SET nombre = '" + nombre +"',telefono = " + telefono + "  WHERE idproveedor = " + idproveedor;
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
+	
+	public void modificarTratamiento(String idtratamiento, String nombre, int precio, String fk_idstock) throws SQLException {
+		String consulta = "UPDATE tratamiento SET nombre ='" + nombre +"',precio="+precio+",fk_idstock="+fk_idstock + " WHERE idtratamiento = " + idtratamiento;
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
+	
+	public void crearFactura(String idpaciente, int pagado, int pagar, String fecha, int total) throws SQLException {
+		String consulta = "INSERT INTO `dentiapp`.`facturacion` (`idfacturacion`,`fk_idpaciente`, `pagado`, `pagar`,`fecha`, `total`)  VALUES ('0','"+idpaciente+"','"+pagado+"','"+pagar+"','"+fecha+"','"+total+"')" ;
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}

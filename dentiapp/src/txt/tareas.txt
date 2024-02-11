@@ -12,15 +12,14 @@ Ventana admin:
 -  Falta:
 	- Actualizar stock
 	- Consultar stock
-	- Crear proveedor
-	- Modificar proveedor
-	- Consultar proveedor
+	
+	(Ivan)
 	- Crear especialidad
 	- Modificar especialidad
-	- Consultar especialidad
 	- Eliminar especialidad
+	(Ivan)
+	
 	- Crear tratamiento
-	- Modificar tratamiento
 	- Crear facturacion
 	- Modificar facturacion
 	- Consultar AYUDA
@@ -45,6 +44,7 @@ Fran:
 	- Historial Paciente
 	- Historial de Pagos
 	- Funcionalidad buscar doctor
+	- Funcionalidad modificar tratamiento
 	
 Derek:
 	- Creados HTML: 
@@ -61,6 +61,7 @@ Derek:
 	- Funcionalidad dar alta doctor
 	- Funcionalidad Buscar paciente
 	- funcionalidad javahelp(cmd, aparicion de menu)
+	- Funcionalidad crear/modificar proveedor
 	
 Ivan:
 	- Creados HTML y Archivos de configuracion javahelp

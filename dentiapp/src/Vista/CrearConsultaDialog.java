@@ -203,7 +203,8 @@ public class CrearConsultaDialog extends JDialog {
 		txtPaciente.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+
+				cmbPaciente.setModel(rellenarDatosDoble("paciente", "nombre", "dni", modeloDatos));
 				String textoBusqueda = txtPaciente.getText().toLowerCase();
 
 				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
@@ -264,12 +265,28 @@ public class CrearConsultaDialog extends JDialog {
 		});
 
 	}
-
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
 
 			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBox(nombreTabla, campo);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return comboDatos;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public DefaultComboBoxModel rellenarDatosDoble(String nombreTabla, String campo, String campo2,
+			DefaultComboBoxModel<String> comboDatos) {
+		try {
+
+			comboDatos = (DefaultComboBoxModel<String>) con.rellenarComboBoxDoble(nombreTabla, campo, campo2);
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
