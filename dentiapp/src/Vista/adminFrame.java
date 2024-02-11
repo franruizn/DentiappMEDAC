@@ -231,18 +231,6 @@ public class adminFrame extends JFrame {
 		JMenu mnGestionarUsuarios = new JMenu("Gestionar Usuarios");
 		mnUsuarios.add(mnGestionarUsuarios);
 		
-		JMenuItem mntmBorrarUsuario = new JMenuItem("Borrar Usuario");
-		mntmBorrarUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BorrarUsuarioDialog dialUsuario2;
-				dialUsuario2 = new BorrarUsuarioDialog();
-				dialUsuario2.setModal(true);
-				dialUsuario2.setLocationRelativeTo(null);
-				dialUsuario2.setVisible(true);
-			}
-		});
-		mnGestionarUsuarios.add(mntmBorrarUsuario);
-		
 		JMenu mnStock = new JMenu("Stock");
 		menuBar.add(mnStock);
 		
@@ -328,18 +316,6 @@ public class adminFrame extends JFrame {
 			}
 		});
 		mnGestionarFacturacion.add(mntmCrearFacturacion);
-		
-		JMenuItem mntmBorrarFacturacion = new JMenuItem("Borrar Facturación");
-		mntmBorrarFacturacion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BorrarFacturacionDialog dialFactura2;
-				dialFactura2 = new BorrarFacturacionDialog();
-				dialFactura2.setModal(true);
-				dialFactura2.setLocationRelativeTo(null);
-				dialFactura2.setVisible(true);
-			}
-		});
-		mnGestionarFacturacion.add(mntmBorrarFacturacion);
 		
 		JMenuItem mntmModificarFacturacion = new JMenuItem("Modificar Facturacion");
 		mntmModificarFacturacion.addActionListener(new ActionListener() {

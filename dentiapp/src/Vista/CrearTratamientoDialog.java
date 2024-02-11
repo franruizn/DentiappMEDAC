@@ -1,42 +1,32 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-import Controlador.ConexionMySQL;
 import Controlador.ControladorSQL;
-import Modelo.Especialidad;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import paqGUI.BotonPersonalizadoBean;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.JTextField;
 
 public class CrearTratamientoDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtPrecio;
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 	private JTextField txtNombre;
@@ -59,6 +49,7 @@ public class CrearTratamientoDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CrearTratamientoDialog() {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -141,6 +132,8 @@ public class CrearTratamientoDialog extends JDialog {
 		
 	}
 	
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

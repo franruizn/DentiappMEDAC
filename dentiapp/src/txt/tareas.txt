@@ -15,10 +15,7 @@ Ventana admin:
 	- Modificar especialidad
 	- Eliminar especialidad
 	(Ivan)
-	
-	- Crear tratamiento
-	- Modificar facturacion
-	- Consultar AYUDA
+
 	
 Fran:
 	- Creados HTML

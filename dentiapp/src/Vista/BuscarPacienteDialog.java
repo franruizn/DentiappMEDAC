@@ -172,7 +172,7 @@ public class BuscarPacienteDialog extends JDialog {
 		
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(BorrarUsuarioDialog.class.getResource("/fotos/buscar_paciente.PNG")));
+		lblFondo.setIcon(new ImageIcon(BuscarPacienteDialog.class.getResource("/fotos/buscar_paciente.PNG")));
 		lblFondo.setBounds(0, 0, 564, 421);
 		contentPanel.add(lblFondo);
 	
