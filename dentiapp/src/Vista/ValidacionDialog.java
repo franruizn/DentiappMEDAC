@@ -1,23 +1,9 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import Controlador.ControladorSQL;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
@@ -26,10 +12,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import Controlador.ControladorSQL;
 import paqGUI.BotonPersonalizadoBean;
 
 public class ValidacionDialog extends JDialog {
@@ -38,8 +35,11 @@ public class ValidacionDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable tblSolRecibidas;
 	private JTextField txtCantidadMat;
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloMateriales = new DefaultComboBoxModel();
+	@SuppressWarnings({ "rawtypes", "unused" })
 	private DefaultComboBoxModel modeloProv = new DefaultComboBoxModel();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDoctores = new DefaultComboBoxModel();
 	private DefaultTableModel modeloSolicitudes = new DefaultTableModel();
 	private ControladorSQL con = new ControladorSQL();
@@ -65,6 +65,7 @@ public class ValidacionDialog extends JDialog {
 	 * Create the dialog.
 	 * @throws SQLException 
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ValidacionDialog() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -234,6 +235,7 @@ public class ValidacionDialog extends JDialog {
 		
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

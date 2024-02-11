@@ -8,7 +8,6 @@ import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import Controlador.ControladorSQL;
 import paqGUI.BotonPersonalizadoBean;
 
@@ -32,10 +31,10 @@ public class BorrarDoctorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 	private JTable tblDocs;
-	private DefaultTableModel modeloTblDocs = new DefaultTableModel();
 	private JTextField txtDoctor;
 
 	/**
@@ -58,6 +57,7 @@ public class BorrarDoctorDialog extends JDialog {
 	 * 
 	 * @throws SQLException
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public BorrarDoctorDialog(String nombre) throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -131,7 +131,6 @@ public class BorrarDoctorDialog extends JDialog {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String seleccionado = cmbDoctores.getSelectedItem().toString();
-				String id;
 				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de baja al doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
@@ -154,7 +153,7 @@ public class BorrarDoctorDialog extends JDialog {
 	}
 	
 	
-	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

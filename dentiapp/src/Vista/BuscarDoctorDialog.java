@@ -2,6 +2,7 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -23,7 +24,6 @@ import javax.swing.border.MatteBorder;
 
 import Controlador.ControladorSQL;
 import paqGUI.BotonPersonalizadoBean;
-import java.awt.Font;
 
 public class BuscarDoctorDialog extends JDialog {
 
@@ -35,10 +35,6 @@ public class BuscarDoctorDialog extends JDialog {
 	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private JTextField txtPaciente;
-	private String paciente;
-
-
-
 	/**
 	 * Launch the application.
 	 */

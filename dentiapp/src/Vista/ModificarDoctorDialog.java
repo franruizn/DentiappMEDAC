@@ -1,42 +1,36 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-import Controlador.ConexionMySQL;
 import Controlador.ControladorSQL;
-import Modelo.Especialidad;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import paqGUI.BotonPersonalizadoBean;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.JTextField;
 
 public class ModificarDoctorDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtDoctor;
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 	private JTextField txtNombre;
@@ -59,6 +53,7 @@ public class ModificarDoctorDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ModificarDoctorDialog(String nombre) {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -185,6 +180,7 @@ public class ModificarDoctorDialog extends JDialog {
 		cmbDoctor.setSelectedItem(nombre);
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

@@ -32,9 +32,11 @@ public class AltaStockDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 	private JTable tblDocs;
+	@SuppressWarnings("unused")
 	private DefaultTableModel modeloTblDocs = new DefaultTableModel();
 	private JTextField txtStock;
 
@@ -58,6 +60,7 @@ public class AltaStockDialog extends JDialog {
 	 * 
 	 * @throws SQLException
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public AltaStockDialog() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -129,6 +132,7 @@ public class AltaStockDialog extends JDialog {
 		tblDocs.setBounds(305, 166, 175, 152);
 		contentPanel.add(tblDocs);
 		btnAceptar.addActionListener(new ActionListener() {
+			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
 				String seleccionado = cmbStock.getSelectedItem().toString();
 				String id;
@@ -153,6 +157,7 @@ public class AltaStockDialog extends JDialog {
 	
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
