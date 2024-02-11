@@ -2,14 +2,11 @@ package Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -33,7 +29,9 @@ public class BuscarPacienteDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private ControladorSQL con = new ControladorSQL();
+	@SuppressWarnings("unused")
 	private ArrayList<String[]> consultas = new ArrayList<>();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private JTextField txtPaciente;
 	private String paciente;
@@ -57,6 +55,7 @@ public class BuscarPacienteDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public BuscarPacienteDialog() {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -76,17 +75,7 @@ public class BuscarPacienteDialog extends JDialog {
 		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
 
-        JButton btnMostrarConsultas = new JButton("Historial del Paciente");
-        btnMostrarConsultas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                MostrarConsultasDialog dialog = new MostrarConsultasDialog();
-                dialog.setModal(true);
-				dialog.setLocationRelativeTo(null);
-				dialog.setVisible(true);
-            }
-        });
-        btnMostrarConsultas.setBounds(211, 370, 150, 40);
-        contentPanel.add(btnMostrarConsultas);
+        
 		
 		JComboBox cmbPaciente = new JComboBox();
 		cmbPaciente.setBounds(113, 107, 221, 47);
@@ -120,6 +109,24 @@ public class BuscarPacienteDialog extends JDialog {
         btnOdontograma.setBounds(28, 370, 150, 40);
         contentPanel.add(btnOdontograma);
 		
+        JButton btnMostrarConsultas = new JButton("Historial del Paciente");
+        btnMostrarConsultas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	try {
+					paciente = con.selectWhere("paciente", "dni", "nombre", cmbPaciente.getSelectedItem().toString())+"-"+cmbPaciente.getSelectedItem().toString();
+					HistorialPacienteDialog dialog = new HistorialPacienteDialog(paciente);
+	                dialog.setModal(true);
+					dialog.setLocationRelativeTo(null);
+					dialog.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        });
+        btnMostrarConsultas.setBounds(211, 370, 150, 40);
+        contentPanel.add(btnMostrarConsultas);
+        
 		txtPaciente.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -159,6 +166,7 @@ public class BuscarPacienteDialog extends JDialog {
 			
 		
 	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

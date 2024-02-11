@@ -1,15 +1,13 @@
 package Controlador;
 
-import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -606,6 +604,22 @@ public class ControladorSQL {
 	    statement.close();
 
 	    return hayCitaAsignada;
+	}
+	
+	public String rellenarHistorial(String paciente) throws SQLException {
+		cn.conectar();
+		String texto = "";
+		String[] dni = paciente.split("-");
+		String idpaciente = selectWhere("paciente", "idpaciente", "dni", dni[0]);
+		String consulta = "SELECT observaciones FROM odontograma WHERE fk_idpaciente = " + idpaciente;
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		while(rset.next()) {
+
+			String observaciones = rset.getString("observaciones");
+			texto += observaciones + "\n\n";
+		}
+		cn.desconectar();
+		return texto;
 	}
 
 }

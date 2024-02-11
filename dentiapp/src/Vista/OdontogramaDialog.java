@@ -3,28 +3,11 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.FlowLayout;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-
-import Controlador.ControladorSQL;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -32,10 +15,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.awt.event.ActionEvent;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import Controlador.ControladorSQL;
 
 public class OdontogramaDialog extends JDialog {
 
@@ -44,8 +38,8 @@ public class OdontogramaDialog extends JDialog {
 	private JTextField txtNumDiente;
 	private JButton[] listaBotones = new JButton[20];
 	private JTextField txtPaciente;
-	private JTextField txtComentario;
 	private ControladorSQL con = new ControladorSQL();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ArrayList<String[]> consultas = new ArrayList<>();
 	private String txtOriginal = "", txtNuevo = "";
@@ -58,7 +52,7 @@ public class OdontogramaDialog extends JDialog {
 	protected int d;
 	protected int f;
 	protected int g;
-	
+
 	public String getNombrePaciente() {
 		return nombrePaciente;
 	}
@@ -84,8 +78,10 @@ public class OdontogramaDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * 
 	 * @param nombrePaciente TODO
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public OdontogramaDialog(String nombrePaciente) {
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -96,7 +92,7 @@ public class OdontogramaDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		this.nombrePaciente = nombrePaciente;
-		
+
 		JTextArea txtaDescripcion = new JTextArea();
 		txtaDescripcion.setText(" ");
 		txtaDescripcion.setColumns(5);
@@ -114,7 +110,7 @@ public class OdontogramaDialog extends JDialog {
 		JComboBox cmbPaciente = new JComboBox();
 		cmbPaciente.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				
+
 			}
 		});
 		cmbPaciente.setBounds(535, 186, 189, 22);
@@ -161,32 +157,35 @@ public class OdontogramaDialog extends JDialog {
 		JButton btnGuardar = new JButton("GUARDAR");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String fechaFormato = sdf.format(fechaActual);
-				
+
 				String newContent;
 				if (txtaDescripcion.getText().contains(txtOriginal)) {
-				    newContent = txtaDescripcion.getText().substring(txtOriginal.length());
+					newContent = txtaDescripcion.getText().substring(txtOriginal.length());
 				} else {
-				    newContent = txtaDescripcion.getText();
+					newContent = txtaDescripcion.getText();
 				}
-				if(txtOriginal.length()<=1) {
+				if (txtOriginal.length() <= 1) {
 					txtNuevo = fechaFormato + ": " + newContent;
 				} else {
 					txtNuevo = txtOriginal + "\n" + fechaFormato + ": " + newContent;
 				}
-				
+
 				try {
 					String[] id = cmbPaciente.getSelectedItem().toString().split("-");
 					con.CambiarOdontograma(con.selectWhere("paciente", "idpaciente", "dni", id[0]),
 							txtNumDiente.getText().toString(), txtNuevo, a, b, c, d, f, g);
 					rellenarDatosDiente(cmbPaciente, Integer.parseInt(txtNumDiente.getText()), txtaDescripcion);
-					JOptionPane.showMessageDialog(null, "Diente Modificado con Exito",
-							"Diente Modificado", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
+					JOptionPane.showMessageDialog(null, "Diente Modificado con Exito", "Diente Modificado",
+							JOptionPane.WARNING_MESSAGE,
+							new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Error al modificar Diente - Los datos introducidos no son correctos.",
-							"Error al modificar diente", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
+					JOptionPane.showMessageDialog(null,
+							"Error al modificar Diente - Los datos introducidos no son correctos.",
+							"Error al modificar diente", JOptionPane.WARNING_MESSAGE,
+							new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 					e1.printStackTrace();
 				}
 			}
@@ -449,7 +448,7 @@ public class OdontogramaDialog extends JDialog {
 				btnd15, btnd16, btnd17, btnd18, btnd19, btnd20, btnd1);
 
 		contentPanel.add(btnd1);
-		
+
 	}
 
 	private void arreglarBotones(JButton btnd2, JButton btnd3, JButton btnd4, JButton btnd5, JButton btnd6,
@@ -483,6 +482,7 @@ public class OdontogramaDialog extends JDialog {
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
@@ -496,7 +496,8 @@ public class OdontogramaDialog extends JDialog {
 
 		return comboDatos;
 	}
-
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatosDoble(String nombreTabla, String campo, String campo2,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
@@ -511,6 +512,7 @@ public class OdontogramaDialog extends JDialog {
 		return comboDatos;
 	}
 
+	@SuppressWarnings({ "rawtypes" })
 	private void rellenarDatosDiente(JComboBox cmbPaciente, int i, JTextArea txtaDescripcion) {
 		try {
 			String[] dni = cmbPaciente.getSelectedItem().toString().split("-");
