@@ -63,7 +63,7 @@ public class AltaPacienteDialog extends JDialog {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
-		setBounds(100, 100, 565, 419);
+		setBounds(100, 100, 765, 454);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -77,16 +77,16 @@ public class AltaPacienteDialog extends JDialog {
 		});
 		
 		JComboBox cmbPaciente = new JComboBox();
-		cmbPaciente.setBounds(67, 84, 252, 49);
+		cmbPaciente.setBounds(177, 107, 266, 49);
 		contentPanel.add(cmbPaciente);
 		
 		txtPaciente = new JTextField();
 		txtPaciente.setColumns(10);
 		txtPaciente.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		txtPaciente.setBackground(new Color(246, 246, 246));
-		txtPaciente.setBounds(329, 84, 226, 49);
+		txtPaciente.setBounds(441, 108, 157, 48);
 		contentPanel.add(txtPaciente);
-		btnprsnlzdbnCerrar.setBounds(468, 10, 96, 50);
+		btnprsnlzdbnCerrar.setBounds(40, 10, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
 		cmbPaciente.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
 		txtPaciente.addKeyListener(new KeyAdapter() {
@@ -117,12 +117,12 @@ public class AltaPacienteDialog extends JDialog {
 		btnAceptar.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		btnAceptar.setBackground(new Color(55, 4, 102));
 		btnAceptar.setActionCommand("OK");
-		btnAceptar.setBounds(364, 344, 157, 50);
+		btnAceptar.setBounds(576, 372, 157, 50);
 		contentPanel.add(btnAceptar);
 		{
 			JLabel lblFondo = new JLabel("");
 			lblFondo.setIcon(new ImageIcon(BorrarDoctorDialog.class.getResource("/fotos/alta_paciente.PNG")));
-			lblFondo.setBounds(0, 0, 564, 421);
+			lblFondo.setBounds(0, 0, 764, 453);
 			contentPanel.add(lblFondo);
 		}
 
