@@ -8,4 +8,24 @@
     <indexitem text="CrearPaciente" target="CrearPaciente"/>
     <indexitem text="CrearStock" target="CrearStock"/>
     <indexitem text="ModificarConsulta" target="ModificarConsulta"/>
+    <indexitem text="Alta" target="Alta"/>
+    <indexitem text="Baja" target="Baja"/>
+    <indexitem text="BorrarEspecialidad" target="BorrarEspecialidad"/>
+    <indexitem text="BuscarDoctor" target="BuscarDoctor"/>
+    <indexitem text="BuscarPaciente" target="BuscarPaciente"/>
+    <indexitem text="ConsultarStock" target="ConsultarStock"/>
+    <indexitem text="CrearEspecialidad" target="CrearEspecialidad"/>
+    <indexitem text="CrearFacturacion" target="CrearFacturacion"/>
+    <indexitem text="CrearProveedor" target="CrearProveedor"/>
+    <indexitem text="DoctorFrame" target="DoctorFrame"/>
+    <indexitem text="AyudaHistorial" target="AyudaHistorial"/>
+    <indexitem text="Historial" target="Historial"/>
+    <indexitem text="ModificarDoctor" target="ModificarDoctor"/>
+    <indexitem text="ModificarEspecialidad" target="ModificarEspecialidad"/>
+    <indexitem text="ModificarPaciente" target="ModificarPaciente"/>
+    <indexitem text="ModificarProveedor" target="ModificarProveedor"/>
+    <indexitem text="ModificarTratamiento" target="ModificarTratamiento"/>
+    <indexitem text="Odontograma" target="Odontograma"/>
+    <indexitem text="Validacion" target="Validacion"/>
+    <indexitem text="ValidarPedido" target="ValidarPedido"/>
 </index>

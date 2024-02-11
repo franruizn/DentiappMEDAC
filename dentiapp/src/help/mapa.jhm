@@ -9,4 +9,24 @@
     <mapID target="CrearPaciente" url="html/crearPaciente.html"/>
     <mapID target="CrearStock" url="html/crearStock.html"/>
     <mapID target="ModificarConsulta" url="html/modificarConsulta.html"/>
+    <mapID target="Alta" url="html/alta.html"/>
+    <mapID target="Baja" url="html/baja.html"/>
+    <mapID target="BorrarEspecialidad" url="html/borrarEspecialidad.html"/>
+    <mapID target="BuscarDoctor" url="html/buscarDoctor.html"/>
+    <mapID target="BuscarPaciente" url="html/buscarPaciente.html"/>
+    <mapID target="ConsultarStock" url="html/consultarStock.html"/>
+    <mapID target="CrearEspecialidad" url="html/crearEspecialidad.html"/>
+    <mapID target="CrearFacturacion" url="html/crearFacturacion.html"/>
+    <mapID target="CrearProveedor" url="html/crearProveedor.html"/>
+    <mapID target="DoctorFrame" url="html/doctorFrame.html"/>
+    <mapID target="AyudaHistorial" url="html/ayudaHistorial.html"/>
+    <mapID target="Historial" url="html/historial.html"/>
+    <mapID target="ModificarDoctor" url="html/modificarDoctor.html"/>
+    <mapID target="ModificarEspecialidad" url="html/modificarEspecialidad.html"/>
+    <mapID target="ModificarPaciente" url="html/modificarPaciente.html"/>
+    <mapID target="ModificarProveedor" url="html/modificarProveedor.html"/>
+    <mapID target="ModificarTratamiento" url="html/modificarTratamiento.html"/>
+    <mapID target="Odontograma" url="html/odontograma.html"/>
+    <mapID target="Validacion" url="html/validacion.html"/>
+    <mapID target="ValidarPedido" url="html/validarPedido.html"/>
 </map>    
