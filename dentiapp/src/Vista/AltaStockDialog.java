@@ -135,9 +135,10 @@ public class AltaStockDialog extends JDialog {
 				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de alta el producto " + cmbStock.getSelectedItem() + "?", "Confirmar baja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
-						con.cambiarBaja(seleccionado,"stock","idstock");
+						con.cambiarAlta(seleccionado,"stock","idstock");
 						JOptionPane.showMessageDialog(null, "Alta dada con éxito",
 								"Alta dada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
+						cmbStock.setModel(rellenarDatos("proveedor", "nombre", modeloDatos));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null, "Error al dar de Alta al producto",

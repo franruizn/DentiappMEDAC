@@ -550,6 +550,7 @@ public class ControladorSQL {
 		cn.conectar();
 		String idObjeto = this.selectWhere(nombreTabla, id, "nombre", objeto);
 		String consulta = "UPDATE " + nombreTabla + " SET baja = 1 WHERE "+ id +" = " + idObjeto;
+		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}
