@@ -71,12 +71,10 @@ public class ConsultarStockDiag extends JDialog {
 		contentPanel.add(btnprsnlzdbnCerrar_1);
 		
 		tblStock = new JTable();
-		tblStock.setEnabled(false);
 		tblStock.setBounds(313, 166, 336, 289);
 		contentPanel.add(tblStock);
 		tblStock.setModel(con.cargarDatos("stock", modeloStock));
 		tblStock.getTableHeader().setVisible(false);
-		tblStock.remove(0);
 		tblStock.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tblStock.getColumnModel().getColumn(1).setPreferredWidth(25);
 		tblStock.getColumnModel().getColumn(2).setPreferredWidth(150);

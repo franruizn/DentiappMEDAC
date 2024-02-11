@@ -10,9 +10,6 @@ Ventana doctor:
 
 Ventana admin:
 -  Falta:
-	- Actualizar stock
-	- Consultar stock
-	
 	(Ivan)
 	- Crear especialidad
 	- Modificar especialidad
@@ -44,6 +41,8 @@ Fran:
 	- Funcionalidad buscar doctor
 	- Funcionalidad modificar tratamiento
 	- Funcionalidad crear facturacion
+	- Modificado consultar stock (añadido scrollpane a la tabla)
+	- Funcionalidad modificar stock
 	
 Derek:
 	- Creados HTML

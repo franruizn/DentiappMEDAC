@@ -679,5 +679,11 @@ public class ControladorSQL {
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}
+	
+	public void modificarStock(String idstock, String idproveedor, String cantidad) throws SQLException {
+		String consulta = "UPDATE stock SET fk_idproveedor = '" + idproveedor +"',cantidad = " + cantidad + "  WHERE idstock = " + idstock;
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
 
 }
