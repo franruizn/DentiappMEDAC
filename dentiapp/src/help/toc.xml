@@ -9,7 +9,7 @@
     <tocitem text="CrearStock" target="CrearStock"/>
     <tocitem text="ModificarConsulta" target="ModificarConsulta"/>
     <tocitem text="Alta" target="Alta"/>
-    <tocitem text="Alta" target="Baja"/>
+    <tocitem text="Baja" target="Baja"/>
     <tocitem text="BorrarEspecialidad" target="BorrarEspecialidad"/>
     <tocitem text="BuscarDoctor" target="BuscarDoctor"/>
     <tocitem text="BuscarPaciente" target="BuscarPaciente"/>
