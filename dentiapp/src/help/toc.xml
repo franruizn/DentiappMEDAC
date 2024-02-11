@@ -8,4 +8,24 @@
     <tocitem text="CrearPaciente" target="CrearPaciente"/>
     <tocitem text="CrearStock" target="CrearStock"/>
     <tocitem text="ModificarConsulta" target="ModificarConsulta"/>
+    <tocitem text="Alta" target="Alta"/>
+    <tocitem text="Baja" target="Baja"/>
+    <tocitem text="BorrarEspecialidad" target="BorrarEspecialidad"/>
+    <tocitem text="BuscarDoctor" target="BuscarDoctor"/>
+    <tocitem text="BuscarPaciente" target="BuscarPaciente"/>
+    <tocitem text="ConsultarStock" target="ConsultarStock"/>
+    <tocitem text="CrearEspecialidad" target="CrearEspecialidad"/>
+    <tocitem text="CrearFacturacion" target="CrearFacturacion"/>
+    <tocitem text="CrearProveedor" target="CrearProveedor"/>
+    <tocitem text="DoctorFrame" target="DoctorFrame"/>
+    <tocitem text="AyudaHistorial" target="AyudaHistorial"/>
+    <tocitem text="Historial" target="Historial"/>
+    <tocitem text="ModificarDoctor" target="ModificarDoctor"/>
+    <tocitem text="ModificarEspecialidad" target="ModificarEspecialidad"/>
+    <tocitem text="ModificarPaciente" target="ModificarPaciente"/>
+    <tocitem text="ModificarProveedor" target="ModificarProveedor"/>
+    <tocitem text="ModificarTratamiento" target="ModificarTratamiento"/>
+    <tocitem text="Odontograma" target="Odontograma"/>
+    <tocitem text="Validacion" target="Validacion"/>
+    <tocitem text="ValidarPedido" target="ValidarPedido"/>
 </toc>
