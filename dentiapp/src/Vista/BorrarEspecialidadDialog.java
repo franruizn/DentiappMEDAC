@@ -26,11 +26,13 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("unused")
 public class BorrarEspecialidadDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombreBuscar;
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 
@@ -52,6 +54,7 @@ public class BorrarEspecialidadDialog extends JDialog {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public BorrarEspecialidadDialog() {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -141,6 +144,7 @@ public class BorrarEspecialidadDialog extends JDialog {
 		
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

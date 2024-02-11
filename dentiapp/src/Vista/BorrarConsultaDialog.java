@@ -31,6 +31,7 @@ public class BorrarConsultaDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private ControladorSQL con = new ControladorSQL();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private String fecha = "";
 
@@ -53,6 +54,7 @@ public class BorrarConsultaDialog extends JDialog {
 	 * Create the dialog.
 	 * @throws SQLException 
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public BorrarConsultaDialog() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -147,6 +149,7 @@ public class BorrarConsultaDialog extends JDialog {
 		
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

@@ -1,18 +1,16 @@
 package Controlador;
 
 import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
-import java.sql.PreparedStatement;
 
 import Vista.adminFrame;
 import Vista.doctorFrame;
@@ -676,6 +674,13 @@ public class ControladorSQL {
 	
 	public void crearFactura(String idpaciente, int pagado, int pagar, String fecha, int total) throws SQLException {
 		String consulta = "INSERT INTO `dentiapp`.`facturacion` (`idfacturacion`,`fk_idpaciente`, `pagado`, `pagar`,`fecha`, `total`)  VALUES ('0','"+idpaciente+"','"+pagado+"','"+pagar+"','"+fecha+"','"+total+"')" ;
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
+	
+	public void modificarFactura(String idpaciente, int pagado, int pagar, String fecha, int total) throws SQLException {
+		String consulta = "UPDATE facturacion SET pagado ='"+ pagado+"',fecha="+fecha+"',total="+total+ " WHERE fk_idpaciente = " +idpaciente
+				+ "//(`idfacturacion`,`fk_idpaciente`, SET pagado`, `pagar`,`fecha`, `total`)
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}

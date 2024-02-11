@@ -1,33 +1,32 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import Controlador.ControladorSQL;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JComboBox;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.Color;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import Controlador.ControladorSQL;
 
 public class ModificarStockDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private ControladorSQL con = new ControladorSQL();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private JTextField txtCantidad;
 
@@ -49,6 +48,7 @@ public class ModificarStockDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ModificarStockDialog() {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -130,6 +130,7 @@ public class ModificarStockDialog extends JDialog {
 		cmbProveedor.setModel(rellenarDatos("proveedor","nombre",modeloDatos));
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

@@ -2,34 +2,32 @@ package Vista;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorSQL;
-
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
 import paqGUI.BotonPersonalizadoBean;
-import java.awt.Component;
 
 public class adminFrame extends JFrame {
 
@@ -233,42 +231,6 @@ public class adminFrame extends JFrame {
 		JMenu mnGestionarUsuarios = new JMenu("Gestionar Usuarios");
 		mnUsuarios.add(mnGestionarUsuarios);
 		
-		JMenuItem mntmCrearUsuario = new JMenuItem("Crear Usuario");
-		mntmCrearUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CrearUsuarioDialog dialUsuario1;
-				dialUsuario1 = new CrearUsuarioDialog();
-				dialUsuario1.setModal(true);
-				dialUsuario1.setLocationRelativeTo(null);
-				dialUsuario1.setVisible(true);
-			}
-		});
-		mnGestionarUsuarios.add(mntmCrearUsuario);
-		
-		JMenuItem mntmBorrarUsuario = new JMenuItem("Borrar Usuario");
-		mntmBorrarUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BorrarUsuarioDialog dialUsuario2;
-				dialUsuario2 = new BorrarUsuarioDialog();
-				dialUsuario2.setModal(true);
-				dialUsuario2.setLocationRelativeTo(null);
-				dialUsuario2.setVisible(true);
-			}
-		});
-		mnGestionarUsuarios.add(mntmBorrarUsuario);
-		
-		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar Usuario");
-		mntmModificarUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ModificarUsuarioDialog dialUsuario3;
-				dialUsuario3 = new ModificarUsuarioDialog();
-				dialUsuario3.setModal(true);
-				dialUsuario3.setLocationRelativeTo(null);
-				dialUsuario3.setVisible(true);
-			}
-		});
-		mnGestionarUsuarios.add(mntmModificarUsuario);
-		
 		JMenu mnStock = new JMenu("Stock");
 		menuBar.add(mnStock);
 		
@@ -290,11 +252,17 @@ public class adminFrame extends JFrame {
 		JMenuItem mntmBorrarStock = new JMenuItem("Borrar Stock");
 		mntmBorrarStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BorrarStockDialog dialStock2;
-				dialStock2 = new BorrarStockDialog();
-				dialStock2.setModal(true);
-				dialStock2.setLocationRelativeTo(null);
-				dialStock2.setVisible(true);
+				BajaStockDialog dialStock2;
+				try {
+					dialStock2 = new BajaStockDialog();
+					dialStock2.setModal(true);
+					dialStock2.setLocationRelativeTo(null);
+					dialStock2.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		mnGestionarStock.add(mntmBorrarStock);
@@ -348,18 +316,6 @@ public class adminFrame extends JFrame {
 			}
 		});
 		mnGestionarFacturacion.add(mntmCrearFacturacion);
-		
-		JMenuItem mntmBorrarFacturacion = new JMenuItem("Borrar Facturación");
-		mntmBorrarFacturacion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BorrarFacturacionDialog dialFactura2;
-				dialFactura2 = new BorrarFacturacionDialog();
-				dialFactura2.setModal(true);
-				dialFactura2.setLocationRelativeTo(null);
-				dialFactura2.setVisible(true);
-			}
-		});
-		mnGestionarFacturacion.add(mntmBorrarFacturacion);
 		
 		JMenuItem mntmModificarFacturacion = new JMenuItem("Modificar Facturacion");
 		mntmModificarFacturacion.addActionListener(new ActionListener() {

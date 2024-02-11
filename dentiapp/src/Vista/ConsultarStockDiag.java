@@ -1,27 +1,22 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controlador.ControladorSQL;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.sql.SQLException;
-
-import javax.swing.JTable;
 import paqGUI.BotonPersonalizadoBean;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ConsultarStockDiag extends JDialog {
 

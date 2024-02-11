@@ -15,10 +15,7 @@ Ventana admin:
 	- Modificar especialidad
 	- Eliminar especialidad
 	(Ivan)
-	
-	- Crear tratamiento
-	- Modificar facturacion
-	- Consultar AYUDA
+
 	
 Fran:
 	- Creados HTML
@@ -69,3 +66,7 @@ Ivan:
 	- Funcionalidad ModificarConsulta
 	- Arreglado no se pueden modificar ni borrar fechas ya pasadas
 	- Funcionalidad CrearEspecialidad
+	- Funcionalidad Odontograma
+	- Funcionalidad ModificarEspecialidad
+	- Funcionalidad BorrarEspecialidad
+	- Funcionalidad Crear Tratamiento

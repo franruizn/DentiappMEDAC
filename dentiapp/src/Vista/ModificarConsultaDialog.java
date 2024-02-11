@@ -1,27 +1,9 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import com.toedter.calendar.JCalendar;
-import javax.swing.JTextField;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JTextFieldDateEditor;
-
-import Controlador.ControladorSQL;
-import paqGUI.BotonPersonalizadoBean;
-
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -29,12 +11,25 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.awt.event.ActionEvent;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.event.ItemEvent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import java.awt.Font;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
+
+import Controlador.ControladorSQL;
+import paqGUI.BotonPersonalizadoBean;
 
 public class ModificarConsultaDialog extends JDialog {
 
@@ -42,6 +37,7 @@ public class ModificarConsultaDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private ControladorSQL con = new ControladorSQL();
 	private ArrayList<String[]> consultas = new ArrayList<>();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private String fecha = "";
 	private JTextField txtPaciente;
@@ -64,6 +60,7 @@ public class ModificarConsultaDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ModificarConsultaDialog() {
 		setLocationRelativeTo(null);	
 		setResizable(false);

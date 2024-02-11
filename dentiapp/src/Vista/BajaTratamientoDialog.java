@@ -32,9 +32,11 @@ public class BajaTratamientoDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	@SuppressWarnings("rawtypes")
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private ControladorSQL con = new ControladorSQL();
 	private JTable tblDocs;
+	@SuppressWarnings("unused")
 	private DefaultTableModel modeloTblDocs = new DefaultTableModel();
 	private JTextField txtStock;
 
@@ -58,6 +60,7 @@ public class BajaTratamientoDialog extends JDialog {
 	 * 
 	 * @throws SQLException
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public BajaTratamientoDialog() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
@@ -136,7 +139,6 @@ public class BajaTratamientoDialog extends JDialog {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String seleccionado = cmbStock.getSelectedItem().toString();
-				String id;
 				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de baja el tratamiento " + cmbStock.getSelectedItem() + "?", "Confirmar baja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
@@ -158,6 +160,7 @@ public class BajaTratamientoDialog extends JDialog {
 	
 	
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {

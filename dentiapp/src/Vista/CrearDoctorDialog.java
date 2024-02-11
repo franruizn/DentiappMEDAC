@@ -160,6 +160,7 @@ public class CrearDoctorDialog extends JDialog {
 					//dispose();
 				}
 
+				@SuppressWarnings("unused")
 				private void obtenerDatos(JComboBox<String> comboEspecialidades) throws SQLException {
 					listaDatos[0]=(null);
 					listaDatos[1] = (txtDNI.getText());

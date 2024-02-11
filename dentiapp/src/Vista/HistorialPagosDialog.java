@@ -1,36 +1,27 @@
 package Vista;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import Controlador.ControladorSQL;
-
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.JTable;
-import paqGUI.BotonPersonalizadoBean;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
+
+import Controlador.ControladorSQL;
+import paqGUI.BotonPersonalizadoBean;
 
 public class HistorialPagosDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private ControladorSQL con = new ControladorSQL();
-	private DefaultTableModel modeloDatos = new DefaultTableModel();
-	private String[] mostrarSoli = {"fk_iddoctor","material","cantidad","proveedor"};
 	private String paciente = "";
 
 	/**
