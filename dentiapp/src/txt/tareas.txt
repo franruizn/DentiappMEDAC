@@ -10,7 +10,6 @@ Ventana doctor:
 
 Ventana admin:
 -  Falta:
-	- Buscar paciente (Falta historial y pagos)
 	- Consultar doctor
 	- Actualizar stock
 	- Consultar stock
@@ -23,7 +22,8 @@ Ventana admin:
 	- Eliminar especialidad
 	- Crear tratamiento
 	- Modificar tratamiento
-	- Dar de baja tratamiento
+	- Crear facturacion
+	- Modificar facturacion
 	- Consultar AYUDA
 	
 Fran:
@@ -32,7 +32,6 @@ Fran:
 	- Crear stock
 	- Modificaciones a "BorrarDoctorDialog"
 	- Arreglado el Menú de doctor (estaba dentro del content pane)
-	- Funcionalidad BajaDoctor
 	- Funcionalidad de "ModificarDoctorDialog"
 	- Funcionalidad de "ModificarPacienteDialog"
 	- Modificada la BBDD para poder hacer todas las funcionalidades
@@ -43,6 +42,9 @@ Fran:
 	- Funcionalidad Baja/Alta Stock
 	- Funcionalidad Baja/Alta Proveedor
 	- Funcionalidad Baja/Alta Tratamiento
+	- Funcionalidad BajaDoctor
+	- Historial Paciente
+	- Historial de Pagos
 	
 	
 Derek:
