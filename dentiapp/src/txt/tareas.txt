@@ -20,7 +20,6 @@ Ventana admin:
 	(Ivan)
 	
 	- Crear tratamiento
-	- Crear facturacion
 	- Modificar facturacion
 	- Consultar AYUDA
 	
@@ -45,6 +44,7 @@ Fran:
 	- Historial de Pagos
 	- Funcionalidad buscar doctor
 	- Funcionalidad modificar tratamiento
+	- Funcionalidad crear facturacion
 	
 Derek:
 	- Creados HTML: 
