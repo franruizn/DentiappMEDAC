@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
-public class AltaDoctorDialog extends JDialog {
+public class AltaStockDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -36,14 +36,14 @@ public class AltaDoctorDialog extends JDialog {
 	private ControladorSQL con = new ControladorSQL();
 	private JTable tblDocs;
 	private DefaultTableModel modeloTblDocs = new DefaultTableModel();
-	private JTextField txtDoctor;
+	private JTextField txtStock;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			AltaDoctorDialog dialog = new AltaDoctorDialog();
+			AltaStockDialog dialog = new AltaStockDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
@@ -55,8 +55,10 @@ public class AltaDoctorDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * 
+	 * @throws SQLException
 	 */
-	public AltaDoctorDialog() {
+	public AltaStockDialog() throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -73,39 +75,39 @@ public class AltaDoctorDialog extends JDialog {
 			}
 		});
 		
-		JComboBox cmbDoctores = new JComboBox();
-		cmbDoctores.setBounds(113, 107, 221, 47);
-		contentPanel.add(cmbDoctores);
+		JComboBox cmbStock = new JComboBox();
+		cmbStock.setBounds(119, 107, 221, 47);
+		contentPanel.add(cmbStock);
 		
-		txtDoctor = new JTextField();
-		txtDoctor.setColumns(10);
-		txtDoctor.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		txtDoctor.setBackground(new Color(246, 246, 246));
-		txtDoctor.setBounds(335, 104, 181, 49);
-		contentPanel.add(txtDoctor);
+		txtStock = new JTextField();
+		txtStock.setColumns(10);
+		txtStock.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		txtStock.setBackground(new Color(246, 246, 246));
+		txtStock.setBounds(340, 106, 181, 49);
+		contentPanel.add(txtStock);
 		btnprsnlzdbnCerrar.setBounds(459, 25, 96, 50);
 		contentPanel.add(btnprsnlzdbnCerrar);
-		cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
-		txtDoctor.addKeyListener(new KeyAdapter() {
+		cmbStock.setModel(rellenarDatos("stock", "nombre", modeloDatos));
+		txtStock.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 
-				cmbDoctores.setModel(rellenarDatos("doctor", "nombre", modeloDatos));
-				String textoBusqueda = txtDoctor.getText().toLowerCase();
+				cmbStock.setModel(rellenarDatos("stock", "nombre", modeloDatos));
+				String textoBusqueda = txtStock.getText().toLowerCase();
 
 				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
 
 				List<String> elementosFiltrados = new ArrayList<>();
-				for (int i = 0; i < cmbDoctores.getItemCount(); i++) {
-					if (cmbDoctores.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
-						elementosFiltrados.add(cmbDoctores.getItemAt(i).toString());
+				for (int i = 0; i < cmbStock.getItemCount(); i++) {
+					if (cmbStock.getItemAt(i).toString().toLowerCase().contains(textoBusqueda)) {
+						elementosFiltrados.add(cmbStock.getItemAt(i).toString());
 					}
 				}
 
 				// Actualizar los elementos del combo con los resultados filtrados
 
-				cmbDoctores.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
-				cmbDoctores.setPopupVisible(true);
+				cmbStock.setModel(new DefaultComboBoxModel<>(elementosFiltrados.toArray(new String[0])));
+				cmbStock.setPopupVisible(true);
 			}
 		});
 
@@ -118,7 +120,7 @@ public class AltaDoctorDialog extends JDialog {
 		contentPanel.add(btnAceptar);
 		{
 			JLabel lblFondo = new JLabel("");
-			lblFondo.setIcon(new ImageIcon(BorrarDoctorDialog.class.getResource("/fotos/alta_doctor.PNG")));
+			lblFondo.setIcon(new ImageIcon(AltaStockDialog.class.getResource("/fotos/alta_stock.png")));
 			lblFondo.setBounds(0, 0, 564, 421);
 			contentPanel.add(lblFondo);
 		}
@@ -128,17 +130,17 @@ public class AltaDoctorDialog extends JDialog {
 		contentPanel.add(tblDocs);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String seleccionado = cmbDoctores.getSelectedItem().toString();
+				String seleccionado = cmbStock.getSelectedItem().toString();
 				String id;
-				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de alta al doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de alta el producto " + cmbStock.getSelectedItem() + "?", "Confirmar baja", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
-						con.cambiarBaja(seleccionado,"doctor","iddoctor");
-						JOptionPane.showMessageDialog(null, "Alta dada con Exito",
+						con.cambiarBaja(seleccionado,"stock","idstock");
+						JOptionPane.showMessageDialog(null, "Alta dada con éxito",
 								"Alta dada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Error al dar de Alta al doctor",
+						JOptionPane.showMessageDialog(null, "Error al dar de Alta al producto",
 								"Error al dar de baja", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoNo.png")));
 						e1.printStackTrace();
 					}
@@ -147,6 +149,9 @@ public class AltaDoctorDialog extends JDialog {
 
 		});
 	}
+	
+	
+	
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {
 		try {
@@ -160,5 +165,4 @@ public class AltaDoctorDialog extends JDialog {
 
 		return comboDatos;
 	}
-
 }

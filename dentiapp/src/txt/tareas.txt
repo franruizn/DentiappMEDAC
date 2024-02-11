@@ -42,6 +42,8 @@ Fran:
 	- Modificar los comentarios del diente te guarda los anteriores aunque los borres
 	- Ventana doctor solo muestra las citas del mismo dia (puedes buscar dias posteriores)
 	- No se pueden crear citas a la misma fecha y hora para un doctor o paciente
+	- Funcionalidad BajaStock
+	- Funcionalidad AltaStock
 	
 Derek:
 	- Creados HTML: 
