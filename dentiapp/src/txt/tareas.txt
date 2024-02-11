@@ -64,3 +64,11 @@ Derek:
 	- funcionalidad javahelp(cmd, aparicion de menu)
 	
 Ivan:
+	- Creados HTML y Archivos de configuracion javahelp
+	- Ventana Odontograma
+	- Arreglado en ventana doctor lista de pacientes asignados
+	- Funcionalidad CrearConsulta
+	- Funcionalidad BorrarConsulta
+	- Funcionalidad ModificarConsulta
+	- Arreglado no se pueden modificar ni borrar fechas ya pasadas
+	- Funcionalidad CrearEspecialidad
