@@ -678,6 +678,13 @@ public class ControladorSQL {
 		cn.ejecutarIDU(consulta);
 	}
 	
+	public void modificarFactura(String idpaciente, int pagado, int pagar, String fecha, int total) throws SQLException {
+		String consulta = "UPDATE facturacion SET pagado ='"+ pagado+"',fecha="+fecha+"',total="+total+ " WHERE fk_idpaciente = " +idpaciente
+				+ "//(`idfacturacion`,`fk_idpaciente`, SET pagado`, `pagar`,`fecha`, `total`)
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
+	
 	public void modificarStock(String idstock, String idproveedor, String cantidad) throws SQLException {
 		String consulta = "UPDATE stock SET fk_idproveedor = '" + idproveedor +"',cantidad = " + cantidad + "  WHERE idstock = " + idstock;
 		System.out.println(consulta);
