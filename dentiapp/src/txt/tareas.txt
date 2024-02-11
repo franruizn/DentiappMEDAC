@@ -24,8 +24,7 @@ Ventana admin:
 	- Consultar AYUDA
 	
 Fran:
-	- Creados HTML: 
-		- 
+	- Creados HTML
 	- Crear stock
 	- Modificaciones a "BorrarDoctorDialog"
 	- Arreglado el Menú de doctor (estaba dentro del content pane)
@@ -47,8 +46,7 @@ Fran:
 	- Funcionalidad crear facturacion
 	
 Derek:
-	- Creados HTML: 
-		- 
+	- Creados HTML
 	- Ventana doctor:
 		- Cambiar los dos cuadrados por uno solo grande donde mostrar las citas
 		- Quitar los botones y poner un menú con:
@@ -60,7 +58,7 @@ Derek:
 	- Crear un fondo como el de "BorrarDoctorDialog" pero que ponga Alta Doctor
 	- Funcionalidad dar alta doctor
 	- Funcionalidad Buscar paciente
-	- funcionalidad javahelp(cmd, aparicion de menu)
+	- Funcionalidad javahelp(cmd, aparicion de menu)
 	- Funcionalidad crear/modificar proveedor
 	
 Ivan:
