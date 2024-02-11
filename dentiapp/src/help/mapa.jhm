@@ -28,4 +28,6 @@
     <mapID target="Odontograma" url="html/odontograma.html"/>
     <mapID target="Validacion" url="html/validacion.html"/>
     <mapID target="ValidarPedido" url="html/validarPedido.html"/>
+    <mapID target="ModificarStock" url="html/modificarStock.html"/>
+    <mapID target="ModificarFacturacion" url="html/modificarFacturacion.html"/>
 </map>    

@@ -27,4 +27,6 @@
     <tocitem text="Odontograma" target="Odontograma"/>
     <tocitem text="Validacion" target="Validacion"/>
     <tocitem text="ValidarPedido" target="ValidarPedido"/>
+    <tocitem text="ModificarStock" target="ModificarStock"/>
+    <tocitem text="ModificarFacturacion" target="ModificarFacturacion"/>
 </toc>

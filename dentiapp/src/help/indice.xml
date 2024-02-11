@@ -27,4 +27,6 @@
     <indexitem text="Odontograma" target="Odontograma"/>
     <indexitem text="Validacion" target="Validacion"/>
     <indexitem text="ValidarPedido" target="ValidarPedido"/>
+    <indexitem text="ModificarStock" target="ModificarStock"/>
+    <indexitem text="ModificarFacturacion" target="ModificarFacturacion"/>
 </index>
