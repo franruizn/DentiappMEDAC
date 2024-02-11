@@ -152,7 +152,7 @@ public class adminFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				BorrarDoctorDialog dialDoctor2;
 				try {
-					dialDoctor2 = new BorrarDoctorDialog();
+					dialDoctor2 = new BorrarDoctorDialog("");
 					dialDoctor2.setModal(true);
 					dialDoctor2.setLocationRelativeTo(null);
 					dialDoctor2.setVisible(true);
@@ -168,8 +168,8 @@ public class adminFrame extends JFrame {
 		JMenuItem mntmModificarDoctor = new JMenuItem("Modificar Doctor");
 		mntmModificarDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModificarProveedorDialog dialDoctor3;
-				dialDoctor3 = new ModificarProveedorDialog();
+				ModificarDoctorDialog dialDoctor3;
+				dialDoctor3 = new ModificarDoctorDialog("");
 				dialDoctor3.setModal(true);
 				dialDoctor3.setLocationRelativeTo(null);
 				dialDoctor3.setVisible(true);
@@ -473,7 +473,7 @@ public class adminFrame extends JFrame {
 				BorrarDoctorDialog dialDoctor;
 				try {
 					
-					dialDoctor = new BorrarDoctorDialog();
+					dialDoctor = new BorrarDoctorDialog("");
 					dialDoctor.setModal(true);
 					dialDoctor.setUndecorated(true);
 					dialDoctor.setVisible(true);

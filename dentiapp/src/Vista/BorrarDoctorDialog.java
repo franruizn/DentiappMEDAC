@@ -43,7 +43,7 @@ public class BorrarDoctorDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			BorrarDoctorDialog dialog = new BorrarDoctorDialog();
+			BorrarDoctorDialog dialog = new BorrarDoctorDialog("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
@@ -58,7 +58,7 @@ public class BorrarDoctorDialog extends JDialog {
 	 * 
 	 * @throws SQLException
 	 */
-	public BorrarDoctorDialog() throws SQLException {
+	public BorrarDoctorDialog(String nombre) throws SQLException {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -149,6 +149,8 @@ public class BorrarDoctorDialog extends JDialog {
 			}
 
 		});
+		
+		cmbDoctores.setSelectedItem(nombre);
 	}
 	
 	

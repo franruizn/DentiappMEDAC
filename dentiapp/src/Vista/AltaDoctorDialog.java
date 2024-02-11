@@ -43,7 +43,7 @@ public class AltaDoctorDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AltaDoctorDialog dialog = new AltaDoctorDialog();
+			AltaDoctorDialog dialog = new AltaDoctorDialog("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
@@ -56,7 +56,7 @@ public class AltaDoctorDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AltaDoctorDialog() {
+	public AltaDoctorDialog(String nombre) {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
@@ -147,6 +147,8 @@ public class AltaDoctorDialog extends JDialog {
 			}
 
 		});
+		
+		cmbDoctores.setSelectedItem(nombre);
 	}
 	public DefaultComboBoxModel rellenarDatos(String nombreTabla, String campo,
 			DefaultComboBoxModel<String> comboDatos) {

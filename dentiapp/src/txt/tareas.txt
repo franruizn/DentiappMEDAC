@@ -10,7 +10,6 @@ Ventana doctor:
 
 Ventana admin:
 -  Falta:
-	- Consultar doctor
 	- Actualizar stock
 	- Consultar stock
 	- Crear proveedor
@@ -42,10 +41,10 @@ Fran:
 	- Funcionalidad Baja/Alta Stock
 	- Funcionalidad Baja/Alta Proveedor
 	- Funcionalidad Baja/Alta Tratamiento
-	- Funcionalidad BajaDoctor
+	- Funcionalidad Baja Doctor
 	- Historial Paciente
 	- Historial de Pagos
-	
+	- Funcionalidad buscar doctor
 	
 Derek:
 	- Creados HTML: 
