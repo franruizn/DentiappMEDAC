@@ -1,11 +1,11 @@
 <index version="1.0">
-    <indexitem txt="Login" target="Login"></indexitem>
-    <indexitem txt="AdminFrame" target="AdminFrame"/>
-    <indexitem txt="BorrarConsulta" target="BorrarConsulta"/>
-    <indexitem txt="BorrarDoctor" target="BorrarDoctor"/>
-    <indexitem txt="CrearConsulta" target="CrearConsulta"/>
-    <indexitem txt="CrearDoctor" target="CrearDoctor"/>
-    <indexitem txt="CrearPaciente" target="CrearPaciente"/>
-    <indexitem txt="CrearStock" target="CrearStock"/>
-    <indexitem txt="ModificarConsulta" target="ModificarConsulta"/>
+    <indexitem text="Login" target="Login"></indexitem>
+    <indexitem text="AdminFrame" target="AdminFrame"/>
+    <indexitem text="BorrarConsulta" target="BorrarConsulta"/>
+    <indexitem text="BorrarDoctor" target="BorrarDoctor"/>
+    <indexitem text="CrearConsulta" target="CrearConsulta"/>
+    <indexitem text="CrearDoctor" target="CrearDoctor"/>
+    <indexitem text="CrearPaciente" target="CrearPaciente"/>
+    <indexitem text="CrearStock" target="CrearStock"/>
+    <indexitem text="ModificarConsulta" target="ModificarConsulta"/>
 </index>
