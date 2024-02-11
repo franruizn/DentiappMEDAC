@@ -1,12 +1,14 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,6 +74,18 @@ public class ConsultarStockDiag extends JDialog {
 		tblStock.setEnabled(false);
 		tblStock.setBounds(313, 166, 336, 289);
 		contentPanel.add(tblStock);
+		tblStock.setModel(con.cargarDatos("stock", modeloStock));
+		tblStock.getTableHeader().setVisible(false);
+		tblStock.remove(0);
+		tblStock.getColumnModel().getColumn(0).setPreferredWidth(25);
+		tblStock.getColumnModel().getColumn(1).setPreferredWidth(25);
+		tblStock.getColumnModel().getColumn(2).setPreferredWidth(150);
+		
+		JScrollPane scrStock = new JScrollPane(tblStock);
+		scrStock.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrStock.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrStock.setBounds(313, 166, 336, 289);
+		contentPanel.add(scrStock);
 		
 		JLabel lblTitulo = new JLabel("LISTADO DE STOCK");
 		lblTitulo.setFont(new Font("SansSerif", Font.PLAIN, 35));
@@ -83,10 +97,7 @@ public class ConsultarStockDiag extends JDialog {
 		lblFondo.setBounds(0, 0, 965, 594);
 		contentPanel.add(lblFondo);
 		
-		tblStock.setModel(con.cargarDatos("stock", modeloStock));
-		tblStock.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tblStock.getColumnModel().getColumn(1).setPreferredWidth(25);
-		tblStock.getColumnModel().getColumn(2).setPreferredWidth(150);
+		
 		
 	}
 }
