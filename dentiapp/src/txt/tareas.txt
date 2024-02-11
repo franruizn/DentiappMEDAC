@@ -10,7 +10,7 @@ Ventana doctor:
 
 Ventana admin:
 -  Falta:
-	- Buscar paciente (Falta historial y pagos)
+	- Buscar paciente (Falta pagos)
 	- Consultar doctor
 	- Actualizar stock
 	- Consultar stock
@@ -42,6 +42,7 @@ Fran:
 	- Funcionalidad Baja/Alta Proveedor
 	- Funcionalidad Baja/Alta Tratamiento
 	- Funcionalidad BajaDoctor
+	- Historial Paciente
 	
 	
 Derek:

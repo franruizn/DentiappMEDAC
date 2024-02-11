@@ -124,7 +124,7 @@ public class BuscarPacienteDialog extends JDialog {
 				}
             }
         });
-        btnMostrarConsultas.setBounds(211, 370, 150, 40);
+        btnMostrarConsultas.setBounds(200, 370, 161, 40);
         contentPanel.add(btnMostrarConsultas);
         
 		txtPaciente.addKeyListener(new KeyAdapter() {
@@ -151,6 +151,20 @@ public class BuscarPacienteDialog extends JDialog {
 		});
 		
 		JButton btnPagos = new JButton("Pagos");
+		btnPagos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					paciente = con.selectWhere("paciente", "dni", "nombre", cmbPaciente.getSelectedItem().toString())+"-"+cmbPaciente.getSelectedItem().toString();
+					HistorialPagosDialog dialog = new HistorialPagosDialog(paciente);
+					dialog.setModal(true);
+					dialog.setLocationRelativeTo(null);
+					dialog.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnPagos.setBounds(387, 370, 150, 40);
 		contentPanel.add(btnPagos);
 		

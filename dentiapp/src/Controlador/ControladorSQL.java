@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -617,6 +616,31 @@ public class ControladorSQL {
 
 			String observaciones = rset.getString("observaciones");
 			texto += observaciones + "\n\n";
+		}
+		cn.desconectar();
+		return texto;
+	}
+	
+	public String rellenarPagos(String paciente) throws SQLException {
+		cn.conectar();
+		String pagadoTxt = "";
+		String texto = "";
+		String[] dni = paciente.split("-");
+		String idpaciente = selectWhere("paciente", "idpaciente", "dni", dni[0]);
+		String consulta = "SELECT fecha,pagado,pagar,total FROM facturacion WHERE fk_idpaciente = " + idpaciente;
+		ResultSet rset = cn.ejecutarSelect(consulta);
+		while(rset.next()) {
+			String fecha = rset.getString("fecha");
+			int  pagado = rset.getInt("pagado");
+			int  pagar = rset.getInt("pagar");
+			int total = rset.getInt("total");
+			if(pagado == 1) {
+				pagadoTxt = "PAGADO";
+			} else {
+				pagadoTxt = "POR PAGAR";
+			}
+			
+			texto += fecha + "Total: " + total + "Pendiente: " + (total - pagar) + "Pagado: " + pagadoTxt + "\n";
 		}
 		cn.desconectar();
 		return texto;
