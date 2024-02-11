@@ -538,10 +538,18 @@ public class ControladorSQL {
 		cn.desconectar();
 	}
 
-	public void cambiarAlta(String doctor) throws SQLException {
+	public void cambiarAlta(String objeto, String nombreTabla, String id) throws SQLException {
 		cn.conectar();
-		String iddoctor = this.selectWhere("doctor", "iddoctor", "nombre", doctor);
-		String consulta = "UPDATE doctor SET baja = 1 WHERE iddoctor = " + iddoctor;
+		String idObjeto = this.selectWhere(nombreTabla, id, "nombre", objeto);
+		String consulta = "UPDATE " + nombreTabla + " SET baja = 0 WHERE "+ id +" = " + idObjeto;
+		cn.ejecutarIDU(consulta);
+		cn.desconectar();
+	}
+	
+	public void cambiarBaja(String objeto, String nombreTabla, String id) throws SQLException {
+		cn.conectar();
+		String idObjeto = this.selectWhere(nombreTabla, id, "nombre", objeto);
+		String consulta = "UPDATE " + nombreTabla + " SET baja = 1 WHERE "+ id +" = " + idObjeto;
 		cn.ejecutarIDU(consulta);
 		cn.desconectar();
 	}

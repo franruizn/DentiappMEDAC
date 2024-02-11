@@ -135,7 +135,7 @@ public class BorrarDoctorDialog extends JDialog {
 				int op = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere dar de baja al doctor " + cmbDoctores.getSelectedItem() + "?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(op == 0) {
 					try {
-						con.cambiarAlta(seleccionado);
+						con.cambiarAlta(seleccionado,"doctor","iddoctor");
 						JOptionPane.showMessageDialog(null, "Baja dada con Exito",
 								"Baja dada", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 					} catch (SQLException e1) {
