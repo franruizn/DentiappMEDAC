@@ -679,5 +679,10 @@ public class ControladorSQL {
 		System.out.println(consulta);
 		cn.ejecutarIDU(consulta);
 	}
+	public void modificarFactura(String idfacturacion, int pagado, int pagar) throws SQLException {
+		String consulta = "UPDATE facturacion SET pagado = "+ pagado +",pagar = "+ pagar +"  WHERE idfacturacion = " + idfacturacion;
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
 
 }
