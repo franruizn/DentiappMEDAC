@@ -168,8 +168,8 @@ public class adminFrame extends JFrame {
 		JMenuItem mntmModificarDoctor = new JMenuItem("Modificar Doctor");
 		mntmModificarDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModificarDoctorDialog dialDoctor3;
-				dialDoctor3 = new ModificarDoctorDialog();
+				ModificarProveedorDialog dialDoctor3;
+				dialDoctor3 = new ModificarProveedorDialog();
 				dialDoctor3.setModal(true);
 				dialDoctor3.setLocationRelativeTo(null);
 				dialDoctor3.setVisible(true);

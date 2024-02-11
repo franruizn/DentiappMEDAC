@@ -46,7 +46,7 @@ public class ModificarDoctorDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ModificarDoctorDialog dialog = new ModificarDoctorDialog();
+			ModificarProveedorDialog dialog = new ModificarProveedorDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setLocationRelativeTo(null);
 			dialog.setUndecorated(true);
@@ -153,7 +153,7 @@ public class ModificarDoctorDialog extends JDialog {
 					String idespecialidad = con.selectWhere("especialidad", "idespecialidad", "nombre", especialidad);
 					String iddoctor = con.selectWhere("doctor", "iddoctor", "nombre", cmbDoctor.getSelectedItem().toString());
 					
-					con.modificarDoctor(iddoctor, idespecialidad, nombre);
+					con.modificarProveedor(iddoctor, idespecialidad, nombre);
 					JOptionPane.showMessageDialog(null, "Doctor Modificado con Exito",
 							"Doctor Modificado", JOptionPane.WARNING_MESSAGE,new ImageIcon(CrearDoctorDialog.class.getResource("/fotos/iconoOk.png")));
 					
@@ -178,7 +178,7 @@ public class ModificarDoctorDialog extends JDialog {
 		contentPanel.add(btnCancelar);
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(ModificarDoctorDialog.class.getResource("/fotos/mod_doctor.png")));
+		lblFondo.setIcon(new ImageIcon(ModificarProveedorDialog.class.getResource("/fotos/mod_doctor.png")));
 		lblFondo.setBounds(0, 0, 764, 451);
 		contentPanel.add(lblFondo);
 		

@@ -645,5 +645,10 @@ public class ControladorSQL {
 		cn.desconectar();
 		return texto;
 	}
+	public void modificarProveedor(String idproveedor,  String nombre, String telefono) throws SQLException {
+		String consulta = "UPDATE proveedor SET nombre = '" + nombre +"',telefono = " + telefono + "  WHERE idproveedor = " + idproveedor;
+		System.out.println(consulta);
+		cn.ejecutarIDU(consulta);
+	}
 
 }
