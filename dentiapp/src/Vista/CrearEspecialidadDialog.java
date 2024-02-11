@@ -20,10 +20,10 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class CrearEspecialidadDialog extends JFrame {
+public class CrearEspecialidadDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPanel;
+	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
 	private ControladorSQL con = new ControladorSQL();
 
@@ -31,8 +31,6 @@ public class CrearEspecialidadDialog extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
 				try {
 
 					CrearEspecialidadDialog dialog = new CrearEspecialidadDialog();
@@ -43,22 +41,20 @@ public class CrearEspecialidadDialog extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		});
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public CrearEspecialidadDialog() {
+	public CrearEspecialidadDialog() throws SQLException{
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
 		setBounds(100, 100, 564, 421);
+		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		getContentPane().setLayout(null);
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -67,17 +63,17 @@ public class CrearEspecialidadDialog extends JFrame {
 			}
 		});
 		btnCancelar.setBounds(367, 396, 89, 23);
-		getContentPane().add(btnCancelar);
+		contentPanel.add(btnCancelar);
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(121, 114, 383, 33);
-		getContentPane().add(txtNombre);
+		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblNombre.setBounds(240, 65, 114, 26);
-		getContentPane().add(lblNombre);
+		contentPanel.add(lblNombre);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -96,12 +92,12 @@ public class CrearEspecialidadDialog extends JFrame {
 			}
 		});
 		btnAceptar.setBounds(466, 396, 89, 23);
-		getContentPane().add(btnAceptar);
+		contentPanel.add(btnAceptar);
 		
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setIcon(new ImageIcon(CrearStockDialog.class.getResource("/fotos/crear_especialidad.PNG")));
 		lblFondo.setBounds(0, 0, 564, 421);
-		getContentPane().add(lblFondo);
+		contentPanel.add(lblFondo);
 		
 	}
 }

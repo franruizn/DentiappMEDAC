@@ -25,10 +25,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ModificarEspecialidadDialog extends JFrame {
+public class ModificarEspecialidadDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
 	private DefaultComboBoxModel modeloDatos = new DefaultComboBoxModel();
 	private JTextField txtNombreBuscar;
@@ -37,9 +37,7 @@ public class ModificarEspecialidadDialog extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public static void main(String[] args) throws SQLException{
 				try {
 					ModificarEspecialidadDialog dialog = new ModificarEspecialidadDialog();
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -49,8 +47,6 @@ public class ModificarEspecialidadDialog extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				}
-		});
 	}
 
 	/**
@@ -60,29 +56,43 @@ public class ModificarEspecialidadDialog extends JFrame {
 		setLocationRelativeTo(null);	
 		setResizable(false);
 		setUndecorated(true);
-		setBounds(100, 100, 763, 447);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPane, BorderLayout.CENTER);
-		contentPane.setLayout(null);
-		getContentPane().setLayout(null);
+		setBounds(100, 100, 765, 448);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		
 		
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(420, 161, 278, 20);
-		getContentPane().add(txtNombre);
+		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JComboBox cmbNombre = new JComboBox();
 		cmbNombre.setBounds(61, 160, 142, 22);
-		getContentPane().add(cmbNombre);
+		contentPanel.add(cmbNombre);
 		
 		cmbNombre.setModel(rellenarDatos("especialidad", "nombre", modeloDatos));
+		
+		
+		JLabel lblEspecialidad = new JLabel("New label");
+		lblEspecialidad.setBounds(157, 123, 46, 14);
+		contentPanel.add(lblEspecialidad);
+		
+		JLabel lblNombre = new JLabel("New label");
+		lblNombre.setBounds(541, 123, 46, 14);
+		contentPanel.add(lblNombre);
+		
+		txtNombreBuscar = new JTextField();
+		txtNombreBuscar.setBounds(213, 161, 129, 20);
+		contentPanel.add(txtNombreBuscar);
+		txtNombreBuscar.setColumns(10);
 		txtNombreBuscar.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 
-				cmbNombre.setModel(rellenarDatos("paciente", "nombre", modeloDatos));
+				cmbNombre.setModel(rellenarDatos("especialidad", "nombre", modeloDatos));
 				String textoBusqueda = txtNombreBuscar.getText().toLowerCase();
 
 				// Filtrar los elementos del combo que coincidan con el texto de búsqueda
@@ -100,25 +110,6 @@ public class ModificarEspecialidadDialog extends JFrame {
 				cmbNombre.setPopupVisible(true);
 			}
 		});
-		
-		JLabel lblEspecialidad = new JLabel("New label");
-		lblEspecialidad.setBounds(157, 123, 46, 14);
-		getContentPane().add(lblEspecialidad);
-		
-		JLabel lblNombre = new JLabel("New label");
-		lblNombre.setBounds(541, 123, 46, 14);
-		getContentPane().add(lblNombre);
-		
-		txtNombreBuscar = new JTextField();
-		txtNombreBuscar.setBounds(213, 161, 129, 20);
-		getContentPane().add(txtNombreBuscar);
-		txtNombreBuscar.setColumns(10);
-		
-		JLabel lblFondo = new JLabel("New label");
-		
-		lblFondo.setIcon(new ImageIcon(CrearStockDialog.class.getResource("/fotos/modificar_especialidad.PNG")));
-		lblFondo.setBounds(0, 0, 763, 449);
-		getContentPane().add(lblFondo);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -140,9 +131,24 @@ public class ModificarEspecialidadDialog extends JFrame {
 			}
 		});
 		btnAceptar.setBounds(664, 413, 89, 23);
-		getContentPane().add(btnAceptar);
+		contentPanel.add(btnAceptar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(565, 413, 89, 23);
+		contentPanel.add(btnCancelar);
+		
+		JLabel lblFondo = new JLabel("New label");
+		
+		lblFondo.setIcon(new ImageIcon(CrearStockDialog.class.getResource("/fotos/modificar_especialidad.PNG")));
+		lblFondo.setBounds(0, 0, 763, 449);
+		contentPanel.add(lblFondo);
 
-		setContentPane(contentPane);
+		
 		
 		
 		
