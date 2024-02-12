@@ -57,6 +57,8 @@ Derek:
 	- Funcionalidad Buscar paciente
 	- Funcionalidad javahelp(cmd, aparicion de menu)
 	- Funcionalidad crear/modificar proveedor
+	- Funcionalidad alta paciente
+	- Inserts bbdd
 	
 Ivan:
 	- Creados HTML y Archivos de configuracion javahelp
@@ -71,3 +73,6 @@ Ivan:
 	- Funcionalidad ModificarEspecialidad
 	- Funcionalidad BorrarEspecialidad
 	- Funcionalidad Crear Tratamiento
+	- Funcionalidad BajaPaciente
+	- Imagenes Ayuda
+	- 
